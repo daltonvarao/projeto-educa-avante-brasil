@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300.400,500,600,700,800,900");
 
 :root {
-  --primary: rgb(144, 57, 166);
-  --primary90: rgba(144, 57, 166, 0.9);
+  --primary: #49996f;
+  --primary90: rgba(73, 151, 111, 0.9);
   --dark: #333333;
   --light: #f0f0fd;
   --white: #ffffff;
@@ -17,14 +17,21 @@ body {
   background-color: #fafaf8;
 }
 
-body {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-}
-
 button {
   background-color: transparent;
   border: 0;
+}
+
+.btn {
+  background-color: transparent;
+  border: 0;
+
+  padding: 0.65rem;
+  border-radius: 5px;
+  font-weight: 700;
+  color: var(--dark);
+  outline-color: rgba(0, 0, 0, 0.2);
+  font-size: 14px;
 }
 
 * {
@@ -32,6 +39,7 @@ button {
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  font-family: "Montserrat", sans-serif;
 }
 
 .shadow {
@@ -58,7 +66,7 @@ button {
   right: 0;
   top: 0;
   background-color: var(--white);
-  padding: 1.5rem 2rem;
+  padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -189,7 +197,7 @@ button {
   background-color: var(--light);
   border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--dark);
   outline-color: rgba(0, 0, 0, 0.2);
 }
@@ -197,7 +205,6 @@ button {
 .btn-primary {
   background-color: var(--primary);
   color: white;
-  font-weight: 700;
 }
 
 .form-input + .btn-primary {
@@ -206,7 +213,22 @@ button {
 
 .container {
   padding: 1.5rem;
-  padding-top: 6rem;
+  padding-top: 8rem;
+}
+
+.container-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.header-actions {
 }
 
 .form-content {
@@ -255,5 +277,13 @@ button {
 
   .hidden {
     visibility: visible;
+  }
+
+  .mt-md-0 {
+    margin-top: 0;
+  }
+
+  .ml-md-1 {
+    margin-left: 0.75rem;
   }
 }

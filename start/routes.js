@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.get("/", ({ response }) => response.redirect("/admin/users"));
+Route.get("/", ({ view }) => view.render("home.index")).as("home.index");
 
 // unauthenticated users
 Route.group("admin", () => {
@@ -24,6 +24,15 @@ Route.group("admin", () => {
 })
   .prefix("admin")
   .middleware("guest");
+
+Route.get("admin", async ({ response, auth }) => {
+  try {
+    await auth.check();
+    return response.redirect("/admin/users");
+  } catch (error) {
+    return response.redirect("/admin/sessions");
+  }
+});
 
 // authenticated users
 Route.group("admin", () => {

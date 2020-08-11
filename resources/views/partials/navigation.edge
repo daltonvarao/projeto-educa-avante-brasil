@@ -1,7 +1,7 @@
 <header class="navigation shadow">
-  <div class="brand">
-    <h3>Logo</h3>
-  </div>
+  <a href="{{ route('home.index') }}" class="brand">
+    @inlineSvg('assets/logo')
+  </a>
 
   <button id="show-menu-nav">
     <i data-feather="menu"></i>
@@ -13,12 +13,12 @@
     </button>
     
     @loggedIn
-      <a class="nav-link" href="#">Usuarios</a>
-      <a class="nav-link" href="#">Cursos</a>
+      <a class="nav-link" href="{{ route('admin.users.index') }}">Usuários</a>
+      <a class="nav-link" href="{{ route('admin.users.index') }}">Cursos</a>
 
       <form action="{{ route('admin.sessions.destroy', id='1') }}?_method=DELETE" method="post">
         {{ csrfField() }}
-        <button class="nav-link mt-1" href="#">
+        <button class="nav-link mt-1 mt-md-0 ml-md-1">
           Sair
         </button>
       </form>

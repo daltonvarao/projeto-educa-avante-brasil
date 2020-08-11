@@ -16,7 +16,11 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  index = async ({ view }) => view.render("users.index");
+  async index({ view }) {
+    const users = await User.all();
+
+    return view.render("users.index", { users: users.toJSON() });
+  }
 
   /**
    * Render a form to be used for creating a new user.

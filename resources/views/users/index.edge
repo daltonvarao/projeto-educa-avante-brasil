@@ -2,6 +2,17 @@
 
 @section('content')
   <div class="container">
-    <h2>Users</h2>
+    <div class="container-header">
+      <h2 class="header-title">Usuários</h2>
+      <div class="header-actions">
+        <a class="btn btn-primary" href="{{ route('admin.users.create') }}">Novo usuário</a>
+      </div>
+    </div>
+
+    @each(user in users)
+      <li>{{ user.email }}</li>
+    @else
+      <h1>Nenhum usuario encontrado</h1>
+    @endeach
   </div>
 @endsection
