@@ -18,16 +18,22 @@ const Route = use("Route");
 
 Route.get("/", ({ response }) => response.redirect("/admin/users"));
 
-Route.get("admin/sessions", "SessionController.index").as(
-  "admin.sessions.index"
-);
+// unauthenticated users
+Route.group("admin", () => {
+  Route.resource("sessions", "SessionController").only(["index", "store"]);
+})
+  .prefix("admin")
+  .middleware("guest");
 
-Route.post("admin/sessions", "SessionController.store").as(
-  "admin.sessions.store"
-);
-
+// authenticated users
 Route.group("admin", () => {
   Route.resource("users", "UserController").validator(
     new Map([[["admin.users.store"], ["StoreUser"]]])
   );
-}).prefix("admin");
+
+  Route.delete("sessions", "SessionController.destroy").as(
+    "admin.sessions.destroy"
+  );
+})
+  .prefix("admin")
+  .middleware("auth");
