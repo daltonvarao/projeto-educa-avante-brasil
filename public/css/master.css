@@ -4,14 +4,11 @@
   --primary: #49996f;
   --primary90: rgba(73, 151, 111, 0.9);
   --dark: #333333;
-  --light-gray: #aaaaaa;
   --light: #f0f0fd;
   --white: #ffffff;
   --secondary: #676767;
   --success: #22ca73;
   --error: #ff6347;
-  --edit: #55aeba;
-  --delete: #e53f3f;
 }
 
 html,
@@ -233,7 +230,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .header-title {
@@ -255,50 +251,6 @@ button {
 .mt-1 {
   margin-top: 0.75rem;
 }
-
-.table .table-header {
-  display: none;
-  visibility: hidden;
-}
-
-.table-content {
-  background: var(--white);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 8px;
-}
-
-.table-content li {
-  list-style: none;
-}
-
-.table-content li + li {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.table-content .user-name {
-  font-weight: bold;
-  color: var(--dark);
-  font-size: 20px;
-}
-
-.table-content .user-admin,
-.table-content .user-email {
-  color: #909090;
-}
-.table-content .table-links .link.edit {
-  color: var(--edit);
-}
-.table-content .table-links .link.delete {
-  color: var(--delete);
-}
-.table-content .table-links .link + .link{
-  margin-left: 1rem;
-}
-
 
 @media (min-width: 768px) {
   .form-content {
@@ -343,6 +295,7 @@ button {
   .ml-md-1 {
     margin-left: 0.75rem;
   }
+  
 }
 
 .alert-message {
