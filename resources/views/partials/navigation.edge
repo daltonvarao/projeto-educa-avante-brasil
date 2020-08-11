@@ -13,5 +13,15 @@
     </button>
     <a class="nav-link" href="#">Sala de aula</a>
     <a class="nav-link" href="#">Fale conosco</a>
+
+    @loggedIn
+      <form action="{{ route('admin.sessions.destroy', id='1') }}?_method=DELETE" method="post">
+        {{ csrfField() }}
+
+        <button class="nav-link" href="#">
+          Sair
+        </button>
+      </form>
+    @endloggedIn
   </nav>
 </header>
