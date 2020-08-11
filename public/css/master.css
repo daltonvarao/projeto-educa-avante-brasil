@@ -2,6 +2,7 @@
 
 :root {
   --primary: rgb(144, 57, 166);
+  --primary90: rgba(144, 57, 166, 0.9);
   --dark: #333333;
   --light: #f0f0fd;
   --white: #ffffff;
@@ -19,6 +20,11 @@ body {
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
 }
 
 * {
@@ -69,7 +75,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(144, 57, 166, 0.9);
+  background-color: var(--primary90);
   backdrop-filter: blur(3px);
 
   display: flex;
@@ -209,6 +215,10 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.mt-1 {
+  margin-top: 0.75rem;
 }
 
 @media (min-width: 768px) {

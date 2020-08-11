@@ -26,7 +26,7 @@ class SessionController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response, auth }) {
+  async store({ request, response, auth, session }) {
     const { email, password } = request.only(["email", "password"]);
 
     try {
@@ -34,8 +34,13 @@ class SessionController {
 
       return response.redirect("/admin/users");
     } catch (error) {
-      // flash a mensagem that not fez o login
+      session
+        .withErrors([{ field: "email", message: "Email ou senha incorretos." }])
+        .flashAll();
+
       console.log(error);
+
+      return response.redirect("back");
     }
   }
 
@@ -47,7 +52,11 @@ class SessionController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {}
+  async destroy({ response, auth }) {
+    await auth.logout();
+
+    return response.redirect("/admin/sessions");
+  }
 }
 
 module.exports = SessionController;
