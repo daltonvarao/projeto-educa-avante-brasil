@@ -287,7 +287,7 @@ button {
   color: var(--delete);
 }
 .table-content .table-links .link + .link{
-  margin-left: 2rem;
+  margin-left: 1rem;
 
 }
 
