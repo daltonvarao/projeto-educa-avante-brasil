@@ -1,0 +1,19 @@
+@layout('layouts.master')
+
+@section('content')
+  <section class="form-content">
+    <form class="form-container shadow" action="{{ route('admin.sessions.store') }}" method="post">
+      <h2 class="form-title">Login</h2>
+
+      {{ csrfField() }}
+
+      <input class="form-input" type="email" placeholder="Email" name="email" value="{{ old('email', '') }}">
+      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+      
+      <input class="form-input" type="password" placeholder="Senha" name="password">
+      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+
+      <button class="form-btn btn-primary">Entrar</button>
+    </form>
+  </section>
+@endsection
