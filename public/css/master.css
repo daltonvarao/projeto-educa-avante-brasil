@@ -4,13 +4,10 @@
   --primary: #49996f;
   --primary90: rgba(73, 151, 111, 0.9);
   --dark: #333333;
-  --light-gray: #aaaaaa;
   --light: #f0f0fd;
   --white: #ffffff;
   --secondary: #676767;
   --error: #ff6347;
-  --edit: #55aeba;
-  --delete: #e53f3f;
 }
 
 html,
@@ -224,7 +221,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .header-title {

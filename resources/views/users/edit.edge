@@ -2,15 +2,15 @@
 
 @section('content')
   <section class="form-content">
-    <form class="form-container shadow" action="{{ route('admin.users.store') }}" method="post">
-      <h2 class="form-title">Novo Usuário</h2>
+    <form class="form-container shadow" method="post" action="{{ route('admin.users.update', id=user.id) }}?_method=PUT">
+      <h2 class="form-title">Editar Usuário</h2>
 
       {{ csrfField() }}
 
-      <input class="form-input" type="text" placeholder="Nome" name="name" value="{{ old('name', '') }}" required>
+      <input class="form-input" type="text" placeholder="Nome" name="name" value="{{ user.name }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
       
-      <input class="form-input" type="email" placeholder="Email" name="email" value="{{ old('email', '') }}" required>
+      <input class="form-input" type="email" placeholder="Email" name="email" value="{{ user.email }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
       
       <input class="form-input" type="password" placeholder="Senha" name="password" required>
@@ -19,7 +19,7 @@
       <input class="form-input" type="password" placeholder="Senha" name="password_confirmation" required>
 
       <div class="form-group">
-        <input type="checkbox" name="is_admin" id="is_admin">
+        <input type="checkbox" {{ user.is_admin ? 'checked' : '' }} name="is_admin" id="is_admin">
         <label for="is_admin">Administrador</label>
       </div>
 

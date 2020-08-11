@@ -23,8 +23,14 @@
         </button>
       </form>
     @else
-      <a class="nav-link" href="#">Sala de aula</a>
-      <a class="nav-link" href="#">Fale conosco</a>
+      <a class="nav-link" href="#">
+        <span>Sala de aula</span>
+        <i data-feather="book" ></i>
+      </a>
+      <a class="nav-link" href="https://api.whatsapp.com/send?phone=5593991920000">
+        <span>Fale conosco</span>
+        <i data-feather="message-square" ></i>
+      </a>
     @endloggedIn
   </nav>
 </header>
