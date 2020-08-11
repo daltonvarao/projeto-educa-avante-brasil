@@ -37,7 +37,10 @@ Route.get("admin", async ({ response, auth }) => {
 // authenticated users
 Route.group("admin", () => {
   Route.resource("users", "UserController").validator(
-    new Map([[["admin.users.store"], ["StoreUser"]]])
+    new Map([
+      [["admin.users.store"], ["StoreUser"]],
+      [["admin.users.update"], ["UpdateUser"]],
+    ])
   );
 
   Route.delete("sessions", "SessionController.destroy").as(

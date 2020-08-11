@@ -7,6 +7,7 @@
   --light: #f0f0fd;
   --white: #ffffff;
   --secondary: #676767;
+  --success: #22ca73;
   --error: #ff6347;
 }
 
@@ -20,6 +21,8 @@ body {
 button {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
+  outline-color: rgba(0, 0, 0, 0.2);
 }
 
 .btn {
@@ -30,7 +33,6 @@ button {
   border-radius: 5px;
   font-weight: 700;
   color: var(--dark);
-  outline-color: rgba(0, 0, 0, 0.2);
   font-size: 14px;
 }
 
@@ -123,12 +125,19 @@ button {
 
   border-bottom: 3px solid var(--primary);
   transition: border 300ms;
-  padding: 0.25rem;
+  padding: 0.5rem;
   color: var(--white);
+
+  display: flex;
+  align-items: center;
+}
+
+.nav-link svg {
+  margin-left: 0.5rem;
 }
 
 .nav-link + .nav-link {
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .nav-link:hover {
@@ -286,4 +295,48 @@ button {
   .ml-md-1 {
     margin-left: 0.75rem;
   }
+}
+
+.alert-message {
+  position: fixed;
+  top: 64px;
+  width: 320px;
+  right: 24px;
+  background-color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.alert-success {
+  border-left: 5px solid var(--success);
+  color: var(--success);
+}
+
+.alert-error {
+  border-left: 5px solid var(--error);
+  color: var(--error);
+}
+
+.alert-icon {
+  width: 36px;
+  height: 36px;
+  margin-right: 1rem;
+}
+
+.alert-body {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-content {
+  color: var(--dark);
+  font-size: 14px;
+}
+
+.alert-close {
+  color: var(--secondary);
 }

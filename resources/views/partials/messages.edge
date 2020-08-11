@@ -1,0 +1,25 @@
+@if(old('success'))
+  <div class="alert-message shadow alert-success">
+    <i class="alert-icon" data-feather="check"></i>
+    <div class="alert-body">
+      <div class="message-content">
+        {{ old('success') }}
+      </div>
+      <button class="alert-close">
+        <i data-feather="x"></i>
+      </button>
+    </div>
+  </div>
+@elseif(old('error'))    
+  <div class="alert-message shadow alert-error">
+    <i class="alert-icon" data-feather="alert-triangle"></i>
+    <div class="alert-body">
+      <div class="message-content">
+        {{ old('error') }}
+      </div>
+      <button class="alert-close">
+        <i data-feather="x"></i>
+      </button>
+    </div>
+  </div>
+@endif

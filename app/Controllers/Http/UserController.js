@@ -41,19 +41,22 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {
+  async store({ request, response, session }) {
     const userData = request.only(["name", "email", "password", "is_admin"]);
 
-    const user = await User.create({
-      ...userData,
-      is_admin: userData.is_admin ? true : false,
-    });
+    try {
+      await User.create({
+        ...userData,
+        is_admin: userData.is_admin ? true : false,
+      });
 
-    if (user) {
-      // flash a message avisando that saves o usuario
+      session.flash({ success: "Usuário cadastrado!" });
+
       return response.redirect("/admin/users");
-    } else {
-      // flash a error mensagem que dont saves the usuario
+    } catch (error) {
+      session.flash({ error: error.message });
+
+      return response.redirect("back");
     }
   }
 
@@ -66,7 +69,11 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  edit = async ({ view }) => view.render("users.edit");
+  async edit({ view, params }) {
+    const user = await User.find(params.id);
+
+    return view.render("users.edit", { user });
+  }
 
   /**
    * Update user details.
@@ -76,7 +83,27 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request, response }) {}
+  async update({ params, request, response, session }) {
+    const userData = request.only(["name", "email", "password", "is_admin"]);
+
+    const user = await User.find(params.id);
+
+    user.merge({
+      ...userData,
+      is_admin: userData.is_admin ? true : false,
+    });
+
+    try {
+      await user.save();
+      session.flash({ success: "Usuário atualizado!" });
+
+      return response.redirect("/admin/users");
+    } catch (error) {
+      session.flash({ error: error.message });
+
+      return response.redirect("back");
+    }
+  }
 
   /**
    * Delete a user with id.
