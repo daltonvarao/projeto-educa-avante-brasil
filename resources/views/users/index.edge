@@ -19,21 +19,19 @@
         </ul>
       </div>
 
-      <div class="table-content shadow">
-          @each(user in users)
-            <div class="table-info">
-              <li class="user-name">{{ user.name }}</li>
-              <li class="user-email">{{ user.email }}</li>
-              <li class="user-admin">Administrador: {{user.is_admin}}</li>
-            </div>
-            <div class="table-links">
-              <i class="link edit" data-feather="edit"></i>
-              <i class="link delete" data-feather="trash-2"></i>
-            </div>
-          @else
-            <h1>Nenhum usuario encontrado</h1>
-          @endeach
-      </div>
+      @each(user in users)
+        <div class="table-content shadow">
+          <div class="table-info">
+            <li class="user-name">{{ user.name }}</li>
+            <li class="user-email">{{ user.email }}</li>
+            <li class="user-admin">Administrador: {{user.is_admin}}</li>
+          </div>
+          <div class="table-links">
+            <i class="link edit" data-feather="edit"></i>
+            <i class="link delete" data-feather="trash-2"></i>
+          </div>
+        </div>
+      @endeach
     </div>
   </div>
 @endsection

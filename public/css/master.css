@@ -8,6 +8,7 @@
   --white: #ffffff;
   --secondary: #676767;
   --error: #ff6347;
+  --edit: #55aeba;
 }
 
 html,
@@ -221,6 +222,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.75rem;
 }
 
 .header-title {
@@ -255,6 +257,11 @@ button {
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
+  height: 110px;
+}
+
+.table-content + .table-content {
+  margin-top: 1rem;
 }
 
 .table-content li {
@@ -262,31 +269,39 @@ button {
 }
 
 .table-content li + li {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .table-content .user-name {
-  font-weight: bold;
+  font-weight: 600;
   color: var(--dark);
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .table-content .user-admin,
 .table-content .user-email {
   color: #909090;
+  font-size: 14px;
 }
+
+.table-content .table-links {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .table-content .table-links .link.edit {
   color: var(--edit);
 }
 .table-content .table-links .link.delete {
-  color: var(--delete);
+  color: var(--error);
 }
-.table-content .table-links .link + .link{
+
+/* .table-content .table-links .link + .link {
   margin-left: 1rem;
-
-}
-
+} */
 
 @media (min-width: 768px) {
   .form-content {
