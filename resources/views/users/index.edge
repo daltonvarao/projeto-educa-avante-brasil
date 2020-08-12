@@ -24,11 +24,25 @@
           <div class="table-info">
             <li class="table-title">{{ user.name }}</li>
             <li class="table-detail">{{ user.email }}</li>
-            <li class="table-detail">{{user.is_admin ? 'sim' : 'não'}}</li>
+            <li class="table-detail">
+              @if(user.is_admin)
+                <span class="md-hidden">Administrador</span>
+                <span class="sm-hidden">Sim</span>
+              @else
+                <span class="sm-hidden">Não</span>
+              @endif
+            </li>
           </div>
           <div class="table-links">
-            <i class="link edit" data-feather="edit"></i>
-            <i class="link delete" data-feather="trash-2"></i>
+            <a class="link edit" href="{{ route('admin.users.edit', id=user.id) }}">
+              <i data-feather="edit"></i>
+            </a>
+            <form class="link delete" method="post" action="{{ route('admin.users.destroy', id=user.id) }}?_method=DELETE">
+              {{ csrfField() }}
+              <button class="delete-button" type="button">
+                <i class="danger-text" data-feather="trash-2"></i>
+              </button>
+            </form>
           </div>
         </div>
       @endeach

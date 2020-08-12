@@ -50,6 +50,10 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
+.danger-text {
+  color: var(--error);
+}
+
 .show {
   visibility: visible;
   opacity: 1;
@@ -62,6 +66,10 @@ button {
   opacity: 0;
 
   transition: visibility 300ms, opacity 300ms linear;
+}
+
+.sm-hidden {
+  display: none;
 }
 
 .navigation {
@@ -449,6 +457,14 @@ button {
     visibility: visible;
   }
 
+  .md-hidden {
+    display: none;
+  }
+
+  .sm-hidden {
+    display: block;
+  }
+
   .mt-md-0 {
     margin-top: 0;
   }
@@ -461,9 +477,9 @@ button {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1000px;
     margin: 0 auto;
   }
+
   .table .table-header {
     width: 100%;
     display: flex;
@@ -471,11 +487,13 @@ button {
     visibility: visible;
     padding: 1rem;
   }
+
   .table .table-header ul {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1.25fr 2fr 1fr;
   }
+
   .table .table-header ul li {
     list-style: none;
     font-size: 18px;
@@ -495,16 +513,15 @@ button {
   }
 
   .table-content {
-    max-width: 1000px;
     height: 60px;
   }
 
   .table-content .table-info {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1.25fr 2fr 1fr;
   }
-  
+
   .table-content .table-info li:last-child {
     display: flex;
     align-items: center;
@@ -516,7 +533,7 @@ button {
 
   .table-content .table-title,
   .table-content .table-detail {
-    font-weight: 300;
+    font-weight: 400;
     color: var(--dark);
     font-size: 16px;
   }
@@ -529,5 +546,4 @@ button {
   .table-content .table-links .link + .link {
     margin-left: 0.75rem;
   }
-
 }
