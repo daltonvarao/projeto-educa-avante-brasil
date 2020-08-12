@@ -7,8 +7,10 @@ class ConfiguracoesSchema extends Schema {
   up() {
     this.create("configuracoes", (table) => {
       table.increments();
-      table.string("telefone").notNullable();
-      table.string("sala_aula_url").notNullable();
+      table.string("telefone_wpp");
+      table.string("pos_grad_url");
+      table.string("cur_prof_url");
+
       table.timestamps();
     });
   }
