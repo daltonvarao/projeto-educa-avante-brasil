@@ -43,6 +43,8 @@ Route.group("admin", () => {
     ])
   );
 
+  Route.resource("configuracoes", "ConfiguracaoController");
+
   Route.delete("sessions", "SessionController.destroy").as(
     "admin.sessions.destroy"
   );

@@ -9,6 +9,7 @@
   --secondary: #676767;
   --error: #ff6347;
   --edit: #55aeba;
+  --success: #22ca73;
 }
 
 html,
@@ -21,6 +22,8 @@ body {
 button {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
+  outline-color: rgba(0, 0, 0, 0.2);
 }
 
 .btn {
@@ -126,15 +129,107 @@ button {
   transition: border 300ms;
   padding: 0.25rem;
   color: var(--white);
+  display: flex;
+  align-items: center;
 }
 
+.nav-link svg {
+  margin-left: 0.25rem;
+}
+
+.nav-link span {
+  display: block;
+}
+
+.dropdown + form,
+.dropdown + .nav-link,
+.nav-link + .dropdown,
 .nav-link + .nav-link {
-  margin-top: 0.75rem;
+  margin-top: 1.25rem;
 }
 
 .nav-link:hover {
   border-color: var(--white);
   transition: border 700ms;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown-button {
+  text-align: center;
+}
+
+.dropdown-nav-link {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.dropdown-nav-link:hover {
+  opacity: 0.8;
+}
+
+.dropdown-nav-link + .dropdown-nav-link {
+  margin-top: 1rem;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 5px;
+  top: 130%;
+
+  transition: visibility 300ms, opacity 300ms linear;
+}
+
+.alert-message {
+  position: fixed;
+  top: 64px;
+  width: 320px;
+  right: 24px;
+  background-color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.alert-success {
+  border-left: 5px solid var(--success);
+  color: var(--success);
+}
+
+.alert-error {
+  border-left: 5px solid var(--error);
+  color: var(--error);
+}
+
+.alert-icon {
+  width: 36px;
+  height: 36px;
+  margin-right: 1rem;
+}
+
+.alert-body {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-content {
+  color: var(--dark);
+  font-size: 14px;
+}
+
+.alert-close {
+  color: var(--secondary);
 }
 
 .form-container {
@@ -146,18 +241,28 @@ button {
 }
 
 .form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 14px;
+}
+
+.form-group-inline {
   margin: 0.75rem 0;
   display: flex;
   align-items: center;
 }
 
-.form-group label {
+.form-group-inline label {
   font-size: 14px;
   font-weight: 600;
   color: var(--dark);
 }
 
-.form-group input + label {
+.form-group-inline input + label {
   margin-left: 0.5rem;
 }
 
@@ -215,6 +320,8 @@ button {
 .container {
   padding: 1.5rem;
   padding-top: 8rem;
+  max-width: 960px;
+  margin: auto;
 }
 
 .container-header {
@@ -330,6 +437,9 @@ button {
     border-color: var(--primary);
   }
 
+  .dropdown + form,
+  .dropdown + .nav-link,
+  .nav-link + .dropdown,
   .nav-link + .nav-link {
     margin-left: 0.75rem;
     margin-top: 0;

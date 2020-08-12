@@ -21,3 +21,22 @@ if (closeAlertBtn) {
     alertMessage.classList.add("hidden");
   };
 }
+
+// dropdown menu
+const dropdownButton = document.querySelector(".dropdown");
+const dropdownContent = document.querySelector(".dropdown-content");
+
+if (dropdownButton) {
+  dropdownButton.onclick = function () {
+    if (dropdownContent.classList.contains("hidden")) {
+      dropdownContent.classList.replace("hidden", "show");
+    } else {
+      dropdownContent.classList.replace("show", "hidden");
+    }
+  };
+
+  window.onclick = function (ev) {
+    if (!ev.target.matches(".dropdown-button"))
+      dropdownContent.classList.replace("show", "hidden");
+  };
+}
