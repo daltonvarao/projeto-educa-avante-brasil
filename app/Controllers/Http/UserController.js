@@ -113,7 +113,17 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {}
+  async destroy({ params, response, session }) {
+    try {
+      await User.query().where("id", params.id).delete();
+      session.flash({ success: "Usuário deletado!" });
+
+      return response.redirect("back");
+    } catch (error) {
+      session.flash({ error: error.message });
+      return response.redirect("back");
+    }
+  }
 }
 
 module.exports = UserController;

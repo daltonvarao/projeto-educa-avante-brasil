@@ -40,3 +40,16 @@ if (dropdownButton) {
       dropdownContent.classList.replace("show", "hidden");
   };
 }
+
+// delete prompt
+const deleteButtons = document.querySelectorAll(".delete-button");
+
+if (deleteButtons) {
+  deleteButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (confirm("Deseja realmente deletar este item?")) {
+        btn.parentElement.submit();
+      }
+    });
+  });
+}

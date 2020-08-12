@@ -50,6 +50,10 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
+.danger-text {
+  color: var(--error);
+}
+
 .show {
   visibility: visible;
   opacity: 1;
@@ -62,6 +66,10 @@ button {
   opacity: 0;
 
   transition: visibility 300ms, opacity 300ms linear;
+}
+
+.sm-hidden {
+  display: none;
 }
 
 .navigation {
@@ -313,6 +321,10 @@ button {
   color: white;
 }
 
+.btn-primary:hover {
+  background: var(--primary90);
+}
+
 .form-input + .btn-primary {
   margin-top: 0.5rem;
 }
@@ -352,6 +364,7 @@ button {
   margin-top: 0.75rem;
 }
 
+/* table mobile */
 .table .table-header {
   display: none;
   visibility: hidden;
@@ -379,14 +392,13 @@ button {
   margin-top: 0.25rem;
 }
 
-.table-content .user-name {
+.table-content .table-title {
   font-weight: 600;
   color: var(--dark);
   font-size: 18px;
 }
 
-.table-content .user-admin,
-.table-content .user-email {
+.table-content .table-detail {
   color: #909090;
   font-size: 14px;
 }
@@ -405,10 +417,6 @@ button {
 .table-content .table-links .link.delete {
   color: var(--error);
 }
-
-/* .table-content .table-links .link + .link {
-  margin-left: 1rem;
-} */
 
 @media (min-width: 768px) {
   .form-content {
@@ -449,11 +457,93 @@ button {
     visibility: visible;
   }
 
+  .md-hidden {
+    display: none;
+  }
+
+  .sm-hidden {
+    display: block;
+  }
+
   .mt-md-0 {
     margin-top: 0;
   }
 
   .ml-md-1 {
+    margin-left: 0.75rem;
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .table .table-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    visibility: visible;
+    padding: 1rem;
+  }
+
+  .table .table-header ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 2fr 1fr;
+  }
+
+  .table .table-header ul li {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .table .table-header ul li:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .table .table-header span {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+
+  .table-content {
+    height: 60px;
+  }
+
+  .table-content .table-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 2fr 1fr;
+  }
+
+  .table-content .table-info li:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .table-content li + li {
+    margin-top: 0;
+  }
+
+  .table-content .table-title,
+  .table-content .table-detail {
+    font-weight: 400;
+    color: var(--dark);
+    font-size: 16px;
+  }
+
+  .table-content .table-links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .table-content .table-links .link + .link {
     margin-left: 0.75rem;
   }
 }
