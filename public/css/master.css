@@ -10,6 +10,7 @@
   --error: #ff6347;
   --edit: #55aeba;
   --success: #22ca73;
+  --face-blue: #008BD0;
 }
 
 html,
@@ -82,6 +83,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
 }
 
 .brand h3 {
@@ -325,6 +327,11 @@ button {
   background: var(--primary90);
 }
 
+.btn-blue {
+  background-color: var(--face-blue);
+  color: white;
+}
+
 .form-input + .btn-primary {
   margin-top: 0.5rem;
 }
@@ -361,6 +368,137 @@ button {
 }
 
 .mt-1 {
+  margin-top: 0.75rem;
+}
+
+/* FOOTER */
+footer {
+  background: var(--white);
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+}
+
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+footer .footer-content .info-links .info-link {
+  display: flex;
+  align-items: center;
+}
+
+footer .footer-content .info-links .info-link .btn-link {
+  color: var(--primary);
+}
+
+footer .footer-content .info-links .info-link a {
+  font-size: 18px;
+  color: var(--dark);
+}
+
+footer .footer-content .info-links .info-link + .info-link{
+  margin-top: 0.5rem;
+}
+
+footer .footer-content .footer-logo {
+  padding: 1rem;
+}
+
+footer .footer-content .footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+footer .footer-content .footer-contact a {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .footer-content .footer-contact a + a {
+  margin-top: 0.5rem;
+}
+
+footer .footer-content .footer-contact a svg {
+ font-size: 10px;
+}
+
+/* HOMEPAGE */
+.homepage-container {
+  padding-top: 6rem;
+  width: 100%;
+  height: 100%;
+}
+
+.homepage-container section.homepage-content {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../assets/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.homepage-container section.homepage-content .layer {
+  background-color: rgba(73, 151, 111, 0.5);
+  position: absolute;
+  top: 18px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.homepage-container section.homepage-content .homepage-title {
+  position: relative;
+  z-index: 50;
+  color: var(--white);
+  font-size: 44px;
+  font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+}
+
+.homepage-container section.homepage-content .homepage-subtitle {
+  position: relative;
+  z-index: 50;
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.homepage-container section.homepage-content .homepage-inputs {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.homepage-container section.homepage-content .homepage-inputs select {
+  border: none;
+  border-radius: 10px;
+  padding: 1.5rem;
+
+  background: var(--white);
+  
+  color: var(--primary);
+  text-align-last: center;
+  text-align: center;
+  font-weight: 600;
+
+}
+
+.homepage-container section.homepage-content .homepage-inputs select + select {
   margin-top: 0.75rem;
 }
 
@@ -545,5 +683,52 @@ button {
 
   .table-content .table-links .link + .link {
     margin-left: 0.75rem;
+  }
+
+  /* footer */
+  footer .footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  footer .footer-content .footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  footer .footer-content .footer-contact {
+    align-items: flex-end;
+  }
+
+  footer .footer-content .footer-contact a {
+    max-width: 190px;
+  }
+
+  /* homepage */
+
+  .homepage-container section.homepage-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .homepage-container section.homepage-content .homepage-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .homepage-container section.homepage-content .homepage-inputs select {
+    width: 100%;
+    max-width: 360px;
+    padding: 2rem;
+
+    font-size: 20px;
+  }
+
+  .homepage-container section.homepage-content .homepage-inputs select + select {
+    margin-top: 0;
+    margin-left: 1rem;
   }
 }
