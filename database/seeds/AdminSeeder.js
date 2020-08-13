@@ -4,7 +4,7 @@ const User = use("App/Models/User");
 
 class AdminSeeder {
   async run() {
-    await User.findOrcreate(
+    await User.findOrCreate(
       {
         email: "admin@admin.com",
       },
