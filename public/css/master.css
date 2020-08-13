@@ -346,7 +346,8 @@ button {
 
 .header-title {
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .header-actions {
@@ -485,7 +486,7 @@ button {
     display: flex;
     align-items: center;
     visibility: visible;
-    padding: 1rem;
+    padding: 1rem 0.75rem;
   }
 
   .table .table-header ul {
