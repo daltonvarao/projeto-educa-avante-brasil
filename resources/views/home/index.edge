@@ -1,7 +1,51 @@
 @layout('layouts.master')
 
 @section('content')
-  <div class="container">
-    <h2>Home</h2>
+  <div class="homepage-container">
+    <section class="homepage-content">
+      <div class="layer"></div>
+      <h1 class="homepage-title">Não perca a oportunidade de seguir seus sonhos!</h1>
+      <h3 class="homepage-subtitle">Comece escolhendo seu curso abaixo</h3>
+      <div class="homepage-inputs">
+        <select>
+          <option value="">MODALIDADE</option>
+        </select>
+        <select>
+          <option value="">ÁREA</option>
+        </select>
+        <select>
+          <option value="">CURSO</option>
+        </select>
+      </div>
+    </section>
   </div>
+  <footer>
+    <div class="footer-content">
+      <div class="info-links">
+        <div class="info-link">
+          <i class="btn-link" data-feather="chevron-right"></i>
+          <a href="">Sobre nós</a>
+        </div>
+        <div class="info-link">
+          <i class="btn-link" data-feather="chevron-right"></i>
+          <a href="">Pós graduação</a>
+        </div>
+        <div class="info-link">
+          <i class="btn-link" data-feather="chevron-right"></i>
+          <a href="">Profissionalizantes</a>
+        </div>
+      </div>
+      <div class="footer-logo">
+        @inlineSvg('assets/logo')
+      </div>
+      <div class="footer-contact">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ route(request.configs.telefone_wpp) }}">
+          Whatsapp <i data-feather="phone"></i>
+        </a>
+        <a class="btn btn-blue" href="{{ route(request.configs.facebook_url) }}">
+          Facebook <i data-feather="facebook"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
 @endsection
