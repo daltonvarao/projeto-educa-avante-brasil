@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#49996f">
   <title>Projeto Educa Avante Brasil</title>
+
+  <meta name="author" content="Dalton Felipe">
+  <meta name="description" content="O Projeto Educa Avante Brasil, originou-se com o intuito de proporcionar pós-graduações e cursos profissionalizantes qualificados em EAD para todo o Brasil, tendo como objetivo facilitar o crescimento profissional a todos que o procuram.">
   {{ style('css/master') }}
 </head>
 <body>
   @include('partials.navigation')
   @include('partials.messages')
   @!section('content')
+
+  @loggedIn
+  @else
+    @include('partials.footer')
+  @endloggedIn
 
   {{ script('js/master') }}
   <script src="https://unpkg.com/feather-icons"></script>
