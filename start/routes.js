@@ -17,6 +17,7 @@
 const Route = use("Route");
 
 Route.get("/", ({ view }) => view.render("home.index")).as("home.index");
+Route.get("/sobre", ({ view }) => view.render("sobre.index")).as("sobre.index");
 
 // unauthenticated users
 Route.group("admin", () => {
