@@ -383,7 +383,11 @@ footer {
 footer .footer-content {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 2.5rem 1.5rem;
+}
+
+footer .footer-content .info-links {
+  margin-bottom: 2rem;
 }
 
 footer .footer-content .info-links .info-link {
@@ -404,22 +408,25 @@ footer .footer-content .info-links .info-link + .info-link {
   margin-top: 0.5rem;
 }
 
-footer .footer-content .footer-logo {
-  padding: 1rem;
-  align-self: center;
-}
-
 footer .footer-content .footer-contact {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  margin-bottom: 2rem;
+}
+
+footer .footer-content .footer-logo {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 footer .footer-content .footer-contact a {
   width: 100%;
   display: flex;
   align-items: center;
+  padding: 0.75rem 2rem;
   justify-content: center;
 }
 
@@ -429,6 +436,27 @@ footer .footer-content .footer-contact a + a {
 
 footer .footer-content .footer-contact a svg {
   font-size: 10px;
+}
+
+.footer-copy {
+  font-size: 14px;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.footer-credits {
+  font-size: 14px;
+  color: var(--dark);
+  margin-top: 0.5rem;
+  width: 100%;
+  text-align: center;
+  padding: 1.25rem;
+  border-top: 1px solid #bbb7;
+}
+
+.footer-credits a {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 /* HOMEPAGE */
@@ -690,23 +718,29 @@ footer .footer-content .footer-contact a svg {
 
   /* footer */
   footer .footer-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    flex-direction: row;
     align-items: center;
-    padding: 2.5rem;
+    justify-content: space-between;
+    padding: 2rem 2.5rem;
+  }
+
+  footer .footer-content .info-links {
+    margin-bottom: 0;
   }
 
   footer .footer-content .footer-logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
+
   footer .footer-content .footer-contact {
-    align-items: flex-end;
+    margin-bottom: 0;
   }
 
   footer .footer-content .footer-contact a {
-    max-width: 190px;
+    width: 220px;
   }
 
   /* homepage */

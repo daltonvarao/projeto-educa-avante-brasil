@@ -1,5 +1,14 @@
 <footer>
   <div class="footer-content">
+    <div class="footer-contact">
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ route(request.configs.telefone_wpp) }}">
+        Whatsapp <i data-feather="phone"></i>
+      </a>
+      <a class="btn btn-blue" href="{{ route(request.configs.facebook_url) }}">
+        Facebook <i data-feather="facebook"></i>
+      </a>
+    </div>
+
     <div class="info-links">
       <div class="info-link">
         <i class="btn-link" data-feather="chevron-right"></i>
@@ -14,16 +23,18 @@
         <a href="">Cursos Profissionalizantes</a>
       </div>
     </div>
+
     <div class="footer-logo">
       @inlineSvg('assets/logo')
+      <div class="footer-copy">
+        <span>&copy;</span> <span id="current-year"></span> -
+        Todos os direitos reservados.
+      </div>
     </div>
-    <div class="footer-contact">
-      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ route(request.configs.telefone_wpp) }}">
-        Whatsapp <i data-feather="phone"></i>
-      </a>
-      <a class="btn btn-blue" href="{{ route(request.configs.facebook_url) }}">
-        Facebook <i data-feather="facebook"></i>
-      </a>
-    </div>
+
+  </div>
+  <div class="footer-credits">
+    Desenvolvido por 
+    <a href="#">Dalton Felipe</a>
   </div>
 </footer>
