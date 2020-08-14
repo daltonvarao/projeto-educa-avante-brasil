@@ -10,6 +10,7 @@ class ConfiguracoesSchema extends Schema {
       table.string("telefone_wpp");
       table.string("pos_grad_url");
       table.string("cur_prof_url");
+      table.string("facebook_url");
 
       table.timestamps();
     });

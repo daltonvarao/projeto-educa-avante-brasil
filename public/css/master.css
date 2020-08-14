@@ -10,7 +10,7 @@
   --error: #ff6347;
   --edit: #55aeba;
   --success: #22ca73;
-  --face-blue: #008BD0;
+  --face-blue: #008bd0;
 }
 
 html,
@@ -383,8 +383,7 @@ footer {
 footer .footer-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 footer .footer-content .info-links .info-link {
@@ -397,16 +396,17 @@ footer .footer-content .info-links .info-link .btn-link {
 }
 
 footer .footer-content .info-links .info-link a {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--dark);
 }
 
-footer .footer-content .info-links .info-link + .info-link{
+footer .footer-content .info-links .info-link + .info-link {
   margin-top: 0.5rem;
 }
 
 footer .footer-content .footer-logo {
   padding: 1rem;
+  align-self: center;
 }
 
 footer .footer-content .footer-contact {
@@ -428,29 +428,32 @@ footer .footer-content .footer-contact a + a {
 }
 
 footer .footer-content .footer-contact a svg {
- font-size: 10px;
+  font-size: 10px;
 }
 
 /* HOMEPAGE */
 .homepage-container {
   padding-top: 6rem;
   width: 100%;
-  height: 100%;
 }
 
 .homepage-container section.homepage-content {
   width: 100%;
   height: 100vh;
+  position: relative;
   background-image: url(../assets/background.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .homepage-container section.homepage-content .layer {
-  background-color: rgba(73, 151, 111, 0.5);
+  background-color: rgba(73, 151, 111, 0.65);
   position: absolute;
-  top: 18px;
+  backdrop-filter: blur(0px);
   left: 0;
   right: 0;
   width: 100%;
@@ -461,20 +464,20 @@ footer .footer-content .footer-contact a svg {
   position: relative;
   z-index: 50;
   color: var(--white);
-  font-size: 44px;
-  font-weight: bold;
+  font-size: 34px;
+  font-weight: 600;
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .homepage-container section.homepage-content .homepage-subtitle {
   position: relative;
   z-index: 50;
   color: var(--white);
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 400;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0 2rem;
 }
 
 .homepage-container section.homepage-content .homepage-inputs {
@@ -482,21 +485,21 @@ footer .footer-content .footer-contact a svg {
   z-index: 50;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 
 .homepage-container section.homepage-content .homepage-inputs select {
   border: none;
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
 
   background: var(--white);
-  
+
   color: var(--primary);
   text-align-last: center;
   text-align: center;
+  font-size: 16px;
   font-weight: 600;
-
 }
 
 .homepage-container section.homepage-content .homepage-inputs select + select {
@@ -691,7 +694,7 @@ footer .footer-content .footer-contact a svg {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    padding: 1rem;
+    padding: 2.5rem;
   }
 
   footer .footer-content .footer-logo {
@@ -710,16 +713,28 @@ footer .footer-content .footer-contact a svg {
   /* homepage */
 
   .homepage-container section.homepage-content {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
+  .homepage-container section.homepage-content .homepage-title {
+    font-size: 48px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .homepage-container section.homepage-content .homepage-subtitle {
+    font-size: 28px;
+  }
+
   .homepage-container section.homepage-content .homepage-inputs {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
-  
+
   .homepage-container section.homepage-content .homepage-inputs select {
     width: 100%;
     max-width: 360px;
@@ -728,7 +743,11 @@ footer .footer-content .footer-contact a svg {
     font-size: 20px;
   }
 
-  .homepage-container section.homepage-content .homepage-inputs select + select {
+  .homepage-container
+    section.homepage-content
+    .homepage-inputs
+    select
+    + select {
     margin-top: 0;
     margin-left: 1rem;
   }

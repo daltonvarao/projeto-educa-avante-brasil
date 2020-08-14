@@ -28,10 +28,6 @@
         </div>
         <div class="info-link">
           <i class="btn-link" data-feather="chevron-right"></i>
-          <a href="">Fale conosco</a>
-        </div>
-        <div class="info-link">
-          <i class="btn-link" data-feather="chevron-right"></i>
           <a href="">Pós graduação</a>
         </div>
         <div class="info-link">
@@ -40,15 +36,13 @@
         </div>
       </div>
       <div class="footer-logo">
-        <a href="{{ route('home.index') }}" class="brand">
-          @inlineSvg('assets/logo')
-        </a>
+        @inlineSvg('assets/logo')
       </div>
       <div class="footer-contact">
-        <a class="btn btn-primary" href="">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ route(request.configs.telefone_wpp) }}">
           Whatsapp <i data-feather="phone"></i>
         </a>
-        <a class="btn btn-blue" href="">
+        <a class="btn btn-blue" href="{{ route(request.configs.facebook_url) }}">
           Facebook <i data-feather="facebook"></i>
         </a>
       </div>
