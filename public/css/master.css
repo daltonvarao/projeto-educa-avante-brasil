@@ -596,7 +596,6 @@ footer .footer-content .footer-contact a svg {
 .card-about {
   background: var(--primary);
   color: var(--white);
-  /* text-align: justify; */
   padding: 2rem 1.5rem;
 }
 
@@ -614,21 +613,22 @@ footer .footer-content .footer-contact a svg {
 }
 
 .card-icon {
-  display: grid;
+  display: flex;
   align-items: center;
   padding: 0.5rem;
-  grid-template-columns: 1fr 2fr;
+}
+
+.card-icon .icon {
+  margin-right: 1rem;
 }
 
 .card-icon .icon svg {
-  min-width: 70%;
-  width: 70%;
-  height: 70%;
+  min-width: 70px;
+  height: 70px;
 }
 
 .card-icon .icon .mdi::before {
-  min-width: 120px;
-  font-size: 120px;
+  font-size: 70px;
 }
 
 .card-icon-content h3 {
@@ -866,13 +866,12 @@ footer .footer-content .footer-contact a svg {
   }
 
   .card-icon .icon .mdi::before {
-    font-size: 150px;
+    font-size: 85px;
   }
 
   .card-icon .icon svg {
     display: flex;
     align-self: center;
-    width: 90px;
     height: 90px;
   }
 
