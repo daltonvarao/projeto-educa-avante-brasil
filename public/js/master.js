@@ -56,5 +56,9 @@ window.onload = function () {
     });
   }
 
-  document.querySelector("#current-year").innerHTML = new Date().getFullYear();
+  const currentYear = document.querySelector("#current-year");
+
+  if (currentYear) {
+    currentYear.innerHTML = new Date().getFullYear();
+  }
 };

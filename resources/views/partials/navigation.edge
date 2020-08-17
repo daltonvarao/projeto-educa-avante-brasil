@@ -15,14 +15,7 @@
     @loggedIn
       <a class="nav-link" href="{{ route('admin.users.index') }}">Usuários</a>
       <a class="nav-link" href="{{ route('admin.configuracoes.index') }}">Configurações</a>
-
-      <div class="dropdown">
-        <a class="nav-link dropdown-button">Cursos</a>
-        <div class="dropdown-content shadow hidden">
-          <a class="dropdown-nav-link" href="{{ route('admin.users.index') }}">Profissionalizante</a>
-          <a class="dropdown-nav-link" href="{{ route('admin.users.index') }}">Pós Graduação</a>
-        </div>
-      </div>
+      <a class="nav-link" href="{{ route('admin.users.index') }}">Cursos</a>
 
       <form action="{{ route('admin.sessions.destroy', id='1') }}?_method=DELETE" method="post">
         {{ csrfField() }}
@@ -31,15 +24,12 @@
         </button>
       </form>
     @else
-      <a class="nav-link" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">
-        Fale conosco
-        <i data-feather="message-square"></i>
-      </a>
+      <a class="nav-link" href="{{ route('sobre.index') }}">Sobre nós</a>
+      <a class="nav-link" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Fale conosco</a>
 
       <div class="dropdown">
         <a class="nav-link dropdown-button">
           Sala de aula
-          <i data-feather="book" ></i>
         </a>
         <div class="dropdown-content shadow hidden">
           <a class="dropdown-nav-link" href="{{ request.configs.pos_grad_url }}">Pós Graduação</a>
