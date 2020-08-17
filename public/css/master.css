@@ -157,6 +157,7 @@ button {
 }
 
 .dropdown + form,
+.nav-link + form,
 .dropdown + .nav-link,
 .nav-link + .dropdown,
 .nav-link + .nav-link {
@@ -672,6 +673,7 @@ footer .footer-content .footer-contact a svg {
   }
 
   .dropdown + form,
+  .nav-link + form,
   .dropdown + .nav-link,
   .nav-link + .dropdown,
   .nav-link + .nav-link {
