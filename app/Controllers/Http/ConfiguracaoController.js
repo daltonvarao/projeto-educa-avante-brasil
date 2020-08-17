@@ -33,6 +33,7 @@ class ConfiguracaoController {
       "telefone_wpp",
       "pos_grad_url",
       "cur_prof_url",
+      "facebook_url",
     ]);
 
     const config = await Configuracao.find(1);

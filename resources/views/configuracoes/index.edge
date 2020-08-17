@@ -14,6 +14,10 @@
         <input id="telefone" class="form-input" type="tel" name="telefone_wpp" placeholder="Telefone para contato" value="{{ request.configs.telefone_wpp || '' }}">
       </div>
       <div class="form-group">
+        <label for="facebook">Link para pagina do Facebook</label>
+        <input id="facebook" class="form-input" type="url" name="facebook_url" placeholder="Link para Pós Graduação" value="{{ request.configs.facebook_url || '' }}">
+      </div>
+      <div class="form-group">
         <label for="posgrad">Link para Pós Graduação</label>
         <input id="posgrad" class="form-input" type="url" name="pos_grad_url" placeholder="Link para Pós Graduação" value="{{ request.configs.pos_grad_url || '' }}">
       </div>
