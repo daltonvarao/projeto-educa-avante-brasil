@@ -214,6 +214,7 @@ button {
   border-radius: 8px;
   display: flex;
   align-items: center;
+  z-index: 200;
 }
 
 .alert-success {
