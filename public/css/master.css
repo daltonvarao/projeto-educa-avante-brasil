@@ -505,7 +505,7 @@ footer .footer-content .footer-contact a svg {
   position: relative;
   z-index: 50;
   color: var(--white);
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 700;
   text-align: center;
   padding: 1.5rem;
@@ -854,7 +854,7 @@ a.disabled {
   }
 
   .homepage-container section.homepage-content .homepage-title {
-    font-size: 48px;
+    font-size: 50px;
     max-width: 860px;
     margin: 0 auto;
   }
