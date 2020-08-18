@@ -60,6 +60,11 @@ button {
   color: var(--error);
 }
 
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .show {
   visibility: visible;
   opacity: 1;

@@ -1,0 +1,19 @@
+@layout('layouts.master')
+
+@section('content')
+  <section class="form-content">
+    <form class="form-container shadow" method="post" action="{{ route('admin.areas.update', id=area.id) }}?_method=PUT">
+      <h2 class="form-title">Editar Área de Estudo</h2>
+
+      {{ csrfField() }}
+
+      <input class="form-input" type="text" placeholder="Nome" name="nome" value="{{ old('nome', area.nome) }}" required>
+      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('nome'), hasErrorFor('nome')) }}
+      
+      <textarea class="form-input" name="descricao" rows="5" placeholder="Descrição" required>{{ old('descricao', area.descricao) }}</textarea>
+      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('descricao'), hasErrorFor('descricao')) }}
+
+      <button class="form-btn btn-primary">Salvar</button>
+    </form>
+  </section>
+@endsection

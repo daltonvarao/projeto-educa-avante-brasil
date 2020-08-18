@@ -12,11 +12,13 @@ class AdminAuth {
   async handle({ session, response, auth }, next) {
     try {
       await auth.check();
-      await next();
     } catch (error) {
+      console.log(error);
       session.flash({ error: "Faça login para continuar!" });
-      return response.redirect("/admin/sessions");
+      return response.route("admin.sessions.index");
     }
+
+    await next();
   }
 }
 

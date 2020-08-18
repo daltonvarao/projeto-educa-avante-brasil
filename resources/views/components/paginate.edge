@@ -1,0 +1,5 @@
+<div class="pagination">
+  <a {{ collection.page <= 1 ? 'class=disabled tabindex=-1' : '' }} href="?page={{collection.page - 1}}">Anterior</a>
+  <a class="active">{{ collection.page }}</a>
+  <a {{ collection.page >= collection.lastPage ? 'class=disabled tabindex=-1' : '' }} href="?page={{collection.page + 1}}">Proximo</a>
+</div>

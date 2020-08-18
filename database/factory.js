@@ -23,3 +23,11 @@ Factory.blueprint("App/Models/User", async (faker, i, data) => {
     ...data,
   };
 });
+
+Factory.blueprint("App/Models/AreaEstudo", async (faker, i, data) => {
+  return {
+    nome: faker.profession(),
+    descricao: faker.sentence(),
+    ...data,
+  };
+});
