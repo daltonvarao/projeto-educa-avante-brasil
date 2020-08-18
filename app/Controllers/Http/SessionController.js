@@ -36,7 +36,7 @@ class SessionController {
         success: `Bem vindo de volta, ${user.name.split(" ")[0]}!`,
       });
 
-      return response.redirect("/admin/users");
+      return response.route("admin.users.index");
     } catch (error) {
       session.flash({ error: "Email ou senha inválidos." });
 
@@ -55,7 +55,7 @@ class SessionController {
   async destroy({ response, auth }) {
     await auth.logout();
 
-    return response.redirect("/admin/sessions");
+    return response.route("admin.sessions.index");
   }
 }
 

@@ -52,7 +52,7 @@ class UserController {
 
       session.flash({ success: "Usuário cadastrado!" });
 
-      return response.redirect("/admin/users");
+      return response.route("admin.users.index");
     } catch (error) {
       session.flash({ error: error.message });
 
@@ -97,7 +97,7 @@ class UserController {
       await user.save();
       session.flash({ success: "Usuário atualizado!" });
 
-      return response.redirect("/admin/users");
+      return response.route("admin.users.index");
     } catch (error) {
       session.flash({ error: error.message });
 
@@ -118,7 +118,7 @@ class UserController {
       await User.query().where("id", params.id).delete();
       session.flash({ success: "Usuário deletado!" });
 
-      return response.redirect("back");
+      return response.route("admin.users.index");
     } catch (error) {
       session.flash({ error: error.message });
       return response.redirect("back");
