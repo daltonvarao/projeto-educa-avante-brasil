@@ -22,27 +22,30 @@ Route.get("/sobre", ({ view }) => view.render("sobre.index")).as("sobre.index");
 // unauthenticated users
 Route.group("admin", () => {
   Route.resource("sessions", "SessionController").only(["index", "store"]);
-})
-  .prefix("admin")
-  .middleware("guest");
+}).prefix("admin");
 
 // authenticated users
 Route.get("admin", async ({ response }) => response.redirect("/admin/users"));
 
 Route.group("admin", () => {
-  Route.resource("users", "UserController").validator(
-    new Map([
-      [["admin.users.store"], ["StoreUser"]],
-      [["admin.users.update"], ["UpdateUser"]],
-    ])
-  );
+  Route.resource("users", "UserController")
+    .validator(
+      new Map([
+        [["admin.users.store"], ["StoreUser"]],
+        [["admin.users.update"], ["UpdateUser"]],
+      ])
+    )
+    .except(["show"]);
 
-  Route.resource("configuracoes", "ConfiguracaoController");
+  Route.resource("configuracoes", "ConfiguracaoController").only([
+    "index",
+    "store",
+  ]);
+
   Route.resource("areas", "AreaEstudoController").except(["show"]);
+  Route.resource("modalidades", "ModalidadeController").except(["show"]);
 
-  Route.delete("sessions", "SessionController.destroy").as(
-    "admin.sessions.destroy"
-  );
+  Route.resource("sessions", "SessionController").only(["destroy"]);
 })
   .prefix("admin")
   .middleware(["admin"]);

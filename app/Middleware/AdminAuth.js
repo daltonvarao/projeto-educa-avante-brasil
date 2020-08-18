@@ -13,7 +13,6 @@ class AdminAuth {
     try {
       await auth.check();
     } catch (error) {
-      console.log(error);
       session.flash({ error: "Faça login para continuar!" });
       return response.route("admin.sessions.index");
     }
