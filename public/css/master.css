@@ -596,8 +596,13 @@ footer .footer-content .footer-contact a svg {
 .table-content .table-links .link.edit {
   color: var(--edit);
 }
+
 .table-content .table-links .link.delete {
   color: var(--error);
+}
+
+.table-content .table-links .link:hover {
+  opacity: 0.8;
 }
 
 /* ABOUT PAGE */
@@ -661,7 +666,7 @@ footer .footer-content .footer-contact a svg {
 }
 
 a.current-page {
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.8rem;
   background: var(--primary);
   color: var(--white);
   border-radius: 5px;
@@ -669,7 +674,7 @@ a.current-page {
 }
 
 a.pagination-link {
-  padding: 0.6rem 0.8rem;
+  padding: 0.45rem 0.8rem;
   color: var(--primary);
   border: 1px solid transparent;
   border-radius: 5px;
@@ -677,7 +682,6 @@ a.pagination-link {
 
 a.pagination-link:hover {
   border: 1px solid #e1e4e8;
-
 }
 
 a.disabled {

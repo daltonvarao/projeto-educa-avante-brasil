@@ -10,10 +10,13 @@
         <h3 class="homepage-subtitle">Escolha um curso abaixo</h3>
         <form class="homepage-inputs" action="">
           <select>
-            <option class="shadow" value="">MODALIDADE</option>
+            <option class="shadow" value="" selected disabled>ÁREA DE ESTUDO</option>
+            @each(area in areas)
+              <option value="{{ area.nome }}">{{ area.nome }}</option>
+            @endeach
           </select>
           <select>
-            <option class="shadow" value="">ÁREA</option>
+            <option class="shadow" value="">MODALIDADE</option>
           </select>
           <select>
             <option class="shadow" value="">CURSO</option>

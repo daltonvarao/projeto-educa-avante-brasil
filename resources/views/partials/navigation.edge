@@ -13,9 +13,10 @@
     </button>
     
     @loggedIn
+    <a class="nav-link" href="{{ route('admin.areas.index') }}">Áreas</a>
+    <a class="nav-link" href="{{ route('admin.configuracoes.index') }}">Configurações</a>
+    <a class="nav-link" href="{{ route('admin.users.index') }}">Cursos</a>
       <a class="nav-link" href="{{ route('admin.users.index') }}">Usuários</a>
-      <a class="nav-link" href="{{ route('admin.configuracoes.index') }}">Configurações</a>
-      <a class="nav-link" href="{{ route('admin.users.index') }}">Cursos</a>
 
       <form action="{{ route('admin.sessions.destroy', id='1') }}?_method=DELETE" method="post">
         {{ csrfField() }}

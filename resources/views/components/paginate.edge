@@ -4,13 +4,24 @@
   @else
     <a class="pagination-link" href="?page={{collection.page - 1}}">Anterior</a>
   @endif
-  
+
+  @each(number in [-2, -1])
+    @if(collection.page + number >= 1)
+      <a href="?page={{collection.page + number}}" class="pagination-link">{{ collection.page + number }}</a>
+    @endif
+  @endeach
+
   <a class="current-page active">{{ collection.page }}</a>
+
+  @each(number in [1, 2])
+    @if(collection.page + number <= collection.lastPage)
+      <a href="?page={{collection.page + number}}" class="pagination-link">{{ collection.page + number }}</a>
+    @endif
+  @endeach
 
   @if(collection.page >= collection.lastPage )
     <a class="disabled pagination-link" tabindex="-1" href="?page={{collection.page + 1}}">Próximo</a>
   @else
     <a class="pagination-link" href="?page={{collection.page + 1}}">Próximo</a>
   @endif
-
 </div>
