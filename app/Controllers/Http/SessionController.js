@@ -30,15 +30,15 @@ class SessionController {
     const { email, password } = request.only(["email", "password"]);
 
     try {
-      await auth.attempt(email, password);
+      const user = await auth.attempt(email, password);
 
-      return response.redirect("/admin/users");
+      session.flash({
+        success: `Bem vindo de volta, ${user.name.split(" ")[0]}!`,
+      });
+
+      return response.route("admin.users.index");
     } catch (error) {
-      session
-        .withErrors([{ field: "email", message: "Email ou senha incorretos." }])
-        .flashAll();
-
-      console.log(error);
+      session.flash({ error: "Email ou senha inválidos." });
 
       return response.redirect("back");
     }
@@ -55,7 +55,7 @@ class SessionController {
   async destroy({ response, auth }) {
     await auth.logout();
 
-    return response.redirect("/admin/sessions");
+    return response.route("admin.sessions.index");
   }
 }
 

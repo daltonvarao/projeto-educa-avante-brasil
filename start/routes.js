@@ -26,16 +26,9 @@ Route.group("admin", () => {
   .prefix("admin")
   .middleware("guest");
 
-Route.get("admin", async ({ response, auth }) => {
-  try {
-    await auth.check();
-    return response.redirect("/admin/users");
-  } catch (error) {
-    return response.redirect("/admin/sessions");
-  }
-});
-
 // authenticated users
+Route.get("admin", async ({ response }) => response.redirect("/admin/users"));
+
 Route.group("admin", () => {
   Route.resource("users", "UserController").validator(
     new Map([
@@ -51,4 +44,4 @@ Route.group("admin", () => {
   );
 })
   .prefix("admin")
-  .middleware("auth");
+  .middleware(["admin"]);
