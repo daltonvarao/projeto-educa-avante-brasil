@@ -1,0 +1,134 @@
+/* table mobile */
+.table .table-header {
+  display: none;
+  visibility: hidden;
+}
+
+.table-content {
+  background: var(--white);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  height: 110px;
+}
+
+.table-content + .table-content {
+  margin-top: 1rem;
+}
+
+.table-content li {
+  list-style: none;
+}
+
+.table-content li + li {
+  margin-top: 0.25rem;
+}
+
+.table-content .table-title {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 18px;
+}
+
+.table-content .table-detail {
+  color: #909090;
+  font-size: 14px;
+}
+
+.table-content .table-links {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-content .table-links .link.edit {
+  color: var(--edit);
+}
+
+.table-content .table-links .link.delete {
+  color: var(--error);
+}
+
+.table-content .table-links .link:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .table .table-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    visibility: visible;
+    padding: 1rem 0.75rem;
+  }
+
+  .table .table-header ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 2fr 1fr;
+  }
+
+  .table .table-header ul li {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .table .table-header ul li:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .table .table-header span {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+
+  .table-content {
+    height: 60px;
+  }
+
+  .table-content .table-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 2fr 1fr;
+  }
+
+  .table-content .table-info li:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .table-content li + li {
+    margin-top: 0;
+  }
+
+  .table-content .table-title,
+  .table-content .table-detail {
+    font-weight: 400;
+    color: var(--dark);
+    font-size: 16px;
+  }
+
+  .table-content .table-links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .table-content .table-links .link + .link {
+    margin-left: 0.75rem;
+  }
+}
