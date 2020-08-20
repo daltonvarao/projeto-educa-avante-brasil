@@ -64,6 +64,10 @@ button {
   color: var(--error);
 }
 
+.text-primary {
+  color: var(--primary) !important;
+}
+
 .logout-btn {
   color: var(--primary);
   font-size: 20px;
@@ -156,10 +160,10 @@ button {
 }
 
 .nav-link {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
 
-  border-bottom: 3px solid var(--primary);
+  border-bottom: 3px solid transparent;
   transition: border 300ms;
   padding: 0.25rem;
   color: var(--white);
@@ -692,6 +696,16 @@ a.pagination-link {
   color: var(--primary);
   border: 1px solid transparent;
   border-radius: 5px;
+}
+
+a.pagination-next::after {
+  font-family: "Material Design Icons";
+  content: "\F0142";
+}
+
+a.pagination-previous::before {
+  font-family: "Material Design Icons";
+  content: "\F0141";
 }
 
 a.pagination-link:hover {

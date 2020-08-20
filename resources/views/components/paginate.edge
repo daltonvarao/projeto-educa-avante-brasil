@@ -1,8 +1,8 @@
 <div class="pagination">
   @if(collection.page <= 1)
-    <a class="disabled pagination-link" tabindex="-1" href="?page={{collection.page - 1}}">Anterior</a>
+    <a class="disabled pagination-link pagination-previous" tabindex="-1" href="?page={{collection.page - 1}}">Anterior</a>
   @else
-    <a class="pagination-link" href="?page={{collection.page - 1}}">Anterior</a>
+    <a class="pagination-link pagination-previous" href="?page={{collection.page - 1}}">Anterior</a>
   @endif
 
   @each(number in [-2, -1])
@@ -20,8 +20,8 @@
   @endeach
 
   @if(collection.page >= collection.lastPage )
-    <a class="disabled pagination-link" tabindex="-1" href="?page={{collection.page + 1}}">Próximo</a>
+    <a class="disabled pagination-link pagination-next" tabindex="-1" href="?page={{collection.page + 1}}">Próximo</a>
   @else
-    <a class="pagination-link" href="?page={{collection.page + 1}}">Próximo</a>
+    <a class="pagination-link pagination-next" href="?page={{collection.page + 1}}">Próximo</a>
   @endif
 </div>

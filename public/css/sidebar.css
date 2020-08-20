@@ -31,7 +31,8 @@
 
 .sidebar-subtitle {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
+  color: #76dda8;
   margin: 0.75rem 0;
 }
 
@@ -47,6 +48,14 @@
   font-weight: 600;
   border-radius: 5px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-link::after {
+  font-family: "Material Design Icons";
+  content: "\F0142";
 }
 
 .sidebar-link + .sidebar-link {
