@@ -1,0 +1,114 @@
+.homepage-container {
+  padding-top: 6rem;
+  width: 100%;
+}
+
+.homepage-container section.homepage-content {
+  width: 100%;
+  height: 90vh;
+  position: relative;
+  background-image: url(../assets/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.homepage-container section.homepage-content .layer {
+  background-color: rgba(14, 95, 53, 0.6);
+  position: absolute;
+  backdrop-filter: blur(0px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.homepage-container section.homepage-content .homepage-title {
+  position: relative;
+  z-index: 50;
+  color: var(--white);
+  font-size: 38px;
+  font-weight: 700;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.homepage-container section.homepage-content .homepage-subtitle {
+  position: relative;
+  z-index: 50;
+  color: var(--white);
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.homepage-container section.homepage-content .homepage-inputs {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+
+.homepage-container section.homepage-content .homepage-inputs select {
+  border: none;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+
+  background: var(--white);
+
+  color: var(--primary);
+  text-align-last: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.homepage-container section.homepage-content .homepage-inputs select + select {
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-container section.homepage-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .homepage-container section.homepage-content .homepage-title {
+    font-size: 50px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .homepage-container section.homepage-content .homepage-subtitle {
+    font-size: 28px;
+  }
+
+  .homepage-container section.homepage-content .homepage-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .homepage-container section.homepage-content .homepage-inputs select {
+    width: 100%;
+    max-width: 360px;
+    padding: 2rem;
+
+    font-size: 20px;
+  }
+
+  .homepage-container
+    section.homepage-content
+    .homepage-inputs
+    select
+    + select {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+}

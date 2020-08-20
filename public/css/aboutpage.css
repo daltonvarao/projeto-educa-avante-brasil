@@ -1,0 +1,98 @@
+.about-container {
+  padding-top: 6rem;
+}
+
+.card-about {
+  background: var(--primary);
+  color: var(--white);
+  padding: 2rem 1.5rem;
+}
+
+.card-about h2 {
+  margin-bottom: 1rem;
+}
+
+.card-about p {
+  font-size: 16px;
+}
+
+.cards-icons-about {
+  padding: 1.5rem;
+  color: var(--primary);
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.card-icon .icon {
+  margin-right: 1rem;
+}
+
+.card-icon .icon svg {
+  min-width: 70px;
+  height: 70px;
+}
+
+.card-icon .icon .mdi::before {
+  font-size: 70px;
+}
+
+.card-icon-content h3 {
+  margin-bottom: 0.5rem;
+}
+
+.card-icon-content p {
+  color: var(--dark);
+}
+
+@media (min-width: 768px) {
+  /* ABOUT PAGE */
+  .card-about {
+    padding: 4rem;
+  }
+
+  .card-about h2 {
+    font-size: 32px;
+  }
+
+  .card-about p {
+    font-size: 20px;
+  }
+
+  .cards-icons-about {
+    display: grid;
+    padding: 3rem;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2rem;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon {
+    column-gap: 12px;
+  }
+
+  .card-icon .icon .mdi::before {
+    font-size: 85px;
+  }
+
+  .card-icon .icon svg {
+    display: flex;
+    align-self: center;
+    height: 90px;
+  }
+
+  .card-icon-content h3 {
+    font-size: 24px;
+  }
+
+  .card-icon-content p {
+    font-size: 20px;
+  }
+}
