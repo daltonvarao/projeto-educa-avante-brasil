@@ -56,8 +56,22 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
+.w-100 {
+  width: 100% !important;
+}
+
 .danger-text {
   color: var(--error);
+}
+
+.logout-btn {
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  opacity: 0.7;
 }
 
 .disabled {
