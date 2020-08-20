@@ -1,6 +1,10 @@
 // navigation menu
 
 window.onload = function () {
+  if (feather) {
+    feather.replace();
+  }
+
   const closeButtonNav = document.querySelector("#close-menu-nav");
   const showButtonNav = document.querySelector("#show-menu-nav");
 

@@ -19,6 +19,18 @@ a.pagination-link {
   color: var(--primary);
   border: 1px solid transparent;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+a.pagination-previous::before {
+  font-family: "Material Design Icons";
+  content: "\f0141";
+}
+
+a.pagination-next::after {
+  font-family: "Material Design Icons";
+  content: "\f0142";
 }
 
 a.pagination-link:hover {

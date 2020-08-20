@@ -12,14 +12,14 @@
       <i data-feather="x"></i>
     </button>
     <a class="nav-link" href="{{ route('sobre.index') }}">Sobre nós</a>
-    <a class="nav-link" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Fale conosco</a>
+    <a class="nav-link" target="_blank" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Fale conosco</a>
     <div class="dropdown">
       <a class="nav-link dropdown-button">
         Sala de aula
       </a>
       <div class="dropdown-content shadow hidden">
-        <a class="dropdown-nav-link" href="{{ request.configs.pos_grad_url }}">Pós Graduação</a>
-        <a class="dropdown-nav-link" href="{{ request.configs.cur_prof_url }}">Cursos Profissionalizantes</a>
+        <a class="dropdown-nav-link" target="_blank" href="{{ request.configs.pos_grad_url }}">Pós Graduação</a>
+        <a class="dropdown-nav-link" target="_blank" href="{{ request.configs.cur_prof_url }}">Cursos Profissionalizantes</a>
       </div>
     </div>
   </nav>
