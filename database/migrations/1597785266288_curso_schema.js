@@ -8,7 +8,7 @@ class CursoSchema extends Schema {
     this.create("cursos", (table) => {
       table.increments();
 
-      table.string("nome").notNullable();
+      table.string("nome").notNullable().unique();
       table.string("sobre").notNullable();
       table.string("instituicao").notNullable();
       table.string("tipo").notNullable();

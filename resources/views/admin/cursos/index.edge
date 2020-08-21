@@ -36,7 +36,7 @@
           </div>
         </div>
       @else
-        @!component('components.empty_message')
+        @!component('components.empty_message', custom_link=route('admin.cursos.create'))
       @endeach
     </div>
   </div>

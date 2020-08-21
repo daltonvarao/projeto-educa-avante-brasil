@@ -5,6 +5,8 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Curso = use("App/Models/Curso");
+const AreaEstudo = use("App/Models/AreaEstudo");
+const Modalidade = use("App/Models/Modalidade");
 
 class CursoController {
   /**
@@ -31,7 +33,15 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create({ request, response, view }) {}
+  async create({ view }) {
+    const areas = await AreaEstudo.all();
+    const modalidades = await Modalidade.all();
+
+    return view.render("admin.cursos.create", {
+      areas: areas.toJSON(),
+      modalidades: modalidades.toJSON(),
+    });
+  }
 
   /**
    * Create/save a new curso.
@@ -41,7 +51,28 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {}
+  async store({ request, response, session }) {
+    const cursoData = request.only([
+      "nome",
+      "tipo",
+      "sobre",
+      "instituicao",
+      "duracao",
+      "area_estudo_id",
+      "modalidade_id",
+    ]);
+
+    try {
+      await Curso.create(cursoData);
+      session.flash({ success: "Curso cadastrado." });
+
+      return response.route("admin.cursos.index");
+    } catch (error) {
+      session.flash({ error: error.message });
+
+      return response.redirect("back");
+    }
+  }
 
   /**
    * Display a single curso.
@@ -63,7 +94,24 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit({ params, request, response, view }) {}
+  async edit({ params, session, response, view }) {
+    const areas = await AreaEstudo.all();
+    const modalidades = await Modalidade.all();
+
+    try {
+      const curso = await Curso.find(params.id);
+
+      return view.render("admin.cursos.edit", {
+        areas: areas.toJSON(),
+        modalidades: modalidades.toJSON(),
+        curso: curso.toJSON(),
+      });
+    } catch (error) {
+      session.flash({ error: error.message });
+
+      return response.redirect("back");
+    }
+  }
 
   /**
    * Update curso details.
@@ -73,7 +121,28 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request, response }) {}
+  async update({ params, request, session, response }) {
+    const cursoData = request.only([
+      "nome",
+      "tipo",
+      "sobre",
+      "instituicao",
+      "duracao",
+      "area_estudo_id",
+      "modalidade_id",
+    ]);
+
+    try {
+      await Curso.query().where("id", params.id).update(cursoData);
+      session.flash({ success: "Curso atualizado." });
+
+      return response.route("admin.cursos.index");
+    } catch (error) {
+      session.flash({ error: error.message });
+
+      return response.redirect("back");
+    }
+  }
 
   /**
    * Delete a curso with id.
@@ -83,7 +152,18 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {}
+  async destroy({ params, session, response }) {
+    try {
+      await Curso.query().where("id", params.id).delete();
+      session.flash({ success: "Curso deletado." });
+
+      return response.route("admin.cursos.index");
+    } catch (error) {
+      session.flash({ error: error.message });
+
+      return response.redirect("back");
+    }
+  }
 }
 
 module.exports = CursoController;
