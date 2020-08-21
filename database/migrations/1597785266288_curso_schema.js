@@ -19,6 +19,7 @@ class CursoSchema extends Schema {
         .unsigned()
         .references("id")
         .inTable("area_estudos");
+
       table
         .integer("modalidade_id")
         .unsigned()
