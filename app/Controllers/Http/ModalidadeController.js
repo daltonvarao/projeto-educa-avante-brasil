@@ -21,7 +21,7 @@ class ModalidadeController {
     const { page } = request.qs;
     const modalidades = await Modalidade.query().paginate(page || 1);
 
-    return view.render("modalidades.index", {
+    return view.render("admin.modalidades.index", {
       modalidades: modalidades.toJSON(),
     });
   }
@@ -36,7 +36,7 @@ class ModalidadeController {
    * @param {View} ctx.view
    */
   async create({ view }) {
-    return view.render("modalidades.create");
+    return view.render("admin.modalidades.create");
   }
 
   /**
@@ -92,7 +92,7 @@ class ModalidadeController {
     try {
       const modalidade = await Modalidade.find(params.id);
 
-      return view.render("modalidades.edit", {
+      return view.render("admin.modalidades.edit", {
         modalidade: modalidade.toJSON(),
       });
     } catch (error) {

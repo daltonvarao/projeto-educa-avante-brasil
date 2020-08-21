@@ -22,7 +22,7 @@ class AreaEstudoController {
     const { page } = request.qs;
     const areas = await AreaEstudo.query().paginate(page || 1);
 
-    return view.render("areas.index", { areas: areas.toJSON() });
+    return view.render("admin.areas.index", { areas: areas.toJSON() });
   }
 
   /**
@@ -35,7 +35,7 @@ class AreaEstudoController {
    * @param {View} ctx.view
    */
   async create({ view }) {
-    return view.render("areas.create");
+    return view.render("admin.areas.create");
   }
 
   /**
@@ -93,7 +93,7 @@ class AreaEstudoController {
     try {
       const area = await AreaEstudo.find(params.id);
 
-      return view.render("areas.edit", { area: area.toJSON() });
+      return view.render("admin.areas.edit", { area: area.toJSON() });
     } catch (error) {
       session.flash({ error: error.message });
 
