@@ -85,7 +85,7 @@
     font-weight: 600;
   }
 
-  .table .table-header ul li:last-child {
+  .table .table-header ul li.text-center {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,7 +107,7 @@
     grid-template-columns: 1.25fr 2fr 1fr;
   }
 
-  .table-content .table-info li:last-child {
+  .table-content .table-info li.text-center {
     display: flex;
     align-items: center;
     justify-content: center;

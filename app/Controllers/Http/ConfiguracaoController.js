@@ -17,7 +17,7 @@ class ConfiguracaoController {
    * @param {View} ctx.view
    */
   async index({ view }) {
-    return view.render("configuracoes.index");
+    return view.render("admin.configuracoes.index");
   }
 
   /**

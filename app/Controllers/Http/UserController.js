@@ -19,7 +19,7 @@ class UserController {
   async index({ view }) {
     const users = await User.all();
 
-    return view.render("users.index", { users: users.toJSON() });
+    return view.render("admin.users.index", { users: users.toJSON() });
   }
 
   /**
@@ -31,7 +31,7 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  create = async ({ view }) => view.render("users.create");
+  create = async ({ view }) => view.render("admin.users.create");
 
   /**
    * Create/save a new user.
@@ -72,7 +72,7 @@ class UserController {
   async edit({ view, params }) {
     const user = await User.find(params.id);
 
-    return view.render("users.edit", { user });
+    return view.render("admin.users.edit", { user });
   }
 
   /**
