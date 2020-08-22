@@ -8,26 +8,28 @@
 
       <div>
         <h3 class="homepage-subtitle">Escolha um curso abaixo</h3>
-        <form class="homepage-inputs" action="">
-          <select>
+        <form id="homepage-form" class="homepage-inputs" action="">
+          <select name="modalidade">
             <option class="shadow" selected disabled>Modalidade</option>
             @each(modalidade in modalidades)
-              <option value="{{ modalidade.nome }}">{{ modalidade.nome }}</option>
+              <option value="{{ modalidade.id }}">{{ modalidade.nome }}</option>
             @endeach
           </select>
 
-          <select>
+          <select name="area">
             <option class="shadow" selected disabled>Área</option>
             @each(area in areas)
-              <option value="{{ area.nome }}">{{ area.nome }}</option>
+              <option value="{{ area.id }}">{{ area.nome }}</option>
             @endeach
           </select>
 
-          <select>
+          <select name="curso">
             <option class="shadow" value="">Curso</option>
           </select>
         </form>
       </div>
     </section>
   </div>
+
+  {{ script('js/homepage-form') }}
 @endsection

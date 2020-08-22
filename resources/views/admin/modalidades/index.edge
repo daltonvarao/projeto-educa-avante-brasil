@@ -35,11 +35,7 @@
           </div>
         </div>
       @else
-        <div class="table-content shadow">
-          <div class="table-info">
-            Nenhuma área encontrada
-          </div>
-        </div>
+        @!component('components.empty_message', custom_link=route('admin.modalidades.create'))
       @endeach
     </div>
   </div>

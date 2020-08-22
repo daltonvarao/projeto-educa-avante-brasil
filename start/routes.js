@@ -44,6 +44,14 @@ Route.group("admin", () => {
 
   Route.resource("areas", "AreaEstudoController").except(["show"]);
   Route.resource("modalidades", "ModalidadeController").except(["show"]);
+  Route.resource("cursos", "CursoController")
+    .validator(
+      new Map([
+        [["admin.cursos.store"], ["StoreCurso"]],
+        [["admin.cursos.update"], ["UpdateCurso"]],
+      ])
+    )
+    .except(["show"]);
 
   Route.resource("sessions", "SessionController").only(["destroy"]);
 })
