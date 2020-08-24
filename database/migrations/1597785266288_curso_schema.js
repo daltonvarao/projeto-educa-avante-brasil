@@ -9,7 +9,7 @@ class CursoSchema extends Schema {
       table.increments();
 
       table.string("nome").notNullable().unique();
-      table.string("sobre").notNullable();
+      table.text("sobre").notNullable();
       table.string("instituicao").notNullable();
       table.string("tipo").notNullable();
       table.string("duracao").notNullable();

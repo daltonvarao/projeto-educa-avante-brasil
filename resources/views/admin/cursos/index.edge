@@ -14,6 +14,7 @@
         <ul>
           <li>Nome</li>
           <li>Sobre</li>
+          <li>Tipo</li>
         </ul>
         <span>Ação</span>
       </div>
@@ -21,7 +22,8 @@
         <div class="table-content shadow">
           <div class="table-info">
             <li class="table-title">{{ curso.nome }}</li>
-            <li class="table-detail">{{ curso.sobre }}</li>
+            <li class="table-detail">{{ curso.sobre.slice(0, 30) }}...</li>
+            <li class="table-detail">{{ curso.tipo }}</li>
           </div>
           <div class="table-links">
             <a class="link edit" href="{{ route('admin.cursos.edit', id=curso.id) }}">
