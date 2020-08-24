@@ -5,31 +5,8 @@
     <section class="homepage-content">
       <div class="layer"></div>
       <h1 class="homepage-title">Não perca a oportunidade de seguir seus sonhos!</h1>
-
-      <div>
-        <h3 class="homepage-subtitle">Escolha um curso abaixo</h3>
-        <form id="homepage-form" class="homepage-inputs" action="">
-          <select name="modalidade">
-            <option class="shadow" selected disabled>Modalidade</option>
-            @each(modalidade in modalidades)
-              <option value="{{ modalidade.id }}">{{ modalidade.nome }}</option>
-            @endeach
-          </select>
-
-          <select name="area">
-            <option class="shadow" selected disabled>Área</option>
-            @each(area in areas)
-              <option value="{{ area.id }}">{{ area.nome }}</option>
-            @endeach
-          </select>
-
-          <select name="curso">
-            <option class="shadow" value="">Curso</option>
-          </select>
-        </form>
+      <div id="curso-form"></div>
       </div>
     </section>
   </div>
-
-  {{ script('js/homepage-form') }}
 @endsection

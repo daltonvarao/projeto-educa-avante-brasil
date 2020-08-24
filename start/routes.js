@@ -17,7 +17,17 @@
 const Route = use("Route");
 
 Route.get("/", "HomeController.index").as("home.index");
+Route.post("/", "HomeController.store").as("home.store");
+
 Route.get("/sobre", ({ view }) => view.render("sobre.index")).as("sobre.index");
+
+Route.resource("cursos", "CursoController").only(["show"]);
+
+// api
+
+Route.group("api", () => {
+  Route.get("collections", "ApiController.collections");
+}).prefix("api");
 
 // unauthenticated users
 Route.group("admin", () => {
