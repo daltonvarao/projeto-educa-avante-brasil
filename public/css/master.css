@@ -52,6 +52,10 @@ button {
   font-family: "Montserrat", sans-serif;
 }
 
+code {
+  font-family: courier, monospace !important;
+}
+
 .shadow {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }

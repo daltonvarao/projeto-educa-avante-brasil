@@ -144,6 +144,16 @@ class CursoController {
     }
   }
 
+  async show({ params, view, response }) {
+    try {
+      const curso = await Curso.find(params.id);
+
+      return view.render("admin.cursos.show", { curso: curso.toJSON() });
+    } catch (error) {
+      return response.route("home.index");
+    }
+  }
+
   /**
    * Delete a curso with id.
    * DELETE cursos/:id
