@@ -18,6 +18,7 @@ body {
   height: 100%;
   width: 100%;
   background-color: #fafaf8;
+
 }
 
 button {
@@ -287,6 +288,7 @@ code {
 
 .form-content {
   margin-top: 8rem;
+  margin-bottom: 2rem;
 }
 
 .form-container {
@@ -417,8 +419,10 @@ footer {
   margin-top: auto;
   width: 100%;
   position: relative;
+  left: 0;
   bottom: 0;
   border-top: 1px solid #bbb3;
+  overflow: auto;
 }
 
 footer .footer-content {
@@ -581,6 +585,10 @@ footer .footer-content .footer-contact a svg {
   }
 
   /* footer */
+  footer {
+    position: fixed;
+  }
+
   footer .footer-content {
     flex-direction: row;
     align-items: center;
