@@ -550,6 +550,7 @@ footer .footer-content .footer-contact a svg {
   margin-bottom: 0.75rem;
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr;
+  grid-gap: 0.5rem;
 }
 
 .course-info ul li {
@@ -589,7 +590,7 @@ footer .footer-content .footer-contact a svg {
 }
 
 .course-table thead th {
-  border-bottom: 2px solid var(--secondary-light);
+  border-bottom: 1px solid var(--light);
 }
 
 .course-table tbody td {
@@ -598,7 +599,7 @@ footer .footer-content .footer-contact a svg {
 
 .course-table th,
 td {
-  border-bottom: 1px solid var(--secondary-light);
+  border-bottom: 1px solid var(--light);
 }
 
 .course-table tr:last-child td {
@@ -676,8 +677,17 @@ td {
   font-size: 14px;
 }
 
+.payment-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0.5rem;
+  grid-row-gap: 0.25rem;
+}
+
 .payment {
   font-size: 12px;
+  margin: 0 !important;
+  font-weight: 300;
 }
 
 @media (min-width: 768px) {
