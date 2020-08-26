@@ -529,6 +529,12 @@ footer .footer-content .footer-contact a svg {
 }
 
 @media (min-width: 768px) {
+  .form-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .form-container {
     max-width: 520px;
   }
@@ -586,7 +592,8 @@ footer .footer-content .footer-contact a svg {
 
   /* footer */
   footer {
-    position: fixed;
+    position: relative;
+    bottom: 0;
   }
 
   footer .footer-content {
