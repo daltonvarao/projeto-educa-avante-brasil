@@ -2,15 +2,26 @@
 
 @section('content')
   <div class="container">
-    <h1 class="course-title">{{ curso.nome }}</h1>
     <div class="course-container">
       <div class="course-box">
+        <h1 class="course-title">{{ curso.nome }}</h1>
         <div class="course-info">
           <ul>
-            <li>Instituição: {{ curso.instituicao}}</li>
-            <li>Tipo: {{ curso.tipo}}</li>
-            <li>Duração: {{ curso.duracao}} meses</li>
-            <li>Carga Horária: 544 horas</li>
+            <li>
+              <i class="mdi mdi-office-building-outline"></i>
+              Instituição: {{ curso.instituicao}}
+            </li>
+            <li>
+              <i class="mdi mdi-earth"></i>
+              Tipo: {{ curso.tipo}}
+            </li>
+            <li>
+              <i class="mdi mdi-calendar"></i>
+              Duração: {{ curso.duracao}}</li>
+              <li>
+                <i class="mdi mdi-clock-outline"></i>
+              Carga Horária: 544 horas
+            </li>
           </ul>
         </div>
         <div class="course-description">
@@ -22,22 +33,22 @@
           <table>
             <thead>
               <th>Disciplina</th>
-              <th>Carga horária</th>
+              <th class="text-center">Carga horária</th>
             </thead>
             <tbody>
               <tr>
                 <td>Anestesiologia</td>
-                <td>30h</td>
+                <td class="text-center">30h</td>
               <tr>
                 <td>Anatomia Humana Prática com Dissecação</td>
-                <td>30h</td>
+                <td class="text-center">30h</td>
               </tr>
                 <td>Cirurgia Cardiovascular</td>
-                <td>30h</td>
+                <td class="text-center">30h</td>
               </tr>
               <tr>
                 <td>Total</td>
-                <td>544h</td>
+                <td class="text-center">544h</td>
               </tr>
             </tbody>
           </table>
