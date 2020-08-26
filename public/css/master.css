@@ -77,6 +77,14 @@ code {
   font-weight: bold;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .text-primary {
   color: var(--primary) !important;
 }
@@ -391,7 +399,7 @@ code {
 .container {
   padding: 1.5rem;
   padding-top: 8rem;
-  max-width: 1020px;
+  max-width: 1080px;
   margin: auto;
 }
 
@@ -530,11 +538,12 @@ footer .footer-content .footer-contact a svg {
 
 /* SHOW CURSO */
 .course-title {
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  color: var(--primary);
 }
 
 .course-info {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .course-info ul {
@@ -564,6 +573,7 @@ footer .footer-content .footer-contact a svg {
 .course-grid-title {
   margin: 1rem 0;
   font-size: 28px;
+  color: var(--primary);
 }
 
 .course-table {
@@ -576,10 +586,6 @@ footer .footer-content .footer-contact a svg {
 .course-table table {
   border-spacing: 0;
   width: 100%;
-}
-
-.course-table thead tr th {
-  text-align: left;
 }
 
 .course-table thead th {
@@ -761,6 +767,7 @@ td {
   .course-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
 
   .course-box {
@@ -793,7 +800,9 @@ td {
 
   .price-box {
     margin-left: 1rem;
+    width: 320px;
   }
+
   .price-box p {
     font-size: 12px;
   }
