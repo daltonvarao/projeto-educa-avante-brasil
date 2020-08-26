@@ -10,7 +10,7 @@
       <input class="form-input" type="text" placeholder="Nome" name="nome" value="{{ old('nome', area.nome) }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('nome'), hasErrorFor('nome')) }}
       
-      <textarea class="form-input" name="descricao" rows="5" placeholder="Descrição" required>{{ old('descricao', area.descricao) }}</textarea>
+      <textarea class="form-input" name="descricao" rows="5" placeholder="Descrição" required maxlength="255">{{ old('descricao', area.descricao) }}</textarea>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('descricao'), hasErrorFor('descricao')) }}
 
       <button class="form-btn btn-primary">Salvar</button>
