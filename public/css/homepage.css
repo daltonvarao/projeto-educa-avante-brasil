@@ -106,6 +106,10 @@
     font-size: 20px;
   }
 
+  .homepage-container section.homepage-content .homepage-inputs select option {
+    font-size: 16px;
+  }
+
   .homepage-container
     section.homepage-content
     .homepage-inputs

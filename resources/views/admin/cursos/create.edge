@@ -28,9 +28,14 @@
       </select>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('area_estudo_id'), hasErrorFor('area_estudo_id')) }}
 
-      <input class="form-input" type="text" placeholder="Tipo" name="tipo" value="{{ old('tipo', '') }}" required>
+      <select class="form-input" name="tipo">
+        <option selected disabled>Tipo</option>
+        @each(tipo in ['Presencial','Online'])
+          <option value="{{tipo}}" {{ old('tipo', '') == tipo ? 'selected' : '' }}>{{tipo}}</option>
+        @endeach
+      </select>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('tipo'), hasErrorFor('tipo')) }}
-      
+
       <input class="form-input" type="text" placeholder="Duração" name="duracao" value="{{ old('duracao', '') }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('duracao'), hasErrorFor('duracao')) }}
       

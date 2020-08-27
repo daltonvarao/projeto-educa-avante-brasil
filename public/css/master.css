@@ -357,6 +357,11 @@ code {
   margin-top: 0.5rem;
 }
 
+.form-group-inline .form-input + .form-input {
+  margin-top: 0;
+  margin-left: 0.5rem;
+}
+
 .form-input::placeholder {
   color: #909090;
 }
@@ -771,7 +776,7 @@ td {
 
 @media (min-width: 768px) {
   .form-content {
-    height: 100vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -56,7 +56,6 @@ function Form() {
 
     socket.on("cursos", function ({ cursos: data }) {
       setCursos(data);
-      console.log(data);
     });
   }, []);
 
