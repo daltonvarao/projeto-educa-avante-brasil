@@ -6,7 +6,7 @@
 .homepage-container section.homepage-content {
   width: 100%;
   position: relative;
-  background-image: url(../assets/background.png);
+  background-image: url(../assets/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -15,6 +15,7 @@
   justify-content: space-evenly;
 }
 
+.layer,
 .homepage-container section.homepage-content .layer {
   background-color: rgba(14, 95, 53, 0.6);
   position: absolute;

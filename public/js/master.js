@@ -91,3 +91,22 @@ if (sidebarLinks) {
     }
   });
 }
+
+const togglePassword = document.querySelector(".toggle-password");
+const input = document.querySelector("#password-input");
+
+if (togglePassword) {
+  function showPassword(input) {
+    input.type = "text";
+    togglePassword.classList.replace("password-hidden", "password-show");
+  }
+
+  function hidePassword(input) {
+    input.type = "password";
+    togglePassword.classList.replace("password-show", "password-hidden");
+  }
+
+  togglePassword.onclick = function () {
+    input.type === "password" ? showPassword(input) : hidePassword(input);
+  };
+}

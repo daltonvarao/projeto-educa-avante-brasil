@@ -1,0 +1,81 @@
+.session-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(../assets/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.huge-title {
+  font-size: 36px;
+  z-index: 100;
+  color: #fff;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.session-form {
+  padding: 4rem 2rem;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.session-form .form-title {
+  font-size: 32px;
+}
+
+.password-input + button,
+.form-input + .password-input {
+  margin-top: 0.5rem;
+}
+
+.password-input {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  outline: none;
+}
+
+.password-show::before {
+  font-family: "Material Design Icons";
+  content: "\F0209";
+  color: #677676;
+  font-size: 18px;
+}
+
+.password-hidden::before {
+  font-family: "Material Design Icons";
+  content: "\F0208";
+  color: #677676;
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  .session-content {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .session-content form {
+    max-width: 350px;
+  }
+
+  .huge-title {
+    display: block;
+    font-size: 58px;
+    max-width: 500px;
+  }
+}
