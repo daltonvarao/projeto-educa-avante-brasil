@@ -536,10 +536,52 @@ footer .footer-content .footer-contact a svg {
   text-align: center;
 }
 
+/* HOME PAGE CURSO */
+.card-curso {
+  padding: 1rem 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.curso {
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 1.5rem 1rem;
+  position: relative;
+
+  transition: all 400ms;
+}
+
+.curso:hover {
+  background-color: var(--primary);
+}
+
+.curso:hover .course-title,
+.curso:hover .course-info ul li {
+  color: white;
+}
+
+.curso:hover::after {
+  font-family: "Material Design Icons";
+  content: "\F0133";
+  position: absolute;
+  /* top: calc(50% - 32px); */
+  color: var(--white);
+  font-size: 64px;
+  left: -24px;
+  top: -24px;
+}
+
 /* SHOW CURSO */
 .course-title {
   margin-bottom: 2.5rem;
   color: var(--primary);
+}
+
+.curso .course-title {
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .course-info {
@@ -553,11 +595,20 @@ footer .footer-content .footer-contact a svg {
   grid-gap: 0.5rem;
 }
 
+.curso .course-info ul {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
 .course-info ul li {
   list-style: none;
   font-weight: 600;
   color: #676767;
   font-size: 14px;
+}
+
+.curso .course-info ul li {
+  font-size: 16px;
 }
 
 .course-description p {
@@ -628,6 +679,7 @@ td {
   background: var(--orange-logo);
   width: 100%;
 }
+
 .subscribe-link a {
   color: var(--white);
   font-size: 18px;
@@ -640,13 +692,35 @@ td {
 }
 
 .price-card {
-  background: var(--white);
+  background-color: var(--primary);
+  color: #fff;
   padding: 1rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+
+  transition: all 0.4s;
+}
+
+.payment-selected,
+.price-card:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  color: #333;
+}
+
+.curso .price-card:hover {
+  background: var(--primary);
+  border-color: var(--white);
+  color: white;
+}
+
+.price-card + .price-card {
+  margin-top: 1rem;
 }
 
 .price-card span + span {
@@ -774,10 +848,39 @@ td {
   }
 
   /* SHOW CURSO */
+  .card-curso {
+    margin: 0 auto;
+    max-width: 1060px;
+  }
+
   .course-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .curso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .curso .course-info,
+  .curso .course-info ul {
+    margin-bottom: 0;
+  }
+
+  .curso .price-card {
+    margin-left: 1rem;
+  }
+
+  .curso .course-title {
+    text-align: left;
+    font-size: 32px;
+  }
+
+  .curso ul li {
+    text-align: left;
   }
 
   .course-box {
@@ -819,5 +922,11 @@ td {
 
   .price {
     font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .curso {
+    padding: 2rem;
   }
 }
