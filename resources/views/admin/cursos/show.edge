@@ -2,9 +2,99 @@
 
 @section('content')
   <div class="container">
-    <h1>{{ curso.nome }}</h1>
-    <p class="lead">Para ver os campos de curso vide 
-      <code class="text-bold">database/migrations/1597785266288_curso_schema.js</code>
-    </p>
+    <div class="course-container">
+      <div class="course-box">
+        <h1 class="course-title">{{ curso.nome }}</h1>
+        <div class="course-info">
+          <ul>
+            <li>
+              <i class="mdi mdi-office-building-outline"></i>
+              Instituição: {{ curso.instituicao}}
+            </li>
+            <li>
+              <i class="mdi mdi-earth"></i>
+              Tipo: {{ curso.tipo}}
+            </li>
+            <li>
+              <i class="mdi mdi-calendar"></i>
+              Duração: {{ curso.duracao}}</li>
+              <li>
+                <i class="mdi mdi-clock-outline"></i>
+              CH: 544 horas
+            </li>
+          </ul>
+        </div>
+        <div class="course-description">
+          <p>{{curso.sobre}}</p>
+          <p>O curso de Especialização em Educação Ambiental fornece aos profissionais todas as ferramentas e conteúdos necessários para uma atuação transformadora na sala de aula, na escola e na sociedade. Proporcionando a oportunidade de discussão, reflexão, proposição e execução de ações didáticos-científicas voltadas à questão ambiental. Os profissionais que optarem por essa Pós-Graduação EAD terão maior capacidade de colaborar com a produção, divulgação e transformação de conhecimentos no que se relaciona à Educação Ambiental.</p>
+        </div>
+        <h2 class="course-grid-title">Grade curricular</h2>
+        <div class="course-table shadow">
+          <table>
+            <thead>
+              <th class="text-left">Disciplina</th>
+              <th class="text-center">Carga horária</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Anestesiologia</td>
+                <td class="text-center">30h</td>
+              <tr>
+                <td>Anatomia Humana Prática com Dissecação</td>
+                <td class="text-center">30h</td>
+              </tr>
+                <td>Cirurgia Cardiovascular</td>
+                <td class="text-center">30h</td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td class="text-center">544h</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-box shadow">
+        <div class="subscribe-link">
+          <a href="">Inscreva-se aqui</a>
+        </div>
+        <p>Selecione uma forma de pagamento</p>
+        <div class="price-card">          
+          <span class="old-price">R$ 2000,00</span>
+          <span class="price">R$ 900,00</span>
+          <span class="discount-percentage">desconto de 52,3%</span>
+          <span class="discount-price">Economize R$ 1100,00</span>
+
+          <div class="payment-info">
+            <span class="payment">Pgto: boleto.</span>
+            <span class="payment">Conclusão: 6 meses.</span>
+          </div>
+        </div>
+
+        <div class="price-card payment-selected">
+          <span class="old-price">R$ 2000,00</span>
+          <span class="price">R$ 900,00</span>
+          <span class="discount-percentage">desconto de 52,3%</span>
+          <span class="discount-price">Economize R$ 1100,00</span>
+
+          <div class="payment-info">
+            <span class="payment">Pgto: boleto.</span>
+            <span class="payment">Conclusão: 6 meses.</span>
+          </div>
+        </div>
+        
+        <div class="price-card">
+          <span class="old-price">R$ 2000,00</span>
+          <span class="price">R$ 900,00</span>
+          <span class="discount-percentage">desconto de 52,3%</span>
+          <span class="discount-price">Economize R$ 1100,00</span>
+
+          <div class="payment-info">
+            <span class="payment">Pgto: boleto.</span>
+            <span class="payment">Conclusão: 6 meses.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 @endsection
