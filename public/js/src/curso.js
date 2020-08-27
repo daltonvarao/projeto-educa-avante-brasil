@@ -73,24 +73,53 @@ function Form() {
         <Select setSelected={setCurso} name="Curso" options={cursos} />
       </form>
 
-      {selectedCurso ? <Curso data={selectedCurso} /> : null}
+      {selectedCurso && area && modalidade ? (
+        <Curso data={selectedCurso} />
+      ) : null}
     </React.Fragment>
   );
 }
 
 function Curso({ data }) {
   return (
-    <div
-      onClick={() => (location.href = `/cursos/${data.id}`)}
-      className="card-curso"
-    >
-      <div className="curso">
-        <h2 className="curso-nome">{data.nome}</h2>
-        <div className="curso-details">
-          <div className="curso-item">Instituição: {data.instituicao}</div>
-          <div className="curso-item">Tipo: {data.tipo}</div>
-          <div className="curso-item">Duração: {data.duracao}</div>
-          <div className="curso-item">Carga horária: 451 horas</div>
+    <div className="card-curso shadow">
+      <div
+        className="curso"
+        onClick={() => (location.href = `/cursos/${data.id}`)}
+      >
+        <div className="curso-box">
+          <h1 className="course-title">{data.nome}</h1>
+          <div className="course-info">
+            <ul>
+              <li>
+                <i className="mdi mdi-office-building-outline"></i>
+                Instituição: {data.instituicao}
+              </li>
+              <li>
+                <i className="mdi mdi-earth"></i>
+                Tipo: {data.tipo}
+              </li>
+              <li>
+                <i className="mdi mdi-calendar"></i>
+                Duração: {data.duracao}
+              </li>
+              <li>
+                <i className="mdi mdi-clock-outline"></i>
+                CH: 544 horas
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="price-card">
+          <span className="old-price">R$ 2000,00</span>
+          <span className="price">R$ 900,00</span>
+          <span className="discount-percentage">desconto de 52,3%</span>
+          <span className="discount-price">Economize R$ 1100,00</span>
+
+          <div className="payment-info">
+            <span className="payment">Pgto: boleto.</span>
+            <span className="payment">Conclusão: 6 meses.</span>
+          </div>
         </div>
       </div>
     </div>

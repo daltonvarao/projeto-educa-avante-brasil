@@ -122,7 +122,7 @@ function Form() {
       React.createElement(Select, { setSelected: setArea, name: "Area", options: areas }),
       React.createElement(Select, { setSelected: setCurso, name: "Curso", options: cursos })
     ),
-    selectedCurso ? React.createElement(Curso, { data: selectedCurso }) : null
+    selectedCurso && area && modalidade ? React.createElement(Curso, { data: selectedCurso }) : null
   );
 }
 
@@ -131,45 +131,95 @@ function Curso(_ref3) {
 
   return React.createElement(
     "div",
-    {
-      onClick: function onClick() {
-        return location.href = "/cursos/" + data.id;
-      },
-      className: "card-curso"
-    },
+    { className: "card-curso shadow" },
     React.createElement(
       "div",
-      { className: "curso" },
+      {
+        className: "curso",
+        onClick: function onClick() {
+          return location.href = "/cursos/" + data.id;
+        }
+      },
       React.createElement(
-        "h2",
-        { className: "curso-nome" },
-        data.nome
+        "div",
+        { className: "curso-box" },
+        React.createElement(
+          "h1",
+          { className: "course-title" },
+          data.nome
+        ),
+        React.createElement(
+          "div",
+          { className: "course-info" },
+          React.createElement(
+            "ul",
+            null,
+            React.createElement(
+              "li",
+              null,
+              React.createElement("i", { className: "mdi mdi-office-building-outline" }),
+              "Institui\xE7\xE3o: ",
+              data.instituicao
+            ),
+            React.createElement(
+              "li",
+              null,
+              React.createElement("i", { className: "mdi mdi-earth" }),
+              "Tipo: ",
+              data.tipo
+            ),
+            React.createElement(
+              "li",
+              null,
+              React.createElement("i", { className: "mdi mdi-calendar" }),
+              "Dura\xE7\xE3o: ",
+              data.duracao
+            ),
+            React.createElement(
+              "li",
+              null,
+              React.createElement("i", { className: "mdi mdi-clock-outline" }),
+              "CH: 544 horas"
+            )
+          )
+        )
       ),
       React.createElement(
         "div",
-        { className: "curso-details" },
+        { className: "price-card" },
         React.createElement(
-          "div",
-          { className: "curso-item" },
-          "Institui\xE7\xE3o: ",
-          data.instituicao
+          "span",
+          { className: "old-price" },
+          "R$ 2000,00"
+        ),
+        React.createElement(
+          "span",
+          { className: "price" },
+          "R$ 900,00"
+        ),
+        React.createElement(
+          "span",
+          { className: "discount-percentage" },
+          "desconto de 52,3%"
+        ),
+        React.createElement(
+          "span",
+          { className: "discount-price" },
+          "Economize R$ 1100,00"
         ),
         React.createElement(
           "div",
-          { className: "curso-item" },
-          "Tipo: ",
-          data.tipo
-        ),
-        React.createElement(
-          "div",
-          { className: "curso-item" },
-          "Dura\xE7\xE3o: ",
-          data.duracao
-        ),
-        React.createElement(
-          "div",
-          { className: "curso-item" },
-          "Carga hor\xE1ria: 451 horas"
+          { className: "payment-info" },
+          React.createElement(
+            "span",
+            { className: "payment" },
+            "Pgto: boleto."
+          ),
+          React.createElement(
+            "span",
+            { className: "payment" },
+            "Conclus\xE3o: 6 meses."
+          )
         )
       )
     )

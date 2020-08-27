@@ -74,39 +74,6 @@
   z-index: 50;
 }
 
-.card-curso {
-  padding: 1rem 1.5rem;
-  margin: 0 auto;
-  width: 100%;
-  cursor: pointer;
-}
-
-.curso:hover {
-  border: 2px solid var(--primary);
-}
-
-.curso {
-  background-color: #fff;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  padding: 1.5rem 1rem;
-}
-
-.curso-nome {
-  color: #333;
-  text-align: center;
-  margin: 0.5rem 0;
-}
-
-.curso-details {
-  padding: 0 1rem;
-  display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr;
-}
-
-.curso-item {
-}
-
 @media (min-width: 768px) {
   .homepage-container section.homepage-content {
     height: 100vh;
@@ -129,12 +96,7 @@
     display: flex;
     flex-direction: row;
     margin: auto auto;
-    max-width: 968px;
-  }
-
-  .card-curso {
-    margin: 0 auto;
-    max-width: 968px;
+    max-width: 1060px;
   }
 
   .homepage-container section.homepage-content .homepage-inputs select {
