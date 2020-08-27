@@ -1,8 +1,10 @@
-@layout('layouts.public')
+@layout('layouts.session')
 
 @section('content')
-  <section class="form-content">
-    <form class="form-container shadow" action="{{ route('admin.sessions.store') }}" method="post">
+  <section class="session-content">
+    <div class="layer"></div>
+    <h1 class="huge-title">Projeto Educa Avante Brasil</h1>
+    <form class="session-form shadow" action="{{ route('admin.sessions.store') }}" method="post">
       <h2 class="form-title">Login</h2>
 
       {{ csrfField() }}
@@ -10,7 +12,11 @@
       <input class="form-input" type="email" placeholder="Email" name="email" value="{{ old('email', '') }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
       
-      <input class="form-input" type="password" placeholder="Senha" name="password" required>
+      <div class="password-input">
+        <input class="form-input" id="password-input" type="password" placeholder="Senha" name="password" required>
+        <button class="toggle-password password-hidden" type="button"></button>
+      </div>
+
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
 
       <button class="form-btn btn-primary">Entrar</button>

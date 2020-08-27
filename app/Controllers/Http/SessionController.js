@@ -16,7 +16,16 @@ class SessionController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  index = async ({ view }) => view.render("sessions.index");
+  async index({ view, auth, response }) {
+    try {
+      await auth.check();
+
+      return response.route("admin.cursos.index");
+    } catch (error) {
+      console.log(error);
+      return view.render("sessions.index");
+    }
+  }
 
   /**
    * Create/save a new session.
