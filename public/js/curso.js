@@ -99,7 +99,6 @@ function Form() {
       var data = _ref2.cursos;
 
       setCursos(data);
-      console.log(data);
     });
   }, []);
 
