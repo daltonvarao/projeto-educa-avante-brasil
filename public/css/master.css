@@ -23,6 +23,7 @@ body {
   height: 100%;
   width: 100%;
   background-color: #fafaf8;
+
 }
 
 button {
@@ -300,6 +301,7 @@ code {
 
 .form-content {
   margin-top: 8rem;
+  margin-bottom: 2rem;
 }
 
 .form-container {
@@ -435,7 +437,10 @@ footer {
   margin-top: auto;
   width: 100%;
   position: relative;
+  left: 0;
+  bottom: 0;
   border-top: 1px solid #bbb3;
+  overflow: auto;
 }
 
 footer .footer-content {
@@ -770,6 +775,12 @@ td {
 }
 
 @media (min-width: 768px) {
+  .form-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .form-container {
     max-width: 520px;
   }
@@ -826,6 +837,11 @@ td {
   }
 
   /* footer */
+  footer {
+    position: relative;
+    bottom: 0;
+  }
+
   footer .footer-content {
     flex-direction: row;
     align-items: center;
