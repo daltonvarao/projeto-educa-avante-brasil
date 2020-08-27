@@ -23,7 +23,6 @@ body {
   height: 100%;
   width: 100%;
   background-color: #fafaf8;
-
 }
 
 button {
@@ -302,6 +301,7 @@ code {
 .form-content {
   margin-top: 8rem;
   margin-bottom: 2rem;
+  padding: 0 1.25rem;
 }
 
 .form-container {
@@ -781,6 +781,7 @@ td {
     justify-content: center;
     align-items: center;
   }
+
   .form-container {
     max-width: 520px;
   }
