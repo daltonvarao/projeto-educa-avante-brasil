@@ -4,13 +4,18 @@
   --primary: #49996f;
   --primary90: rgba(73, 151, 111, 0.9);
   --dark: #333333;
+  --secondary: #676767;
+  --secondary-light: #dee2e6;
   --light: #f0f0fd;
   --white: #ffffff;
-  --secondary: #676767;
   --error: #ff6347;
   --edit: #55aeba;
   --success: #22ca73;
   --face-blue: #008bd0;
+  --yellow-logo: #ffcb00;
+  --orange-logo: #f07c00;
+  --green-logo: #b1c900;
+  --yellow-logo-font: #dbd900;
 }
 
 html,
@@ -71,6 +76,14 @@ code {
 
 .text-bold {
   font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-primary {
@@ -344,6 +357,11 @@ code {
   margin-top: 0.5rem;
 }
 
+.form-group-inline .form-input + .form-input {
+  margin-top: 0;
+  margin-left: 0.5rem;
+}
+
 .form-input::placeholder {
   color: #909090;
 }
@@ -388,7 +406,7 @@ code {
 .container {
   padding: 1.5rem;
   padding-top: 8rem;
-  max-width: 960px;
+  max-width: 1080px;
   margin: auto;
 }
 
@@ -528,6 +546,234 @@ footer .footer-content .footer-contact a svg {
   text-align: center;
 }
 
+/* HOME PAGE CURSO */
+.card-curso {
+  padding: 1rem 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.curso {
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 1.5rem 1rem;
+  position: relative;
+
+  transition: all 400ms;
+}
+
+.curso:hover {
+  background-color: var(--primary);
+}
+
+.curso:hover .course-title,
+.curso:hover .course-info ul li {
+  color: white;
+}
+
+.curso:hover::after {
+  font-family: "Material Design Icons";
+  content: "\F0133";
+  position: absolute;
+  /* top: calc(50% - 32px); */
+  color: var(--white);
+  font-size: 64px;
+  left: -24px;
+  top: -24px;
+}
+
+/* SHOW CURSO */
+.course-title {
+  margin-bottom: 2.5rem;
+  color: var(--primary);
+}
+
+.curso .course-title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.course-info {
+  margin-bottom: 1.5rem;
+}
+
+.course-info ul {
+  margin-bottom: 0.75rem;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  grid-gap: 0.5rem;
+}
+
+.curso .course-info ul {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.course-info ul li {
+  list-style: none;
+  font-weight: 600;
+  color: #676767;
+  font-size: 14px;
+}
+
+.curso .course-info ul li {
+  font-size: 16px;
+}
+
+.course-description p {
+  text-align: justify;
+  font-weight: 500;
+  line-height: 1.75rem;
+  font-size: 1rem;
+}
+
+.course-description p + p {
+  margin-top: 12px;
+}
+
+.course-grid-title {
+  margin: 1rem 0;
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.course-table {
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: var(--white);
+}
+
+.course-table table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.course-table thead th {
+  border-bottom: 1px solid var(--light);
+}
+
+.course-table tbody td {
+  color: var(--secondary);
+}
+
+.course-table th,
+td {
+  border-bottom: 1px solid var(--light);
+}
+
+.course-table tr:last-child td {
+  border-bottom: none;
+}
+
+.course-table th,
+.course-table td {
+  padding: 1rem;
+}
+
+.course-table tbody tr:last-child {
+  font-weight: bold;
+}
+
+.price-box {
+  background: var(--primary);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.subscribe-link {
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 5px;
+  background: var(--orange-logo);
+  width: 100%;
+}
+
+.subscribe-link a {
+  color: var(--white);
+  font-size: 18px;
+}
+
+.price-box p {
+  color: var(--white);
+  font-size: 14px;
+  padding: 0.75rem 0;
+}
+
+.price-card {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+
+  transition: all 0.4s;
+}
+
+.payment-selected,
+.price-card:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  color: #333;
+}
+
+.curso .price-card:hover {
+  background: var(--primary);
+  border-color: var(--white);
+  color: white;
+}
+
+.price-card + .price-card {
+  margin-top: 1rem;
+}
+
+.price-card span + span {
+  margin-top: 0.5rem;
+}
+
+.old-price {
+  font-size: 14px;
+  font-weight: lighter;
+  text-decoration: line-through;
+}
+
+.price {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.discount-percentage {
+  background: var(--yellow-logo);
+  padding: 0.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+  color: var(--white);
+  font-size: 20px;
+}
+
+.discount-price {
+  font-size: 14px;
+}
+
+.payment-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0.5rem;
+  grid-row-gap: 0.25rem;
+}
+
+.payment {
+  font-size: 12px;
+  margin: 0 !important;
+  font-weight: 300;
+}
+
 @media (min-width: 768px) {
   .form-content {
     height: 70vh;
@@ -620,5 +866,88 @@ footer .footer-content .footer-contact a svg {
 
   footer .footer-content .footer-contact a {
     width: 220px;
+  }
+
+  /* SHOW CURSO */
+  .card-curso {
+    margin: 0 auto;
+    max-width: 1060px;
+  }
+
+  .course-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .curso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .curso .course-info,
+  .curso .course-info ul {
+    margin-bottom: 0;
+  }
+
+  .curso .price-card {
+    margin-left: 1rem;
+  }
+
+  .curso .course-title {
+    text-align: left;
+    font-size: 32px;
+  }
+
+  .curso ul li {
+    text-align: left;
+  }
+
+  .course-box {
+    margin-right: 0.75rem;
+    max-width: 660px;
+  }
+
+  .course-info ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .course-info ul li + li {
+    margin-top: 0;
+    margin-left: 0.5rem;
+  }
+
+  .course-description p {
+    font-size: 16px;
+  }
+
+  .course-table {
+    margin-bottom: 0;
+  }
+
+  .subscribe-link a {
+    font-size: 14px;
+  }
+
+  .price-box {
+    margin-left: 1rem;
+    width: 320px;
+  }
+
+  .price-box p {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .curso {
+    padding: 2rem;
   }
 }
