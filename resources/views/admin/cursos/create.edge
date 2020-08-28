@@ -39,9 +39,20 @@
       <input class="form-input" type="text" placeholder="Duração" name="duracao" value="{{ old('duracao', '') }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('duracao'), hasErrorFor('duracao')) }}
       
-      <textarea class="form-input"  placeholder="Sobre" name="sobre" rows="5" required>{{ old('sobre', '') }}</textarea>
+      <textarea id="descricao-editor" class="form-input"  placeholder="Sobre" name="sobre" rows="25" required>{{ old('sobre', '') }}</textarea>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('sobre'), hasErrorFor('sobre')) }}
-      
+
+      <h4 class="form-subtitle text-primary">Carga Horária</h4>
+
+      <div id="carga-horaria-inputs">
+        <div class="form-group-inline carga-horara-group">
+          <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[0]">
+          <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[0]" min="1" step="1">
+        </div>
+      </div>
+
+      <button id="nova-ch" class="btn text-primary mb-1 float-right outline-none" type="button">Nova disciplina</button>
+
       <button class="form-btn btn-primary">Salvar</button>
     </form>
   </section>

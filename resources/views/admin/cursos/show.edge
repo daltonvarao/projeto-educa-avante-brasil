@@ -25,8 +25,7 @@
           </ul>
         </div>
         <div class="course-description">
-          <p>{{curso.sobre}}</p>
-          <p>O curso de Especialização em Educação Ambiental fornece aos profissionais todas as ferramentas e conteúdos necessários para uma atuação transformadora na sala de aula, na escola e na sociedade. Proporcionando a oportunidade de discussão, reflexão, proposição e execução de ações didáticos-científicas voltadas à questão ambiental. Os profissionais que optarem por essa Pós-Graduação EAD terão maior capacidade de colaborar com a produção, divulgação e transformação de conhecimentos no que se relaciona à Educação Ambiental.</p>
+          {{{ curso.sobre }}}
         </div>
         <h2 class="course-grid-title">Grade curricular</h2>
         <div class="course-table shadow">
@@ -36,19 +35,15 @@
               <th class="text-center">Carga horária</th>
             </thead>
             <tbody>
-              <tr>
-                <td>Anestesiologia</td>
-                <td class="text-center">30h</td>
-              <tr>
-                <td>Anatomia Humana Prática com Dissecação</td>
-                <td class="text-center">30h</td>
-              </tr>
-                <td>Cirurgia Cardiovascular</td>
-                <td class="text-center">30h</td>
-              </tr>
+              @each(ch in curso.carga_horarias)
+                <tr>
+                  <td>{{ch.disciplina}}</td>
+                  <td class="text-center">{{ch.carga_horaria}}</td>
+                </tr>
+              @endeach
               <tr>
                 <td>Total</td>
-                <td class="text-center">544h</td>
+                <td class="text-center">{{ curso.ch_total }}h</td>
               </tr>
             </tbody>
           </table>

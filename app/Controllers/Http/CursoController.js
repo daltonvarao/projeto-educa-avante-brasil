@@ -62,8 +62,13 @@ class CursoController {
       "modalidade_id",
     ]);
 
+    const cargaHorariaData = request.collect(["disciplina", "carga_horaria"]);
+
     try {
-      await Curso.create(cursoData);
+      const curso = await Curso.create(cursoData);
+
+      await curso.carga_horarias().createMany(cargaHorariaData);
+
       session.flash({ success: "Curso cadastrado." });
 
       return response.route("admin.cursos.index");
@@ -73,17 +78,6 @@ class CursoController {
       return response.redirect("back");
     }
   }
-
-  /**
-   * Display a single curso.
-   * GET cursos/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show({ params, request, response, view }) {}
 
   /**
    * Render a form to update an existing curso.
@@ -99,7 +93,12 @@ class CursoController {
     const modalidades = await Modalidade.all();
 
     try {
-      const curso = await Curso.find(params.id);
+      const curso = await Curso.query()
+        .where("id", params.id)
+        .with("carga_horarias")
+        .first();
+
+      console.log(curso);
 
       return view.render("admin.cursos.edit", {
         areas: areas.toJSON(),
@@ -132,8 +131,38 @@ class CursoController {
       "modalidade_id",
     ]);
 
+    const cargaHorariaData = request.collect([
+      "disciplina",
+      "carga_horaria",
+      "id",
+    ]);
+
     try {
       await Curso.query().where("id", params.id).update(cursoData);
+      const curso = await Curso.find(params.id);
+
+      cargaHorariaData
+        .filter((item) => item.id !== null)
+        .forEach(async (ch, i) => {
+          await curso
+            .carga_horarias()
+            .where("id", ch.id)
+            .update(cargaHorariaData[i]);
+
+          if (ch.disciplina === null) {
+            await curso.carga_horarias().where("id", ch.id).delete();
+          }
+        });
+
+      await curso.carga_horarias().createMany(
+        cargaHorariaData
+          .filter((ch) => ch.id === null)
+          .map((ch) => ({
+            disciplina: ch.disciplina,
+            carga_horaria: ch.carga_horaria,
+          }))
+      );
+
       session.flash({ success: "Curso atualizado." });
 
       return response.route("admin.cursos.index");
@@ -143,10 +172,21 @@ class CursoController {
       return response.redirect("back");
     }
   }
-
+  /**
+   * Display a single curso.
+   * GET cursos/:id
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {View} ctx.view
+   */
   async show({ params, view, response }) {
     try {
-      const curso = await Curso.find(params.id);
+      const curso = await Curso.query()
+        .where("id", params.id)
+        .with("carga_horarias")
+        .first();
 
       return view.render("admin.cursos.show", { curso: curso.toJSON() });
     } catch (error) {

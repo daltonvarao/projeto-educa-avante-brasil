@@ -34,9 +34,25 @@
       <input class="form-input" type="text" placeholder="Duração" name="duracao" value="{{ old('duracao', curso.duracao) }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('duracao'), hasErrorFor('duracao')) }}
       
-      <textarea class="form-input"  placeholder="Sobre" name="sobre" rows="5" required>{{ old('sobre', curso.sobre) }}</textarea>
+      <h4 class="form-subtitle text-primary">Sobre o curso</h4>
+      <textarea id="descricao-editor" class="form-input"  placeholder="Sobre" name="sobre" rows="25" required>{{ old('sobre', curso.sobre) }}</textarea>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('sobre'), hasErrorFor('sobre')) }}
       
+
+      <h4 class="form-subtitle text-primary">Carga Horária</h4>
+      <div id="carga-horaria-inputs">
+        @each(ch in curso.carga_horarias)
+          <div class="form-group-inline carga-horara-group">
+            <input type="hidden" name="id[{{$loop.index}}]" value="{{ ch.id }}">
+            <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[{{$loop.index}}]" value="{{ ch.disciplina }}">
+            <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[{{$loop.index}}]" value="{{ ch.carga_horaria }}" min="1" step="1">
+          </div>
+        @endeach
+      </div>
+
+      <button id="nova-ch" class="btn text-primary mb-1 float-right outline-none" type="button">Nova disciplina</button>
+
+
       <button class="form-btn btn-primary">Salvar</button>
     </form>
   </section>
