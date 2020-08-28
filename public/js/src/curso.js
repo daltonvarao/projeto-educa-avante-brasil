@@ -6,9 +6,7 @@ const socket = ws.subscribe("home");
 function Select({ name, setSelected, options }) {
   return (
     <select onChange={(ev) => setSelected(ev.target.value)}>
-      <option className="shadow" value={false}>
-        {name}
-      </option>
+      <option className="shadow">{name}</option>
       {options.map((item) => (
         <option key={item.id} value={item.id}>
           {item.nome}
@@ -23,9 +21,9 @@ function Form() {
   const [areas, setAreas] = React.useState([]);
   const [cursos, setCursos] = React.useState([]);
 
-  const [modalidade, setModalidade] = React.useState(false);
-  const [area, setArea] = React.useState(false);
-  const [curso, setCurso] = React.useState(false);
+  const [modalidade, setModalidade] = React.useState("");
+  const [area, setArea] = React.useState("");
+  const [curso, setCurso] = React.useState("default");
   const [selectedCurso, setSelectedCurso] = React.useState(false);
 
   React.useEffect(() => {
@@ -38,10 +36,8 @@ function Form() {
   }, [modalidade, area]);
 
   React.useEffect(() => {
-    if (curso) {
+    if (curso && area && modalidade) {
       setSelectedCurso(cursos.filter((item) => item.id == curso)[0]);
-    } else {
-      setSelectedCurso(false);
     }
   }, [curso, cursos]);
 
@@ -126,4 +122,6 @@ function Curso({ data }) {
 }
 
 let cursoContainer = document.querySelector("#curso-form");
-ReactDOM.render(<Form />, cursoContainer);
+if (cursoContainer) {
+  ReactDOM.render(<Form />, cursoContainer);
+}

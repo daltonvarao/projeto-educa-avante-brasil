@@ -17,7 +17,7 @@ function Select(_ref) {
       } },
     React.createElement(
       "option",
-      { className: "shadow", value: false },
+      { className: "shadow" },
       name
     ),
     options.map(function (item) {
@@ -46,17 +46,17 @@ function Form() {
       cursos = _React$useState6[0],
       setCursos = _React$useState6[1];
 
-  var _React$useState7 = React.useState(false),
+  var _React$useState7 = React.useState(""),
       _React$useState8 = _slicedToArray(_React$useState7, 2),
       modalidade = _React$useState8[0],
       setModalidade = _React$useState8[1];
 
-  var _React$useState9 = React.useState(false),
+  var _React$useState9 = React.useState(""),
       _React$useState10 = _slicedToArray(_React$useState9, 2),
       area = _React$useState10[0],
       setArea = _React$useState10[1];
 
-  var _React$useState11 = React.useState(false),
+  var _React$useState11 = React.useState("default"),
       _React$useState12 = _slicedToArray(_React$useState11, 2),
       curso = _React$useState12[0],
       setCurso = _React$useState12[1];
@@ -76,12 +76,10 @@ function Form() {
   }, [modalidade, area]);
 
   React.useEffect(function () {
-    if (curso) {
+    if (curso && area && modalidade) {
       setSelectedCurso(cursos.filter(function (item) {
         return item.id == curso;
       })[0]);
-    } else {
-      setSelectedCurso(false);
     }
   }, [curso, cursos]);
 
@@ -226,4 +224,6 @@ function Curso(_ref3) {
 }
 
 var cursoContainer = document.querySelector("#curso-form");
-ReactDOM.render(React.createElement(Form, null), cursoContainer);
+if (cursoContainer) {
+  ReactDOM.render(React.createElement(Form, null), cursoContainer);
+}
