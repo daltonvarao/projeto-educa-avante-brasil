@@ -171,12 +171,6 @@ function Curso(_ref3) {
               React.createElement("i", { className: "mdi mdi-calendar" }),
               "Dura\xE7\xE3o: ",
               data.duracao
-            ),
-            React.createElement(
-              "li",
-              null,
-              React.createElement("i", { className: "mdi mdi-clock-outline" }),
-              "CH: 544 horas"
             )
           )
         )

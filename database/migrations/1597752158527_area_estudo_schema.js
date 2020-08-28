@@ -8,7 +8,6 @@ class AreaEstudoSchema extends Schema {
     this.create("area_estudos", (table) => {
       table.increments();
       table.string("nome").unique().notNullable();
-      table.string("descricao").notNullable();
       table.timestamps();
     });
   }

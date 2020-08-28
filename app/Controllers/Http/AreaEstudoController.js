@@ -47,17 +47,15 @@ class AreaEstudoController {
    * @param {Response} ctx.response
    */
   async store({ request, response, session }) {
-    const areaData = request.only(["nome", "descricao"]);
+    const areaData = request.only(["nome"]);
 
     const rules = {
       nome: "required|unique:area_estudos,nome",
-      descricao: "required",
     };
 
     const messages = {
       "nome.required": "Nome da Área obrigatório.",
       "nome.unique": "Nome da Área já cadastrado.",
-      "descricao.required": "Descrição da Área obrigatória.",
     };
 
     const validation = await validate(areaData, rules, messages);
@@ -110,17 +108,15 @@ class AreaEstudoController {
    * @param {Response} ctx.response
    */
   async update({ params, request, response, session }) {
-    const areaData = request.only(["nome", "descricao"]);
+    const areaData = request.only(["nome"]);
 
     const rules = {
       nome: `required|unique:area_estudos,nome,id,${params.id}`,
-      descricao: "required",
     };
 
     const messages = {
       "nome.required": "Nome da Área obrigatório.",
       "nome.unique": "Nome da Área já cadastrado.",
-      "descricao.required": "Descrição da Área obrigatória.",
     };
 
     const validation = await validate(areaData, rules, messages);

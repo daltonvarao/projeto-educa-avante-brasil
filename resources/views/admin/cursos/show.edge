@@ -20,12 +20,15 @@
               Duração: {{ curso.duracao}}</li>
               <li>
                 <i class="mdi mdi-clock-outline"></i>
-              CH: 544 horas
+              CH: {{curso.ch_total }}h
             </li>
           </ul>
         </div>
+        <h2 class="course-grid-title">Sobre o curso</h2>
         <div class="course-description">
-          {{{ curso.sobre }}}
+          <div class="card shadow">
+            {{{ curso.sobre }}}
+          </div>
         </div>
         <h2 class="course-grid-title">Grade curricular</h2>
         <div class="course-table shadow">
@@ -43,7 +46,7 @@
               @endeach
               <tr>
                 <td>Total</td>
-                <td class="text-center">{{ curso.ch_total }}h</td>
+                <td class="text-center">{{curso.ch_total}}</td>
               </tr>
             </tbody>
           </table>

@@ -35,7 +35,7 @@
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('duracao'), hasErrorFor('duracao')) }}
       
       <h4 class="form-subtitle text-primary">Sobre o curso</h4>
-      <textarea id="descricao-editor" class="form-input"  placeholder="Sobre" name="sobre" rows="25" required>{{ old('sobre', curso.sobre) }}</textarea>
+      <textarea id="descricao-editor" class="form-input" placeholder="Sobre" name="sobre" rows="25" required>{{ old('sobre', curso.sobre) }}</textarea>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('sobre'), hasErrorFor('sobre')) }}
       
 

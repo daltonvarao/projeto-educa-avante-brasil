@@ -13,7 +13,6 @@
       <div class="table-header">
         <ul>
           <li>Nome</li>
-          <li class="text-center">Descrição</li>
         </ul>
         <span>Ação</span>
       </div>
@@ -22,7 +21,6 @@
         <div class="table-content shadow">
           <div class="table-info">
             <li class="table-title">{{ area.nome }}</li>
-            <li class="table-detail text-center">{{ area.descricao.slice(0, 30) }}...</li>
           </div>
           <div class="table-links">
             <a class="link edit" href="{{ route('admin.areas.edit', id=area.id) }}">

@@ -39,7 +39,8 @@
       <input class="form-input" type="text" placeholder="Duração" name="duracao" value="{{ old('duracao', '') }}" required>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('duracao'), hasErrorFor('duracao')) }}
       
-      <textarea id="descricao-editor" class="form-input"  placeholder="Sobre" name="sobre" rows="25" required>{{ old('sobre', '') }}</textarea>
+      <h4 class="form-subtitle text-primary">Sobre o curso</h4>
+      <textarea id="descricao-editor" class="form-input"  placeholder="Sobre" name="sobre" rows="25">{{ old('sobre', '') }}</textarea>
       {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('sobre'), hasErrorFor('sobre')) }}
 
       <h4 class="form-subtitle text-primary">Carga Horária</h4>

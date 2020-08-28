@@ -98,10 +98,6 @@ function Curso({ data }) {
                 <i className="mdi mdi-calendar"></i>
                 Duração: {data.duracao}
               </li>
-              <li>
-                <i className="mdi mdi-clock-outline"></i>
-                CH: 544 horas
-              </li>
             </ul>
           </div>
         </div>
