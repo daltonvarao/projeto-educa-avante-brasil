@@ -10,7 +10,12 @@ class CargaHorariaSchema extends Schema {
 
       table.string("disciplina");
       table.integer("carga_horaria");
-      table.integer("curso_id").unsigned().references("id").inTable("users");
+      table
+        .integer("curso_id")
+        .unsigned()
+        .references("id")
+        .inTable("cursos")
+        .onDelete("CASCADE");
 
       table.timestamps();
     });

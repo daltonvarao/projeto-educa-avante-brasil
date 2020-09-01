@@ -64,10 +64,16 @@ class CursoController {
 
     const cargaHorariaData = request.collect(["disciplina", "carga_horaria"]);
 
+    console.log(cargaHorariaData);
+
     try {
       const curso = await Curso.create(cursoData);
 
-      await curso.carga_horarias().createMany(cargaHorariaData);
+      await curso
+        .carga_horarias()
+        .createMany(
+          cargaHorariaData.filter((item) => item.disciplina !== null)
+        );
 
       session.flash({ success: "Curso cadastrado." });
 
@@ -97,8 +103,6 @@ class CursoController {
         .where("id", params.id)
         .with("carga_horarias")
         .first();
-
-      console.log(curso);
 
       return view.render("admin.cursos.edit", {
         areas: areas.toJSON(),
@@ -141,6 +145,8 @@ class CursoController {
       await Curso.query().where("id", params.id).update(cursoData);
       const curso = await Curso.find(params.id);
 
+      console.log(cargaHorariaData);
+
       cargaHorariaData
         .filter((item) => item.id !== null)
         .forEach(async (ch, i) => {
@@ -149,14 +155,14 @@ class CursoController {
             .where("id", ch.id)
             .update(cargaHorariaData[i]);
 
-          if (ch.disciplina === null) {
+          if (!ch.disciplina) {
             await curso.carga_horarias().where("id", ch.id).delete();
           }
         });
 
       await curso.carga_horarias().createMany(
         cargaHorariaData
-          .filter((ch) => ch.id === null)
+          .filter((ch) => ch.id === null && ch.disciplina)
           .map((ch) => ({
             disciplina: ch.disciplina,
             carga_horaria: ch.carga_horaria,
