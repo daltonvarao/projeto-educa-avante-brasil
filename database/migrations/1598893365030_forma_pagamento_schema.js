@@ -10,12 +10,12 @@ class FormaPagamentoSchema extends Schema {
       table.integer("parcelas").defaultTo(1);
       table.decimal("valor_parcela").defaultTo(0.0);
       table.decimal("desconto_parcela").defaultTo(0.0);
-      table.decimal("valor_total").defaultTo(0.0);
-      table.decimal("valor_liquido").defaultTo(0.0);
       table.enu("forma_pagamento", ["boleto", "cartao"]);
       table.string("conclusao");
 
       table.integer("curso_id").unsigned().references("id").inTable("users");
+      table.decimal("valor_liquido").defaultTo(0.0);
+      table.decimal("valor_total").defaultTo(0.0);
 
       table.timestamps();
     });
