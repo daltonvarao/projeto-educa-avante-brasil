@@ -47,11 +47,15 @@
             <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[{{$loop.index}}]" value="{{ ch.disciplina }}">
             <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[{{$loop.index}}]" value="{{ ch.carga_horaria }}" min="1" step="1">
           </div>
+        @else
+          <div class="form-group-inline carga-horara-group">
+            <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[0]">
+            <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[0]" min="1" step="1">
+          </div>
         @endeach
       </div>
 
       <button id="nova-ch" class="btn text-primary mb-1 float-right outline-none" type="button">Nova disciplina</button>
-
 
       <button class="form-btn btn-primary">Salvar</button>
     </form>
