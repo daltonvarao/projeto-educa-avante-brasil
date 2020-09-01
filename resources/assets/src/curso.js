@@ -1,4 +1,5 @@
-"use strict";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 
 const ws = adonis.Ws().connect();
 const socket = ws.subscribe("home");
@@ -17,16 +18,16 @@ function Select({ name, setSelected, options }) {
 }
 
 function Form() {
-  const [modalidades, setModalidades] = React.useState([]);
-  const [areas, setAreas] = React.useState([]);
-  const [cursos, setCursos] = React.useState([]);
+  const [modalidades, setModalidades] = useState([]);
+  const [areas, setAreas] = useState([]);
+  const [cursos, setCursos] = useState([]);
 
-  const [modalidade, setModalidade] = React.useState("");
-  const [area, setArea] = React.useState("");
-  const [curso, setCurso] = React.useState("default");
-  const [selectedCurso, setSelectedCurso] = React.useState(false);
+  const [modalidade, setModalidade] = useState("");
+  const [area, setArea] = useState("");
+  const [curso, setCurso] = useState("default");
+  const [selectedCurso, setSelectedCurso] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (modalidade && area) {
       socket.emit("inputChange", {
         modalidade_id: modalidade,
@@ -35,13 +36,13 @@ function Form() {
     }
   }, [modalidade, area]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (curso && area && modalidade) {
       setSelectedCurso(cursos.filter((item) => item.id == curso)[0]);
     }
   }, [curso, cursos]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("/api/collections")
       .then((resp) => resp.json())
       .then((data) => {
@@ -117,7 +118,7 @@ function Curso({ data }) {
   );
 }
 
-let cursoContainer = document.querySelector("#curso-form");
+const cursoContainer = document.querySelector("#curso-form");
 if (cursoContainer) {
   ReactDOM.render(<Form />, cursoContainer);
 }
