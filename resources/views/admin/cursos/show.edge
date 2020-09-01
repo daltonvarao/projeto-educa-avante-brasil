@@ -55,41 +55,28 @@
           <a href="">Inscreva-se aqui</a>
         </div>
         <p>Selecione uma forma de pagamento</p>
-        <div class="price-card">          
+        @each(pg in curso.forma_pagamentos)
+          <div class="price-card">
+            <span class="old-price">{{ antl.formatAmount(pg.valor_total, 'brl') }}</span>
+            <span class="price">{{ pg.parcelas > 1 ? pg.parcelas : '' }}x {{antl.formatAmount(pg.valor_parcela, 'brl')}}</span>
+            <span class="discount-percentage">desconto de {{ pg.desconto}}%</span>
+            <span class="discount-price">Economize R$ {{ antl.formatAmount(pg.valor_total - pg.valor_liquido, 'brl') }}</span>
+
+            <div class="payment-info">
+              <span class="payment">Boleto em {{ pg.conclusao }}</span>
+            </div>
+          </div>
+        @endeach
+        <!--div class="price-card payment-selected">          
           <span class="old-price">R$ 2000,00</span>
           <span class="price">R$ 900,00</span>
           <span class="discount-percentage">desconto de 52,3%</span>
           <span class="discount-price">Economize R$ 1100,00</span>
 
           <div class="payment-info">
-            <span class="payment">Pgto: boleto.</span>
-            <span class="payment">Conclusão: 6 meses.</span>
+            <span class="payment">Boleto em 6 meses</span>
           </div>
-        </div>
-
-        <div class="price-card payment-selected">
-          <span class="old-price">R$ 2000,00</span>
-          <span class="price">R$ 900,00</span>
-          <span class="discount-percentage">desconto de 52,3%</span>
-          <span class="discount-price">Economize R$ 1100,00</span>
-
-          <div class="payment-info">
-            <span class="payment">Pgto: boleto.</span>
-            <span class="payment">Conclusão: 6 meses.</span>
-          </div>
-        </div>
-        
-        <div class="price-card">
-          <span class="old-price">R$ 2000,00</span>
-          <span class="price">R$ 900,00</span>
-          <span class="discount-percentage">desconto de 52,3%</span>
-          <span class="discount-price">Economize R$ 1100,00</span>
-
-          <div class="payment-info">
-            <span class="payment">Pgto: boleto.</span>
-            <span class="payment">Conclusão: 6 meses.</span>
-          </div>
-        </div>
+        </div -->
       </div>
     </div>
   </div>

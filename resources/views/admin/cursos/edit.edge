@@ -42,13 +42,13 @@
       <h4 class="form-subtitle text-primary">Carga Horária</h4>
       <div id="carga-horaria-inputs">
         @each(ch in curso.carga_horarias)
-          <div class="form-group-inline carga-horara-group">
+          <div class="form-group-inline carga-horaria-group">
             <input type="hidden" name="id[{{$loop.index}}]" value="{{ ch.id }}">
             <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[{{$loop.index}}]" value="{{ ch.disciplina }}">
             <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[{{$loop.index}}]" value="{{ ch.carga_horaria }}" min="1" step="1">
           </div>
         @else
-          <div class="form-group-inline carga-horara-group">
+          <div class="form-group-inline carga-horaria-group">
             <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[0]">
             <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[0]" min="1" step="1">
           </div>

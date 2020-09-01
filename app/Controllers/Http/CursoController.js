@@ -187,15 +187,18 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ params, view, response }) {
+  async show({ params, view, response, session }) {
     try {
       const curso = await Curso.query()
         .where("id", params.id)
         .with("carga_horarias")
+        .with("forma_pagamentos")
         .first();
 
       return view.render("admin.cursos.show", { curso: curso.toJSON() });
     } catch (error) {
+      console.log(error);
+      session.flash({ error: error.message });
       return response.route("home.index");
     }
   }

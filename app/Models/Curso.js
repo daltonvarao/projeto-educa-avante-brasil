@@ -27,6 +27,10 @@ class Curso extends Model {
   carga_horarias() {
     return this.hasMany("App/Models/CargaHoraria");
   }
+
+  forma_pagamentos() {
+    return this.hasMany("App/Models/FormaPagamento");
+  }
 }
 
 module.exports = Curso;

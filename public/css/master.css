@@ -796,8 +796,6 @@ td {
 }
 
 .payment-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   margin-top: 0.5rem;
   grid-row-gap: 0.25rem;
 }

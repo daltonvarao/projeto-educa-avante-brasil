@@ -111,15 +111,23 @@ if (togglePassword) {
   };
 }
 
-const cursoForm = document.querySelector("#carga-horaria-inputs");
-const novaCHButton = document.querySelector("#nova-ch");
-const formGroup = document.querySelector(".carga-horara-group");
+function resetInput(parentNode, selectorName, name, counter) {
+  const input = parentNode.querySelector(selectorName);
+  if (input) {
+    input.value = null;
+    input.name = `${name}[${counter}]`;
+  }
+}
 
-if (cursoForm) {
-  let numDisc = cursoForm.children.length;
+const chForm = document.querySelector("#carga-horaria-inputs");
+const chGroup = document.querySelector(".carga-horaria-group");
+const novaCHButton = document.querySelector("#nova-ch");
+
+if (chForm) {
+  let numDisc = chForm.children.length;
 
   novaCHButton.onclick = function () {
-    const newCH = formGroup.cloneNode(true);
+    const newCH = chGroup.cloneNode(true);
 
     const newCHId = newCH.querySelector('input[type="hidden"]');
     if (newCHId) {
@@ -127,15 +135,26 @@ if (cursoForm) {
       newCHId.name = `id[${numDisc}]`;
     }
 
-    const newCHDisciplina = newCH.querySelector('input[type="text"]');
-    newCHDisciplina.value = null;
-    newCHDisciplina.name = `disciplina[${numDisc}]`;
-
-    const newCHHoras = newCH.querySelector('input[type="number"]');
-    newCHHoras.value = null;
-    newCHHoras.name = `carga_horaria[${numDisc}]`;
+    resetInput(newCH, 'input[type="text"]', "disciplina", numDisc);
+    resetInput(newCH, 'input[type="number"]', "carga_horaria", numDisc);
 
     numDisc++;
-    cursoForm.appendChild(newCH);
+    chForm.appendChild(newCH);
+  };
+}
+
+const fpForm = document.querySelector("#forma-pagamento-inputs");
+const fpGroup = document.querySelector(".forma-pagamento-group");
+const novaFPButton = document.querySelector("#nova-fp");
+
+if (fpGroup) {
+  let numFP = fpForm.children.length;
+
+  novaFPButton.onclick = function () {
+    const newFP = fpGroup.cloneNode(true);
+
+    resetInput(newFP, 'input[plca=""]');
+
+    fpForm.appendChild(newFP);
   };
 }
