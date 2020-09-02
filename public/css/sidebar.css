@@ -10,6 +10,7 @@
   top: 6rem;
   background-color: var(--primary);
   padding: 1rem;
+  z-index: 5;
 }
 
 .sidebar-collapsed .sidebar-subtitle,

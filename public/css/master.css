@@ -32,9 +32,18 @@ button {
   outline-color: rgba(0, 0, 0, 0.2);
 }
 
+button:disabled {
+  color: #909090 !important;
+  cursor: not-allowed;
+}
+
 .btn .mdi {
   font-size: 18px;
   margin-right: 0.25rem;
+}
+
+.mdi-2x {
+  font-size: 20px !important;
 }
 
 .btn {
@@ -433,7 +442,8 @@ code {
   color: white;
 }
 
-.form-input + .btn-primary {
+.tox-tinymce + .form-btn,
+.form-input + .form-btn {
   margin-top: 0.5rem;
 }
 

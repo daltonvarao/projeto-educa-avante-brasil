@@ -27,6 +27,7 @@ Route.resource("cursos", "CursoController").only(["show"]);
 
 Route.group("api", () => {
   Route.get("collections", "ApiController.collections");
+  Route.resource("cursos", "CursoController").only(["store", "update"]);
 }).prefix("api");
 
 // unauthenticated users
@@ -61,7 +62,7 @@ Route.group("admin", () => {
         [["admin.cursos.update"], ["UpdateCurso"]],
       ])
     )
-    .except(["show"]);
+    .except(["show", "store", "update"]);
 
   Route.resource("sessions", "SessionController").only(["destroy"]);
 })

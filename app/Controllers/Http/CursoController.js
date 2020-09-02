@@ -62,9 +62,7 @@ class CursoController {
       "modalidade_id",
     ]);
 
-    const cargaHorariaData = request.collect(["disciplina", "carga_horaria"]);
-
-    console.log(cargaHorariaData);
+    const cargaHorariaData = request.input("cargas_horarias");
 
     try {
       const curso = await Curso.create(cursoData);
@@ -72,16 +70,14 @@ class CursoController {
       await curso
         .carga_horarias()
         .createMany(
-          cargaHorariaData.filter((item) => item.disciplina !== null)
+          cargaHorariaData.filter(
+            (item) => item.disciplina && item.carga_horaria
+          )
         );
 
-      session.flash({ success: "Curso cadastrado." });
-
-      return response.route("admin.cursos.index");
+      return { success: "Curso cadastrado." };
     } catch (error) {
-      session.flash({ error: error.message });
-
-      return response.redirect("back");
+      return { error: error.message };
     }
   }
 
