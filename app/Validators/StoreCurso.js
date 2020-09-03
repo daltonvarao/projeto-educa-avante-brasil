@@ -1,16 +1,22 @@
 "use strict";
 
+const { formatters } = use("Validator");
+
 class StoreCurso {
   get rules() {
     return {
       nome: "required|unique:cursos,nome",
-      tipo: "required",
-      instituicao: "required",
-      sobre: "required",
-      duracao: "required",
       modalidade_id: "required",
       area_estudo_id: "required",
+      instituicao: "required",
+      tipo: "required",
+      duracao: "required",
+      sobre: "required",
     };
+  }
+
+  get formatter() {
+    return formatters.JsonApi;
   }
 
   get messages() {

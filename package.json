@@ -31,13 +31,25 @@
     "@adonisjs/vow": "^1.0.17",
     "@adonisjs/vow-browser": "^1.0.7",
     "@adonisjs/websocket": "^1.0.12",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@sweetalert/with-react": "^0.1.1",
+    "@tinymce/tinymce-react": "^3.6.0",
     "axios": "^0.20.0",
     "babel-cli": "6",
+    "babel-loader": "^8.1.0",
     "babel-preset-react-app": "3",
     "pg": "^8.3.0",
-    "sqlite3": "^5.0.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sqlite3": "^5.0.0",
+    "sweetalert": "^2.1.2",
+    "webpack": "^4.44.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
+  },
   "autoload": {
     "App": "./app"
   }
