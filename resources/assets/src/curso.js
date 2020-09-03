@@ -1,124 +1,193 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
+import swal from "@sweetalert/with-react";
+import { Editor } from "@tinymce/tinymce-react";
 
-const ws = adonis.Ws().connect();
-const socket = ws.subscribe("home");
+import { Select, Select2, InputValidation } from "./components/inputs";
+import { CargasHorarias } from "./components/cargaHoraria";
 
-function Select({ name, setSelected, options }) {
-  return (
-    <select onChange={(ev) => setSelected(ev.target.value)}>
-      <option className="shadow">{name}</option>
-      {options.map((item) => (
-        <option key={item.id} value={item.id}>
-          {item.nome}
-        </option>
-      ))}
-    </select>
-  );
-}
-
-function Form() {
+function Form({ edit, curso }) {
   const [modalidades, setModalidades] = useState([]);
   const [areas, setAreas] = useState([]);
-  const [cursos, setCursos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [nome, setNome] = useState(curso?.nome ?? "");
+  const [instituicao, setInstituicao] = useState(curso?.instituicao ?? "");
+  const [tipo, setTipo] = useState(curso?.tipo ?? "");
+  const [duracao, setDuracao] = useState(curso?.duracao ?? "");
+  const [sobre, setSobre] = useState(curso?.sobre ?? "");
+  const [modalidade, setModalidade] = useState(curso?.modalidade_id ?? "");
+  const [area, setArea] = useState(curso?.area_estudo_id ?? "");
+  const [cargasHorarias, setCargasHorarias] = useState([
+    { disciplina: "", carga_horaria: "", id: "" },
+  ]);
 
-  const [modalidade, setModalidade] = useState("");
-  const [area, setArea] = useState("");
-  const [curso, setCurso] = useState("default");
-  const [selectedCurso, setSelectedCurso] = useState(false);
+  const saveButton = createRef();
+
+  const [error, setError] = useState({});
 
   useEffect(() => {
-    if (modalidade && area) {
-      socket.emit("inputChange", {
-        modalidade_id: modalidade,
-        area_estudo_id: area,
-      });
+    (async () => {
+      try {
+        const response = await axios.get("/api/collections?all=true");
+
+        setModalidades(response.data.modalidades);
+        setAreas(response.data.areas);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+
+    if (edit) {
+      setCargasHorarias((state) => [
+        ...curso?.carga_horarias.map((item) => ({
+          disciplina: item.disciplina,
+          carga_horaria: item.carga_horaria,
+          id: item.id,
+        })),
+        ...state,
+      ]);
     }
-  }, [modalidade, area]);
+  }, [curso, edit]);
 
-  useEffect(() => {
-    if (curso && area && modalidade) {
-      setSelectedCurso(cursos.filter((item) => item.id == curso)[0]);
+  const handleSubmitForm = async () => {
+    const data = {
+      nome,
+      instituicao,
+      tipo,
+      duracao,
+      sobre,
+      modalidade_id: modalidade,
+      area_estudo_id: area,
+      cargas_horarias: cargasHorarias,
+    };
+
+    try {
+      const method = edit ? "put" : "post";
+      const url = edit ? `/api/cursos/${curso.id}` : "/api/cursos";
+
+      const response = await axios[method](url, data);
+
+      if (response.data.success) {
+        swal("Sucesso!", response.data.success, "success");
+        setTimeout(() => {
+          location.href = "/admin/cursos";
+        }, 2000);
+      }
+    } catch (error) {
+      if (error.response.data.errors[0]) {
+        setError(error.response.data.errors[0]);
+        window.scrollTo(0, 0);
+      }
     }
-  }, [curso, cursos]);
-
-  useEffect(() => {
-    fetch("/api/collections")
-      .then((resp) => resp.json())
-      .then((data) => {
-        setAreas(data.areas);
-        setModalidades(data.modalidades);
-      })
-      .catch((error) => console.log(error));
-
-    socket.on("cursos", function ({ cursos: data }) {
-      setCursos(data);
-    });
-  }, []);
+  };
 
   return (
-    <React.Fragment>
-      <h3 className="homepage-subtitle">Escolha um curso abaixo</h3>
-      <form id="homepage-form" className="homepage-inputs">
-        <Select
-          setSelected={setModalidade}
-          name="Modalidade"
-          options={modalidades}
-        />
-        <Select setSelected={setArea} name="Area" options={areas} />
-        <Select setSelected={setCurso} name="Curso" options={cursos} />
-      </form>
+    <form className="form-container shadow">
+      {!loading ? (
+        <>
+          <h2 className="form-title">Novo Curso</h2>
 
-      {selectedCurso && area && modalidade ? (
-        <Curso data={selectedCurso} />
-      ) : null}
-    </React.Fragment>
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Nome"
+            value={nome}
+            onChange={(ev) => setNome(ev.target.value)}
+            required
+          />
+          <InputValidation field="nome" error={error} />
+
+          <div className="form-group-inline">
+            <Select
+              name="Modalidade"
+              options={modalidades}
+              setSelected={setModalidade}
+              defaultValue={modalidade}
+            />
+            <Select
+              name="Area"
+              options={areas}
+              setSelected={setArea}
+              defaultValue={area}
+            />
+          </div>
+          <InputValidation
+            field={["area_estudo_id", "modalidade_id"]}
+            error={error}
+          />
+
+          <div className="form-group-inline">
+            <Select2
+              name="Instituição"
+              options={["Fael"]}
+              setSelected={setInstituicao}
+              defaultValue={instituicao}
+            />
+            <Select2
+              name="Tipo"
+              options={["Presencial", "Online"]}
+              setSelected={setTipo}
+              defaultValue={tipo}
+            />
+          </div>
+          <InputValidation field={["instituicao", "tipo"]} error={error} />
+
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Duração"
+            value={duracao}
+            onChange={(ev) => setDuracao(ev.target.value)}
+            required
+          />
+          <InputValidation field={"duracao"} error={error} />
+
+          <h4 className="form-subtitle text-primary">Sobre o curso</h4>
+
+          <Editor
+            initialValue={sobre}
+            apiKey="hl4vrjm5712bj2ow0vck1jw1tih2dubftxpqorpc4x6wymnj"
+            init={{
+              height: 500,
+              menubar: true,
+              plugins: ["advlist lists link anchor searchreplace table help"],
+              toolbar:
+                "undo redo | formatselect | bold italic forecolor backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help",
+            }}
+            onEditorChange={(content, _) => setSobre(content)}
+          />
+          <InputValidation field={"sobre"} error={error} />
+
+          <CargasHorarias
+            cargasHorarias={cargasHorarias}
+            setCargasHorarias={setCargasHorarias}
+          />
+
+          <button
+            type="button"
+            onClick={handleSubmitForm}
+            className="form-btn btn-primary"
+            ref={saveButton}
+          >
+            Salvar
+          </button>
+        </>
+      ) : (
+        <div className="loader" />
+      )}
+    </form>
   );
 }
 
-function Curso({ data }) {
-  return (
-    <div className="card-curso shadow">
-      <div
-        className="curso"
-        onClick={() => (location.href = `/cursos/${data.id}`)}
-      >
-        <div className="curso-box">
-          <h1 className="course-title">{data.nome}</h1>
-          <div className="course-info">
-            <ul>
-              <li>
-                <i className="mdi mdi-office-building-outline"></i>
-                Instituição: {data.instituicao}
-              </li>
-              <li>
-                <i className="mdi mdi-earth"></i>
-                Tipo: {data.tipo}
-              </li>
-              <li>
-                <i className="mdi mdi-calendar"></i>
-                Duração: {data.duracao}
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="price-card">
-          <span className="old-price">R$ 2000,00</span>
-          <span className="price">R$ 900,00</span>
-          <span className="discount-percentage">desconto de 52,3%</span>
-          <span className="discount-price">Economize R$ 1100,00</span>
+const createCurso = document.querySelector("#curso-form");
+if (createCurso) {
+  const edit = createCurso.getAttribute("data-edit");
+  const curso = JSON.parse(createCurso.getAttribute("data"));
 
-          <div className="payment-info">
-            <span className="payment">Pgto: boleto.</span>
-            <span className="payment">Conclusão: 6 meses.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const cursoContainer = document.querySelector("#curso-form");
-if (cursoContainer) {
-  ReactDOM.render(<Form />, cursoContainer);
+  ReactDOM.render(<Form edit={edit} curso={curso} />, createCurso);
 }

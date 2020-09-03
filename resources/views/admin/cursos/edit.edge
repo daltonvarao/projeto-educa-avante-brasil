@@ -2,62 +2,6 @@
 
 @section('content')
   <section class="container">
-    <form class="form-container shadow" method="post" action="{{ route('admin.cursos.update', id=curso.id) }}?_method=PUT">
-      <h2 class="form-title">Editar Curso</h2>
-      {{ csrfField() }}
-    
-      <input class="form-input" type="text" placeholder="Nome" name="nome" value="{{ old('nome', curso.nome) }}" required>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('nome'), hasErrorFor('nome')) }}
-      
-      <input class="form-input" type="text" placeholder="Instituição" name="instituicao" value="{{ old('instituicao', curso.instituicao) }}" required>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('instituicao'), hasErrorFor('instituicao')) }}
-
-      <select class="form-input" name="modalidade_id">
-        <option selected disabled>Modalidade</option>
-        @each(modalidade in modalidades)
-          <option value="{{modalidade.id}}" {{ old('modalidade_id', curso.modalidade_id) == modalidade.id ? 'selected' : '' }}>{{modalidade.nome}}</option>
-        @endeach
-      </select>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('modalidade_id'), hasErrorFor('modalidade_id')) }}
-      
-      <select class="form-input" name="area_estudo_id">
-        <option selected disabled>Área de estudo</option>
-        @each(area in areas)
-        <option value="{{area.id}}" {{ old('area_estudo_id', curso.area_estudo_id) == area.id ? 'selected' : '' }}>{{area.nome}}</option>
-        @endeach
-      </select>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('area_estudo_id'), hasErrorFor('area_estudo_id')) }}
-
-      <input class="form-input" type="text" placeholder="Tipo" name="tipo" value="{{ old('tipo', curso.tipo) }}" required>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('tipo'), hasErrorFor('tipo')) }}
-      
-      <input class="form-input" type="text" placeholder="Duração" name="duracao" value="{{ old('duracao', curso.duracao) }}" required>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('duracao'), hasErrorFor('duracao')) }}
-      
-      <h4 class="form-subtitle text-primary">Sobre o curso</h4>
-      <textarea id="descricao-editor" class="form-input" placeholder="Sobre" name="sobre" rows="25" required>{{ old('sobre', curso.sobre) }}</textarea>
-      {{ elIf('<span class="input-validation-fails">$self</span>', getErrorFor('sobre'), hasErrorFor('sobre')) }}
-      
-
-      <h4 class="form-subtitle text-primary">Carga Horária</h4>
-      <div id="carga-horaria-inputs">
-        @each(ch in curso.carga_horarias)
-          <div class="form-group-inline carga-horara-group">
-            <input type="hidden" name="id[{{$loop.index}}]" value="{{ ch.id }}">
-            <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[{{$loop.index}}]" value="{{ ch.disciplina }}">
-            <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[{{$loop.index}}]" value="{{ ch.carga_horaria }}" min="1" step="1">
-          </div>
-        @else
-          <div class="form-group-inline carga-horara-group">
-            <input class="form-input w-80" type="text" placeholder="Nome da disciplina" name="disciplina[0]">
-            <input class="form-input w-20" type="number" placeholder="Horas" name="carga_horaria[0]" min="1" step="1">
-          </div>
-        @endeach
-      </div>
-
-      <button id="nova-ch" class="btn text-primary mb-1 float-right outline-none" type="button">Nova disciplina</button>
-
-      <button class="form-btn btn-primary">Salvar</button>
-    </form>
+    <div id="curso-form" data-edit="true" data="{{ toJSON(curso) }}"></div>
   </section>
 @endsection

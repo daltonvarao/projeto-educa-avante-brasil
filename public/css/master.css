@@ -32,9 +32,18 @@ button {
   outline-color: rgba(0, 0, 0, 0.2);
 }
 
+button:disabled {
+  color: #909090 !important;
+  cursor: not-allowed;
+}
+
 .btn .mdi {
   font-size: 18px;
   margin-right: 0.25rem;
+}
+
+.mdi-2x {
+  font-size: 20px !important;
 }
 
 .btn {
@@ -49,14 +58,14 @@ button {
   font-size: 14px;
 }
 
+.btn:hover {
+  opacity: 0.8;
+}
+
 .card {
   background-color: white;
   border-radius: 8px;
   padding: 1.5rem;
-}
-
-.btn:hover {
-  opacity: 0.8;
 }
 
 * {
@@ -419,13 +428,15 @@ code {
   outline-color: rgba(0, 0, 0, 0.2);
 }
 
+.form-btn:disabled {
+  background-color: #909090;
+  color: #fff !important;
+  cursor: not-allowed;
+}
+
 .btn-primary {
   background-color: var(--primary);
   color: white;
-}
-
-.btn-primary:hover {
-  background: var(--primary90);
 }
 
 .btn-blue {
@@ -433,7 +444,8 @@ code {
   color: white;
 }
 
-.form-input + .btn-primary {
+.tox-tinymce + .form-btn,
+.form-input + .form-btn {
   margin-top: 0.5rem;
 }
 
@@ -808,6 +820,25 @@ td {
   font-weight: 300;
 }
 
+.loader {
+  border: 4px solid #f0f0fd;
+  border-top: 4px solid #22ca73;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1.25s linear infinite;
+  margin: 0.5rem auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 768px) {
   .form-content {
     height: 70vh;
@@ -941,7 +972,7 @@ td {
 
   .course-box {
     margin-right: 0.75rem;
-    max-width: 660px;
+    width: 100%;
   }
 
   .course-info ul {
@@ -969,7 +1000,7 @@ td {
 
   .price-box {
     margin-left: 1rem;
-    width: 320px;
+    width: 480px;
   }
 
   .price-box p {
