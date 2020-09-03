@@ -1,11 +1,12 @@
 import React from "react";
 
-export const Select = ({ name, options, setSelected }) => {
+export const Select = ({ name, options, setSelected, defaultValue }) => {
   return (
     <select
       className="form-input"
       onChange={(ev) => setSelected(ev.target.value)}
-      defaultValue=""
+      defaultValue={defaultValue}
+      required
     >
       <option value="" className="shadow" disabled>
         {name}
@@ -19,11 +20,12 @@ export const Select = ({ name, options, setSelected }) => {
   );
 };
 
-export const Select2 = ({ name, setSelected, options }) => (
+export const Select2 = ({ name, setSelected, options, defaultValue }) => (
   <select
     className="form-input"
     onChange={(ev) => setSelected(ev.target.value)}
-    defaultValue=""
+    defaultValue={defaultValue}
+    required
   >
     <option disabled value="">
       {name}
@@ -35,3 +37,10 @@ export const Select2 = ({ name, setSelected, options }) => (
     ))}
   </select>
 );
+
+export const InputValidation = ({ field, error }) => {
+  if (field.includes(error.source?.pointer))
+    return <span className="input-validation-fails">{error.detail}</span>;
+
+  return null;
+};

@@ -1,5 +1,7 @@
 "use strict";
 
+const { formatters } = use("Validator");
+
 class UpdateCurso {
   get rules() {
     const cursoId = this.ctx.params.id;
@@ -13,6 +15,10 @@ class UpdateCurso {
       modalidade_id: "required",
       area_estudo_id: "required",
     };
+  }
+
+  get formatter() {
+    return formatters.JsonApi;
   }
 
   get messages() {

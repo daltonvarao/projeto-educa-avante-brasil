@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import ReactDOM from "react-dom";
-
 import axios from "axios";
+import swal from "@sweetalert/with-react";
 import { Editor } from "@tinymce/tinymce-react";
 
-import { Select, Select2 } from "./components/inputs";
+import { Select, Select2, InputValidation } from "./components/inputs";
 import { CargasHorarias } from "./components/cargaHoraria";
 
-import swal from "@sweetalert/with-react";
-
-function Form() {
+function Form({ edit, curso }) {
   const [modalidades, setModalidades] = useState([]);
   const [areas, setAreas] = useState([]);
-
-  const [nome, setNome] = useState("");
-  const [instituicao, setInstituicao] = useState("");
-  const [tipo, setTipo] = useState("");
-  const [duracao, setDuracao] = useState("");
-  const [sobre, setSobre] = useState("");
-
-  const [modalidade, setModalidade] = useState("");
-  const [area, setArea] = useState("");
-
+  const [loading, setLoading] = useState(true);
+  const [nome, setNome] = useState(curso?.nome ?? "");
+  const [instituicao, setInstituicao] = useState(curso?.instituicao ?? "");
+  const [tipo, setTipo] = useState(curso?.tipo ?? "");
+  const [duracao, setDuracao] = useState(curso?.duracao ?? "");
+  const [sobre, setSobre] = useState(curso?.sobre ?? "");
+  const [modalidade, setModalidade] = useState(curso?.modalidade_id ?? "");
+  const [area, setArea] = useState(curso?.area_estudo_id ?? "");
   const [cargasHorarias, setCargasHorarias] = useState([
-    { disciplina: "", carga_horaria: "" },
+    { disciplina: "", carga_horaria: "", id: "" },
   ]);
+
+  const saveButton = createRef();
+
+  const [error, setError] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -33,11 +33,24 @@ function Form() {
 
         setModalidades(response.data.modalidades);
         setAreas(response.data.areas);
+
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+
+    if (edit) {
+      setCargasHorarias((state) => [
+        ...curso?.carga_horarias.map((item) => ({
+          disciplina: item.disciplina,
+          carga_horaria: item.carga_horaria,
+          id: item.id,
+        })),
+        ...state,
+      ]);
+    }
+  }, [curso, edit]);
 
   const handleSubmitForm = async () => {
     const data = {
@@ -52,7 +65,10 @@ function Form() {
     };
 
     try {
-      const response = await axios.post("/api/cursos", data);
+      const method = edit ? "put" : "post";
+      const url = edit ? `/api/cursos/${curso.id}` : "/api/cursos";
+
+      const response = await axios[method](url, data);
 
       if (response.data.success) {
         swal("Sucesso!", response.data.success, "success");
@@ -61,89 +77,117 @@ function Form() {
         }, 2000);
       }
     } catch (error) {
-      console.log(error);
-      swal("Ooops!", error.message, "error");
+      if (error.response.data.errors[0]) {
+        setError(error.response.data.errors[0]);
+        window.scrollTo(0, 0);
+      }
     }
   };
 
   return (
     <form className="form-container shadow">
-      <h2 className="form-title">Novo Curso</h2>
+      {!loading ? (
+        <>
+          <h2 className="form-title">Novo Curso</h2>
 
-      <input
-        className="form-input"
-        type="text"
-        placeholder="Nome"
-        value={nome}
-        onChange={(ev) => setNome(ev.target.value)}
-        required
-      />
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Nome"
+            value={nome}
+            onChange={(ev) => setNome(ev.target.value)}
+            required
+          />
+          <InputValidation field="nome" error={error} />
 
-      <div className="form-group-inline">
-        <Select
-          name="Modalidade"
-          options={modalidades}
-          setSelected={setModalidade}
-        />
-        <Select name="Area" options={areas} setSelected={setArea} />
-      </div>
+          <div className="form-group-inline">
+            <Select
+              name="Modalidade"
+              options={modalidades}
+              setSelected={setModalidade}
+              defaultValue={modalidade}
+            />
+            <Select
+              name="Area"
+              options={areas}
+              setSelected={setArea}
+              defaultValue={area}
+            />
+          </div>
+          <InputValidation
+            field={["area_estudo_id", "modalidade_id"]}
+            error={error}
+          />
 
-      <div className="form-group-inline">
-        <Select2
-          name="Instituição"
-          options={["Fael"]}
-          setSelected={setInstituicao}
-        />
-        <Select2
-          name="Tipo"
-          options={["Presencial", "Online"]}
-          setSelected={setTipo}
-        />
-      </div>
+          <div className="form-group-inline">
+            <Select2
+              name="Instituição"
+              options={["Fael"]}
+              setSelected={setInstituicao}
+              defaultValue={instituicao}
+            />
+            <Select2
+              name="Tipo"
+              options={["Presencial", "Online"]}
+              setSelected={setTipo}
+              defaultValue={tipo}
+            />
+          </div>
+          <InputValidation field={["instituicao", "tipo"]} error={error} />
 
-      <input
-        className="form-input"
-        type="text"
-        placeholder="Duração"
-        value={duracao}
-        onChange={(ev) => setDuracao(ev.target.value)}
-        required
-      />
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Duração"
+            value={duracao}
+            onChange={(ev) => setDuracao(ev.target.value)}
+            required
+          />
+          <InputValidation field={"duracao"} error={error} />
 
-      <h4 className="form-subtitle text-primary">Sobre o curso</h4>
+          <h4 className="form-subtitle text-primary">Sobre o curso</h4>
 
-      <Editor
-        initialValue={sobre}
-        apiKey="hl4vrjm5712bj2ow0vck1jw1tih2dubftxpqorpc4x6wymnj"
-        init={{
-          height: 500,
-          menubar: true,
-          plugins: [
-            "advlist autolink emoticons lists link charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime table paste code help wordcount",
-          ],
-          toolbar:
-            "undo redo | formatselect emoticons | bold italic backcolor | \
-            alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | removeformat | help",
-        }}
-        onEditorChange={(content, editor) => setSobre(content)}
-      />
+          <Editor
+            initialValue={sobre}
+            apiKey="hl4vrjm5712bj2ow0vck1jw1tih2dubftxpqorpc4x6wymnj"
+            init={{
+              height: 500,
+              menubar: true,
+              plugins: ["advlist lists link anchor searchreplace table help"],
+              toolbar:
+                "undo redo | formatselect | bold italic forecolor backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help",
+            }}
+            onEditorChange={(content, _) => setSobre(content)}
+          />
+          <InputValidation field={"sobre"} error={error} />
 
-      <CargasHorarias
-        cargasHorarias={cargasHorarias}
-        setCargasHorarias={setCargasHorarias}
-      />
+          <CargasHorarias
+            cargasHorarias={cargasHorarias}
+            setCargasHorarias={setCargasHorarias}
+          />
 
-      <button onClick={handleSubmitForm} className="form-btn btn-primary">
-        Salvar
-      </button>
+          <button
+            type="button"
+            onClick={handleSubmitForm}
+            className="form-btn btn-primary"
+            ref={saveButton}
+          >
+            Salvar
+          </button>
+        </>
+      ) : (
+        <div className="loader" />
+      )}
     </form>
   );
 }
 
-const createCurso = document.querySelector("#create-curso");
+const createCurso = document.querySelector("#curso-form");
 if (createCurso) {
-  ReactDOM.render(<Form />, createCurso);
+  const edit = createCurso.getAttribute("data-edit");
+  const curso = JSON.parse(createCurso.getAttribute("data"));
+
+  ReactDOM.render(<Form edit={edit} curso={curso} />, createCurso);
 }

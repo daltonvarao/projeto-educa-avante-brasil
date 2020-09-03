@@ -27,7 +27,14 @@ Route.resource("cursos", "CursoController").only(["show"]);
 
 Route.group("api", () => {
   Route.get("collections", "ApiController.collections");
-  Route.resource("cursos", "CursoController").only(["store", "update"]);
+  Route.resource("cursos", "CursoController")
+    .validator(
+      new Map([
+        [["api.cursos.store"], ["StoreCurso"]],
+        [["api.cursos.update"], ["UpdateCurso"]],
+      ])
+    )
+    .only(["store", "update"]);
 }).prefix("api");
 
 // unauthenticated users
@@ -55,14 +62,11 @@ Route.group("admin", () => {
 
   Route.resource("areas", "AreaEstudoController").except(["show"]);
   Route.resource("modalidades", "ModalidadeController").except(["show"]);
-  Route.resource("cursos", "CursoController")
-    .validator(
-      new Map([
-        [["admin.cursos.store"], ["StoreCurso"]],
-        [["admin.cursos.update"], ["UpdateCurso"]],
-      ])
-    )
-    .except(["show", "store", "update"]);
+  Route.resource("cursos", "CursoController").except([
+    "show",
+    "store",
+    "update",
+  ]);
 
   Route.resource("sessions", "SessionController").only(["destroy"]);
 })

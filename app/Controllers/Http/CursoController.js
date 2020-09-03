@@ -18,8 +18,8 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request, response, view }) {
-    const cursos = await Curso.all();
+  async index({ view }) {
+    const cursos = await Curso.query().orderBy("nome").fetch();
 
     return view.render("admin.cursos.index", { cursos: cursos.toJSON() });
   }
@@ -51,7 +51,7 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response, session }) {
+  async store({ request }) {
     const cursoData = request.only([
       "nome",
       "tipo",
@@ -67,13 +67,14 @@ class CursoController {
     try {
       const curso = await Curso.create(cursoData);
 
-      await curso
-        .carga_horarias()
-        .createMany(
-          cargaHorariaData.filter(
-            (item) => item.disciplina && item.carga_horaria
-          )
-        );
+      await curso.carga_horarias().createMany(
+        cargaHorariaData
+          .filter((item) => item.disciplina && item.carga_horaria)
+          .map((ch) => ({
+            disciplina: ch.disciplina,
+            carga_horaria: ch.carga_horaria,
+          }))
+      );
 
       return { success: "Curso cadastrado." };
     } catch (error) {
@@ -120,7 +121,7 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request, session, response }) {
+  async update({ params, request }) {
     const cursoData = request.only([
       "nome",
       "tipo",
@@ -131,17 +132,19 @@ class CursoController {
       "modalidade_id",
     ]);
 
-    const cargaHorariaData = request.collect([
-      "disciplina",
-      "carga_horaria",
-      "id",
-    ]);
+    const cargaHorariaData = request.input("cargas_horarias");
 
     try {
       await Curso.query().where("id", params.id).update(cursoData);
       const curso = await Curso.find(params.id);
 
-      console.log(cargaHorariaData);
+      await curso
+        .carga_horarias()
+        .whereNotIn(
+          "id",
+          cargaHorariaData.filter((item) => item.id).map((item) => item.id)
+        )
+        .delete();
 
       cargaHorariaData
         .filter((item) => item.id !== null)
@@ -150,28 +153,20 @@ class CursoController {
             .carga_horarias()
             .where("id", ch.id)
             .update(cargaHorariaData[i]);
-
-          if (!ch.disciplina) {
-            await curso.carga_horarias().where("id", ch.id).delete();
-          }
         });
 
       await curso.carga_horarias().createMany(
         cargaHorariaData
-          .filter((ch) => ch.id === null && ch.disciplina)
+          .filter((ch) => !ch.id && ch.disciplina)
           .map((ch) => ({
             disciplina: ch.disciplina,
             carga_horaria: ch.carga_horaria,
           }))
       );
 
-      session.flash({ success: "Curso atualizado." });
-
-      return response.route("admin.cursos.index");
+      return { success: "Curso atualizado." };
     } catch (error) {
-      session.flash({ error: error.message });
-
-      return response.redirect("back");
+      return { error: error.message };
     }
   }
   /**

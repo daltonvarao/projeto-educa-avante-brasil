@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const CargaHoraria = ({
   data,
@@ -8,6 +8,11 @@ const CargaHoraria = ({
 }) => {
   const handleRemoveClick = (position) => {
     let newState = [...cargasHorarias];
+
+    if (newState[position].disciplina) {
+      if (!window.confirm("Deseja remover este item?")) return;
+    }
+
     newState.splice(position, 1);
 
     setCargasHorarias(newState);
@@ -15,6 +20,7 @@ const CargaHoraria = ({
 
   return (
     <div className="form-group-inline carga-horara-group">
+      <input type="hidden" value={data.id} />
       <input
         className="form-input w-80"
         type="text"
@@ -47,8 +53,8 @@ const CargaHoraria = ({
       <button
         className="btn mdi-2x danger-text mdi mdi-trash-can-outline"
         type="button"
+        disabled={cargasHorarias.length === 1 && !cargasHorarias[0].disciplina}
         onClick={() => handleRemoveClick(position)}
-        disabled={cargasHorarias.length <= 1}
       />
     </div>
   );
@@ -58,9 +64,15 @@ export const CargasHorarias = ({ cargasHorarias, setCargasHorarias }) => {
   const handleClick = () => {
     setCargasHorarias((state) => [
       ...state,
-      { disciplina: "", carga_horaria: "" },
+      { disciplina: "", carga_horaria: "", id: "" },
     ]);
   };
+
+  useEffect(() => {
+    if (cargasHorarias.length === 0) {
+      setCargasHorarias([{ disciplina: "", carga_horaria: "", id: "" }]);
+    }
+  }, [cargasHorarias]);
 
   return (
     <>

@@ -118,7 +118,7 @@ function Curso({ data }) {
   );
 }
 
-const cursoContainer = document.querySelector("#curso-form");
+const cursoContainer = document.querySelector("#home-form");
 if (cursoContainer) {
   ReactDOM.render(<Form />, cursoContainer);
 }
