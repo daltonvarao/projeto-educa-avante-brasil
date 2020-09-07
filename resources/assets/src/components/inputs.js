@@ -31,8 +31,8 @@ export const Select2 = ({ name, setSelected, options, defaultValue }) => (
       {name}
     </option>
     {options.map((item) => (
-      <option key={item} value={item}>
-        {item}
+      <option key={item[0]} value={item[0]}>
+        {item[1]}
       </option>
     ))}
   </select>

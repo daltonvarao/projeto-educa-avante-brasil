@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
+import { FormattedNumber, IntlProvider } from "react-intl";
+
 const ws = adonis.Ws().connect();
 const socket = ws.subscribe("home");
 
@@ -65,7 +67,7 @@ function Form() {
           name="Modalidade"
           options={modalidades}
         />
-        <Select setSelected={setArea} name="Area" options={areas} />
+        <Select setSelected={setArea} name="Área" options={areas} />
         <Select setSelected={setCurso} name="Curso" options={cursos} />
       </form>
 
@@ -77,6 +79,8 @@ function Form() {
 }
 
 function Curso({ data }) {
+  const pg = data.forma_pagamentos[0];
+
   return (
     <div className="card-curso shadow">
       <div
@@ -102,17 +106,45 @@ function Curso({ data }) {
             </ul>
           </div>
         </div>
-        <div className="price-card">
-          <span className="old-price">R$ 2000,00</span>
-          <span className="price">R$ 900,00</span>
-          <span className="discount-percentage">desconto de 52,3%</span>
-          <span className="discount-price">Economize R$ 1100,00</span>
 
-          <div className="payment-info">
-            <span className="payment">Pgto: boleto.</span>
-            <span className="payment">Conclusão: 6 meses.</span>
+        <IntlProvider locale="pt-br" defaultLocale="pt-br">
+          <div className="price-card">
+            <span className="old-price">
+              {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}{" "}
+              <FormattedNumber
+                value={pg?.valor_parcela}
+                style="currency"
+                currency="BRL"
+              />
+            </span>
+            <span className="price">
+              {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}{" "}
+              <FormattedNumber
+                value={pg?.valor_parcela * (1 - pg.desconto / 100)}
+                style="currency"
+                currency="BRL"
+              />
+            </span>
+            <span className="discount-percentage">
+              desconto de{" "}
+              <FormattedNumber value={pg?.desconto / 100} style="percent" />
+            </span>
+            <span className="discount-price">
+              Economize{" "}
+              <FormattedNumber
+                value={pg?.valor_total - pg?.valor_liquido}
+                style="currency"
+                currency="BRL"
+              />
+            </span>
+
+            <div className="payment-info">
+              <span className="payment">
+                {pg.tipo == "cartao" ? "Cartão" : "Boleto"} em {pg.conclusao}
+              </span>
+            </div>
           </div>
-        </div>
+        </IntlProvider>
       </div>
     </div>
   );

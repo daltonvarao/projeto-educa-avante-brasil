@@ -56,27 +56,17 @@
         </div>
         <p>Selecione uma forma de pagamento</p>
         @each(pg in curso.forma_pagamentos)
-          <div class="price-card">
-            <span class="old-price">{{ antl.formatAmount(pg.valor_total, 'brl') }}</span>
-            <span class="price">{{ pg.parcelas > 1 ? pg.parcelas : '' }}x {{antl.formatAmount(pg.valor_parcela, 'brl')}}</span>
-            <span class="discount-percentage">desconto de {{ pg.desconto}}%</span>
-            <span class="discount-price">Economize R$ {{ antl.formatAmount(pg.valor_total - pg.valor_liquido, 'brl') }}</span>
+          <div class="price-card {{ $loop.index == 0 ? 'payment-selected' : '' }}">
+            <span class="old-price">{{ pg.parcelas > 1 ? el('$parcelas<span>x</span>', pg) : '' }} {{ antl.formatAmount(pg.valor_parcela, 'brl').replace(',','').replace('.', ',')}}</span>
+            <span class="price">{{ pg.parcelas > 1 ? el('$parcelas<span>x</span>', pg) : '' }} {{ antl.formatAmount(pg.valor_parcela * (1 - pg.desconto / 100), 'brl').replace(',','').replace('.', ',') }}</span>
+            <span class="discount-percentage">desconto de {{ pg.desconto.replace(',','.').replace('.', ',') }}%</span>
+            <span class="discount-price">Economize {{ antl.formatAmount(pg.valor_total - pg.valor_liquido, 'brl').replace(',','').replace('.', ',') }}</span>
 
             <div class="payment-info">
-              <span class="payment">Boleto em {{ pg.conclusao }}</span>
+              <span class="payment">{{ pg.tipo == 'cartao' ? 'Cartão': 'Boleto' }} em {{ pg.conclusao }}</span>
             </div>
           </div>
         @endeach
-        <!--div class="price-card payment-selected">          
-          <span class="old-price">R$ 2000,00</span>
-          <span class="price">R$ 900,00</span>
-          <span class="discount-percentage">desconto de 52,3%</span>
-          <span class="discount-price">Economize R$ 1100,00</span>
-
-          <div class="payment-info">
-            <span class="payment">Boleto em 6 meses</span>
-          </div>
-        </div -->
       </div>
     </div>
   </div>

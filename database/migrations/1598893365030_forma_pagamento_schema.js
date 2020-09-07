@@ -11,6 +11,7 @@ class FormaPagamentoSchema extends Schema {
       table.decimal("valor_parcela").defaultTo(0.0);
       table.decimal("desconto").defaultTo(0.0);
       table.string("conclusao");
+      table.enu("tipo", ["cartao", "boleto"]);
 
       table
         .integer("curso_id")

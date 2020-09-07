@@ -6,7 +6,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "node ace test",
+    "pre-deploy": "NODE_ENV=production yarn webpack",
+    "watch": "yarn webpack --watch",
+    "deploy": "yarn deploy && git add . && git commit -m 'Deploy' && git push origin master"
   },
   "keywords": [
     "adonisjs",
@@ -40,9 +43,12 @@
     "babel-cli": "6",
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "3",
+    "intl": "^1.2.5",
     "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-intl": "^5.8.0",
+    "react-number-format": "^4.4.1",
     "sqlite3": "^5.0.0",
     "sweetalert": "^2.1.2",
     "webpack": "^4.44.1"

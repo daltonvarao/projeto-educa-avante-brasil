@@ -379,6 +379,7 @@ code {
 
 .form-title {
   margin-bottom: 1rem;
+  color: var(--primary);
 }
 
 .form-subtitle {
@@ -566,6 +567,12 @@ footer .footer-content .footer-contact a svg {
 .footer-credits a {
   color: var(--primary);
   font-weight: 700;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #bbb5;
+  margin: 0.5rem;
 }
 
 .empty-message {
@@ -767,6 +774,11 @@ td {
   background: var(--white);
   border-color: var(--primary);
   color: #333;
+}
+
+.payment-selected .price,
+.price-card:hover .price {
+  color: var(--primary);
 }
 
 .curso .price-card:hover {
