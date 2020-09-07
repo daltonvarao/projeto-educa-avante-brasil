@@ -9,7 +9,7 @@
     "test": "node ace test",
     "pre-deploy": "NODE_ENV=production yarn webpack",
     "watch": "yarn webpack --watch",
-    "deploy": "yarn deploy && git add . && git commit -m 'Deploy' && git push origin master"
+    "deploy": "yarn pre-deploy && git add . && git commit -m 'Deploy' && git push origin master"
   },
   "keywords": [
     "adonisjs",
