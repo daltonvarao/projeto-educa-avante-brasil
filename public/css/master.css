@@ -379,6 +379,7 @@ code {
 
 .form-title {
   margin-bottom: 1rem;
+  color: var(--primary);
 }
 
 .form-subtitle {
@@ -566,6 +567,12 @@ footer .footer-content .footer-contact a svg {
 .footer-credits a {
   color: var(--primary);
   font-weight: 700;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #bbb5;
+  margin: 0.5rem;
 }
 
 .empty-message {
@@ -769,6 +776,11 @@ td {
   color: #333;
 }
 
+.payment-selected .price,
+.price-card:hover .price {
+  color: var(--primary);
+}
+
 .curso .price-card:hover {
   background: var(--primary);
   border-color: var(--white);
@@ -808,8 +820,6 @@ td {
 }
 
 .payment-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   margin-top: 0.5rem;
   grid-row-gap: 0.25rem;
 }

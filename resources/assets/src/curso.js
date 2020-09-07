@@ -6,6 +6,7 @@ import { Editor } from "@tinymce/tinymce-react";
 
 import { Select, Select2, InputValidation } from "./components/inputs";
 import { CargasHorarias } from "./components/cargaHoraria";
+import { FormasPagamentos } from "./components/formaPagamento";
 
 function Form({ edit, curso }) {
   const [modalidades, setModalidades] = useState([]);
@@ -20,6 +21,16 @@ function Form({ edit, curso }) {
   const [area, setArea] = useState(curso?.area_estudo_id ?? "");
   const [cargasHorarias, setCargasHorarias] = useState([
     { disciplina: "", carga_horaria: "", id: "" },
+  ]);
+
+  const [formasPagamentos, setFormasPagamentos] = useState([
+    {
+      parcelas: "",
+      conclusao: "",
+      tipo: "",
+      desconto: "",
+      valor_parcela: "",
+    },
   ]);
 
   const saveButton = createRef();
@@ -42,12 +53,24 @@ function Form({ edit, curso }) {
 
     if (edit) {
       setCargasHorarias((state) => [
-        ...curso?.carga_horarias.map((item) => ({
-          disciplina: item.disciplina,
-          carga_horaria: item.carga_horaria,
-          id: item.id,
+        ...curso?.carga_horarias.map(({ disciplina, carga_horaria, id }) => ({
+          disciplina,
+          carga_horaria,
+          id,
         })),
-        ...state,
+      ]);
+
+      setFormasPagamentos((state) => [
+        ...curso?.forma_pagamentos.map(
+          ({ parcelas, conclusao, tipo, desconto, valor_parcela, id }) => ({
+            parcelas,
+            conclusao,
+            tipo,
+            desconto,
+            valor_parcela,
+            id,
+          })
+        ),
       ]);
     }
   }, [curso, edit]);
@@ -62,6 +85,7 @@ function Form({ edit, curso }) {
       modalidade_id: modalidade,
       area_estudo_id: area,
       cargas_horarias: cargasHorarias,
+      formas_pagamentos: formasPagamentos,
     };
 
     try {
@@ -96,7 +120,6 @@ function Form({ edit, curso }) {
             placeholder="Nome"
             value={nome}
             onChange={(ev) => setNome(ev.target.value)}
-            required
           />
           <InputValidation field="nome" error={error} />
 
@@ -122,13 +145,13 @@ function Form({ edit, curso }) {
           <div className="form-group-inline">
             <Select2
               name="Instituição"
-              options={["Fael"]}
+              options={[["Fael", "Fael"]]}
               setSelected={setInstituicao}
               defaultValue={instituicao}
             />
             <Select2
               name="Tipo"
-              options={["Presencial", "Online"]}
+              options={["Presencial", "Online"].map((item) => [item, item])}
               setSelected={setTipo}
               defaultValue={tipo}
             />
@@ -141,7 +164,6 @@ function Form({ edit, curso }) {
             placeholder="Duração"
             value={duracao}
             onChange={(ev) => setDuracao(ev.target.value)}
-            required
           />
           <InputValidation field={"duracao"} error={error} />
 
@@ -166,6 +188,13 @@ function Form({ edit, curso }) {
           <CargasHorarias
             cargasHorarias={cargasHorarias}
             setCargasHorarias={setCargasHorarias}
+          />
+
+          <br />
+
+          <FormasPagamentos
+            formasPagamentos={formasPagamentos}
+            setFormasPagamentos={setFormasPagamentos}
           />
 
           <button

@@ -110,32 +110,3 @@ if (togglePassword) {
     input.type === "password" ? showPassword(input) : hidePassword(input);
   };
 }
-
-// const cursoForm = document.querySelector("#carga-horaria-inputs");
-// const novaCHButton = document.querySelector("#nova-ch");
-// const formGroup = document.querySelector(".carga-horara-group");
-
-// if (cursoForm) {
-//   let numDisc = cursoForm.children.length;
-
-//   novaCHButton.onclick = function () {
-//     const newCH = formGroup.cloneNode(true);
-
-//     const newCHId = newCH.querySelector('input[type="hidden"]');
-//     if (newCHId) {
-//       newCHId.value = null;
-//       newCHId.name = `id[${numDisc}]`;
-//     }
-
-//     const newCHDisciplina = newCH.querySelector('input[type="text"]');
-//     newCHDisciplina.value = null;
-//     newCHDisciplina.name = `disciplina[${numDisc}]`;
-
-//     const newCHHoras = newCH.querySelector('input[type="number"]');
-//     newCHHoras.value = null;
-//     newCHHoras.name = `carga_horaria[${numDisc}]`;
-
-//     numDisc++;
-//     cursoForm.appendChild(newCH);
-//   };
-// }

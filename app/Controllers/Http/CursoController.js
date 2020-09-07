@@ -63,18 +63,33 @@ class CursoController {
     ]);
 
     const cargaHorariaData = request.input("cargas_horarias");
+    const formaPagamentoData = request.input("formas_pagamentos");
 
     try {
       const curso = await Curso.create(cursoData);
 
-      await curso.carga_horarias().createMany(
-        cargaHorariaData
-          .filter((item) => item.disciplina && item.carga_horaria)
-          .map((ch) => ({
-            disciplina: ch.disciplina,
-            carga_horaria: ch.carga_horaria,
-          }))
-      );
+      await curso
+        .carga_horarias()
+        .createMany(
+          cargaHorariaData
+            .filter((item) => item.disciplina && item.carga_horaria)
+            .map(({ id, ...rest }) => rest)
+        );
+
+      await curso
+        .forma_pagamentos()
+        .createMany(
+          formaPagamentoData
+            .filter(
+              (item) =>
+                item.parcelas &&
+                item.valor_parcela &&
+                item.desconto &&
+                item.conclusao &&
+                item.tipo
+            )
+            .map(({ id, ...rest }) => rest)
+        );
 
       return { success: "Curso cadastrado." };
     } catch (error) {
@@ -99,6 +114,7 @@ class CursoController {
       const curso = await Curso.query()
         .where("id", params.id)
         .with("carga_horarias")
+        .with("forma_pagamentos")
         .first();
 
       return view.render("admin.cursos.edit", {
@@ -133,6 +149,7 @@ class CursoController {
     ]);
 
     const cargaHorariaData = request.input("cargas_horarias");
+    const formaPagamentoData = request.input("formas_pagamentos");
 
     try {
       await Curso.query().where("id", params.id).update(cursoData);
@@ -146,23 +163,55 @@ class CursoController {
         )
         .delete();
 
+      await curso
+        .forma_pagamentos()
+        .whereNotIn(
+          "id",
+          formaPagamentoData.filter((item) => item.id).map((item) => item.id)
+        )
+        .delete();
+
       cargaHorariaData
-        .filter((item) => item.id !== null)
-        .forEach(async (ch, i) => {
+        .filter((item) => item.id)
+        .forEach(async (_, i) => {
           await curso
             .carga_horarias()
-            .where("id", ch.id)
+            .where("id", cargaHorariaData[i].id)
             .update(cargaHorariaData[i]);
         });
 
-      await curso.carga_horarias().createMany(
-        cargaHorariaData
-          .filter((ch) => !ch.id && ch.disciplina)
-          .map((ch) => ({
-            disciplina: ch.disciplina,
-            carga_horaria: ch.carga_horaria,
-          }))
-      );
+      formaPagamentoData
+        .filter((item) => item.id)
+        .map(async (_, i) => {
+          await curso
+            .forma_pagamentos()
+            .where("id", formaPagamentoData[i].id)
+            .update(formaPagamentoData[i]);
+        });
+
+      await curso
+        .carga_horarias()
+        .createMany(
+          cargaHorariaData
+            .filter((item) => !item.id && item.disciplina && item.carga_horaria)
+            .map(({ id, ...rest }) => rest)
+        );
+
+      await curso
+        .forma_pagamentos()
+        .createMany(
+          formaPagamentoData
+            .filter(
+              (item) =>
+                !item.id &&
+                item.parcelas &&
+                item.valor_parcela &&
+                item.desconto &&
+                item.conclusao &&
+                item.tipo
+            )
+            .map(({ id, ...rest }) => rest)
+        );
 
       return { success: "Curso atualizado." };
     } catch (error) {
@@ -178,15 +227,20 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ params, view, response }) {
+  async show({ params, view, response, session }) {
     try {
       const curso = await Curso.query()
         .where("id", params.id)
         .with("carga_horarias")
+        .with("forma_pagamentos", (builder) => {
+          builder.orderBy("parcelas", "asc");
+        })
         .first();
 
       return view.render("admin.cursos.show", { curso: curso.toJSON() });
     } catch (error) {
+      console.log(error);
+      session.flash({ error: error.message });
       return response.route("home.index");
     }
   }

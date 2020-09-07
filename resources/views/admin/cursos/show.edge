@@ -25,10 +25,8 @@
           </ul>
         </div>
         <h2 class="course-grid-title">Sobre o curso</h2>
-        <div class="course-description">
-          <div class="card shadow">
-            {{{ curso.sobre }}}
-          </div>
+        <div class="course-description card shadow">
+          {{{ curso.sobre }}}
         </div>
         <h2 class="course-grid-title">Grade curricular</h2>
         <div class="course-table shadow">
@@ -57,41 +55,18 @@
           <a href="">Inscreva-se aqui</a>
         </div>
         <p>Selecione uma forma de pagamento</p>
-        <div class="price-card">          
-          <span class="old-price">R$ 2000,00</span>
-          <span class="price">R$ 900,00</span>
-          <span class="discount-percentage">desconto de 52,3%</span>
-          <span class="discount-price">Economize R$ 1100,00</span>
+        @each(pg in curso.forma_pagamentos)
+          <div class="price-card {{ $loop.index == 0 ? 'payment-selected' : '' }}">
+            <span class="old-price">{{ pg.parcelas > 1 ? el('$parcelas<span>x</span>', pg) : '' }} {{ antl.formatAmount(pg.valor_parcela, 'brl').replace(',','').replace('.', ',')}}</span>
+            <span class="price">{{ pg.parcelas > 1 ? el('$parcelas<span>x</span>', pg) : '' }} {{ antl.formatAmount(pg.valor_parcela * (1 - pg.desconto / 100), 'brl').replace(',','').replace('.', ',') }}</span>
+            <span class="discount-percentage">desconto de {{ pg.desconto.replace(',','.').replace('.', ',') }}%</span>
+            <span class="discount-price">Economize {{ antl.formatAmount(pg.valor_total - pg.valor_liquido, 'brl').replace(',','').replace('.', ',') }}</span>
 
-          <div class="payment-info">
-            <span class="payment">Pgto: boleto.</span>
-            <span class="payment">Conclusão: 6 meses.</span>
+            <div class="payment-info">
+              <span class="payment">{{ pg.tipo == 'cartao' ? 'Cartão': 'Boleto' }} em {{ pg.conclusao }}</span>
+            </div>
           </div>
-        </div>
-
-        <div class="price-card payment-selected">
-          <span class="old-price">R$ 2000,00</span>
-          <span class="price">R$ 900,00</span>
-          <span class="discount-percentage">desconto de 52,3%</span>
-          <span class="discount-price">Economize R$ 1100,00</span>
-
-          <div class="payment-info">
-            <span class="payment">Pgto: boleto.</span>
-            <span class="payment">Conclusão: 6 meses.</span>
-          </div>
-        </div>
-        
-        <div class="price-card">
-          <span class="old-price">R$ 2000,00</span>
-          <span class="price">R$ 900,00</span>
-          <span class="discount-percentage">desconto de 52,3%</span>
-          <span class="discount-price">Economize R$ 1100,00</span>
-
-          <div class="payment-info">
-            <span class="payment">Pgto: boleto.</span>
-            <span class="payment">Conclusão: 6 meses.</span>
-          </div>
-        </div>
+        @endeach
       </div>
     </div>
   </div>

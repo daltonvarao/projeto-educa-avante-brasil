@@ -12,7 +12,7 @@ function scriptRules() {
 }
 
 module.exports = {
-  mode: "development",
+  mode: process.env.NODE_ENV || "development",
   entry: "./resources/assets/src/app.js",
   output: {
     path: path.resolve(__dirname, "public", "js"),

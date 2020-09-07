@@ -12,6 +12,8 @@ class HomeController {
     try {
       const cursos = await Curso.query()
         .where({ modalidade_id, area_estudo_id })
+        .with("forma_pagamentos")
+        .with("carga_horarias")
         .fetch();
 
       this.socket.emit("cursos", { cursos: cursos.toJSON() });
