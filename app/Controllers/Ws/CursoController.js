@@ -15,7 +15,6 @@ class CursoController {
   }
 
   async onSearch({ modalidade_id, area_estudo_id, nome }) {
-    console.log(modalidade_id);
     let query = Curso.query().where("nome", "ilike", `%${nome}%`);
 
     query = applyFilter(query, { area_estudo_id });

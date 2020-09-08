@@ -42,30 +42,34 @@ function CursoForm({ modalidadeId }) {
 
   return (
     <Fragment>
-      <h1 className="text-primary">
-        {modalidadeId === "1" ? "Pós-Graduação" : "Cursos Profissionalizantes"}
-      </h1>
-      <form className="">
-        <Select
-          name="Área"
-          options={areas}
-          setSelected={setArea}
-          defaultValue={area}
-          optional
-        />
+      <form className="search-form shadow">
+        <h1 className="text-primary">
+          {modalidadeId === "1" ? "Pós-Graduação" : "Cursos Profissionalizantes"}
+        </h1>
+        <div className="search-input">
+          <Select
+            name="Área"
+            options={areas}
+            setSelected={setArea}
+            defaultValue={area}
+            optional
+            />
 
-        <input
-          className="form-input"
-          value={nome}
-          onChange={(ev) => setNome(ev.target.value)}
-          type="text"
-          placeholder="Nome do curso"
-        />
+          <input
+            className="form-input"
+            value={nome}
+            onChange={(ev) => setNome(ev.target.value)}
+            type="text"
+            placeholder="Nome do curso"
+          />
+        </div>
       </form>
 
-      {cursos.map((curso, index) => (
-        <Curso data={curso} key={index} />
-      ))}
+      <div className="cursos">
+        {cursos.map((curso, index) => (
+          <Curso data={curso} key={index} />
+        ))}
+      </div>
     </Fragment>
   );
 }

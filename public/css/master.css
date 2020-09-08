@@ -839,6 +839,25 @@ td {
   margin: 0.5rem auto;
 }
 
+.search-container {
+  padding-top: 6rem;
+}
+
+.search-form {
+  background-color: var(--white);
+  padding: 2rem;
+}
+
+.search-form h1 {
+  font-size: 36px;
+  text-align: center;
+  padding-bottom: 0.75rem;
+}
+
+.cursos {
+  padding: 1.5rem;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1018,6 +1037,27 @@ td {
 
   .price {
     font-size: 20px;
+  }
+
+  .search-form h1 {
+    font-size: 40px;
+  }
+
+  .search-input {
+    display: flex;
+    max-width: 50%;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .search-input .form-input + .form-input {
+    margin-top: 0;
+    margin-left: .5rem;
+  }
+
+  .cursos {
+    margin: 0 auto;
+    max-width: 80%;
   }
 }
 
