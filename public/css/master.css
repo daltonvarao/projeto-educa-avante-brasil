@@ -616,6 +616,10 @@ hr {
   transition: all 600ms;
 }
 
+.curso + .curso {
+  margin-top: 1rem;
+}
+
 .curso:hover {
   background-color: var(--primary);
 }
@@ -632,8 +636,8 @@ hr {
   /* top: calc(50% - 32px); */
   color: var(--white);
   font-size: 64px;
-  left: -24px;
-  top: -24px;
+  left: 12px;
+  top: 12px;
 }
 
 /* SHOW CURSO */
@@ -774,11 +778,6 @@ td {
   background: var(--white);
   border-color: var(--primary);
   color: #333;
-}
-
-.payment-selected .price,
-.price-card:hover .price {
-  color: var(--primary);
 }
 
 .curso .price-card:hover {

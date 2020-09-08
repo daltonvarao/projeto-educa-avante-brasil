@@ -36,6 +36,14 @@ class ApiController {
       };
     }
   }
+
+  async areas() {
+    const areas = await AreaEstudo.query().has("cursos").fetch();
+
+    return {
+      areas: areas.toJSON(),
+    };
+  }
 }
 
 module.exports = ApiController;

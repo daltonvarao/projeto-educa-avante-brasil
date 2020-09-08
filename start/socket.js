@@ -16,3 +16,4 @@
 const Ws = use("Ws");
 
 Ws.channel("home", "HomeController");
+Ws.channel("cursos", "CursoController");

@@ -21,12 +21,11 @@ Route.post("/", "HomeController.store").as("home.store");
 
 Route.get("/sobre", ({ view }) => view.render("sobre.index")).as("sobre.index");
 
-Route.resource("cursos", "CursoController").only(["show"]);
-
 // api
-
 Route.group("api", () => {
   Route.get("collections", "ApiController.collections");
+  Route.get("areas", "ApiController.areas");
+
   Route.resource("cursos", "CursoController")
     .validator(
       new Map([
@@ -36,6 +35,11 @@ Route.group("api", () => {
     )
     .only(["store", "update"]);
 }).prefix("api");
+
+Route.get("cursos/pos-graduacao", "CursoController.search");
+Route.get("cursos/profissionalizantes", "CursoController.search");
+
+Route.resource("cursos", "CursoController").only(["show"]);
 
 // unauthenticated users
 Route.group("admin", () => {

@@ -245,6 +245,12 @@ class CursoController {
     }
   }
 
+  async search({ view, request }) {
+    const modalidade_id = request.url().includes("pos-graduacao") ? 1 : 2;
+
+    return view.render("admin.cursos.search", { modalidade_id });
+  }
+
   /**
    * Delete a curso with id.
    * DELETE cursos/:id

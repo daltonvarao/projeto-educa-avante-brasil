@@ -23,6 +23,11 @@ class AdminSeeder {
       { nome: "Pós-Graduação" }
     );
 
+    await Modalidade.findOrCreate(
+      { nome: "Cursos Profissionalizantes" },
+      { nome: "Cursos Profissionalizantes" }
+    );
+
     await AreaEstudo.findOrCreate({ nome: "Saúde" }, { nome: "Saúde" });
   }
 }

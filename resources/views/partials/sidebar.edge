@@ -12,15 +12,16 @@
     <a class="sidebar-link" href="{{ route('admin.areas.index') }}">Áreas</a>
     <a class="sidebar-link" href="{{ route('admin.configuracoes.index') }}">Configurações</a>
     <a class="sidebar-link" href="{{ route('admin.cursos.index') }}">Cursos</a>
-    <a class="sidebar-link" href="{{ route('admin.modalidades.index') }}">Modalidades</a>
     <a class="sidebar-link" href="{{ route('admin.users.index') }}">Usuários</a>
-
+    
     <button form="logout-form" class="sidebar-link">
       Sair
     </button>
-
+    
     <form class="w-100" id="logout-form" action="{{ route('admin.sessions.destroy', id='1') }}?_method=DELETE" method="post">
       {{ csrfField() }}
     </form>
   </div>
 </div>
+
+{{--  <a class="sidebar-link" href="{{ route('admin.modalidades.index') }}">Modalidades</a>  --}}

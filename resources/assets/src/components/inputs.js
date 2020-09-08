@@ -1,14 +1,19 @@
 import React from "react";
 
-export const Select = ({ name, options, setSelected, defaultValue }) => {
+export const Select = ({
+  name,
+  options,
+  setSelected,
+  defaultValue,
+  optional,
+}) => {
   return (
     <select
       className="form-input"
       onChange={(ev) => setSelected(ev.target.value)}
       defaultValue={defaultValue}
-      required
     >
-      <option value="" className="shadow" disabled>
+      <option value="" className="shadow" disabled={!optional}>
         {name}
       </option>
       {options.map((item) => (
@@ -25,7 +30,6 @@ export const Select2 = ({ name, setSelected, options, defaultValue }) => (
     className="form-input"
     onChange={(ev) => setSelected(ev.target.value)}
     defaultValue={defaultValue}
-    required
   >
     <option disabled value="">
       {name}
