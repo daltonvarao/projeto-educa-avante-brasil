@@ -14,7 +14,7 @@ class CursoController {
     this.request = request;
   }
 
-  async onSearch({ modalidade_id, area_estudo_id, nome }) {
+  async onSearch({ modalidade_id, area_estudo_id, nome, page }) {
     let query = Curso.query().where("nome", "ilike", `%${nome}%`);
 
     query = applyFilter(query, { area_estudo_id });
@@ -24,7 +24,7 @@ class CursoController {
       .with("forma_pagamentos")
       .with("carga_horarias")
       .orderBy("nome", "asc")
-      .fetch();
+      .paginate(page || 1);
 
     this.socket.emit("cursos", { cursos: cursos.toJSON() });
   }

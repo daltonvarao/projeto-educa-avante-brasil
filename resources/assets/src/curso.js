@@ -216,7 +216,9 @@ function Form({ edit, curso }) {
 const createCurso = document.querySelector("#curso-form");
 if (createCurso) {
   const edit = createCurso.getAttribute("data-edit");
-  const curso = JSON.parse(createCurso.getAttribute("data"));
+  const curso = JSON.parse(
+    createCurso.querySelector('input[type="hidden"]').value
+  );
 
   ReactDOM.render(<Form edit={edit} curso={curso} />, createCurso);
 }

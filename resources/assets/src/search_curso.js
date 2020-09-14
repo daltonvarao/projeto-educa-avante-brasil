@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { Select } from "./components/inputs";
 import Curso from "./components/cardCurso";
+import Pagination from "./components/pagination";
 
 const ws = adonis.Ws().connect();
 const socket = ws.subscribe("cursos");
@@ -14,6 +15,8 @@ function CursoForm({ modalidadeId }) {
   const [nome, setNome] = useState("");
   const [areas, setAreas] = useState([]);
   const [cursos, setCursos] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -27,16 +30,22 @@ function CursoForm({ modalidadeId }) {
   }, []);
 
   useEffect(() => {
+    setPage(1);
+  }, [area]);
+
+  useEffect(() => {
     socket.emit("search", {
       area_estudo_id: area,
       modalidade_id: modalidade,
       nome,
+      page,
     });
-  }, [nome, area, modalidade]);
+  }, [nome, area, modalidade, page]);
 
   useEffect(() => {
-    socket.on("cursos", ({ cursos }) => {
-      setCursos(cursos);
+    socket.on("cursos", ({ cursos: { data, ...rest } }) => {
+      setCursos(data);
+      setPagination(rest);
     });
   }, []);
 
@@ -44,7 +53,9 @@ function CursoForm({ modalidadeId }) {
     <Fragment>
       <form className="search-form shadow">
         <h1 className="text-primary">
-          {modalidadeId === "1" ? "Pós-Graduação" : "Cursos Profissionalizantes"}
+          {modalidadeId === "1"
+            ? "Pós-Graduação"
+            : "Cursos Profissionalizantes"}
         </h1>
         <div className="search-input">
           <Select
@@ -53,7 +64,7 @@ function CursoForm({ modalidadeId }) {
             setSelected={setArea}
             defaultValue={area}
             optional
-            />
+          />
 
           <input
             className="form-input"
@@ -70,13 +81,14 @@ function CursoForm({ modalidadeId }) {
           <Curso data={curso} key={index} />
         ))}
       </div>
+
+      <Pagination pagination={pagination} setPage={setPage} />
     </Fragment>
   );
 }
 
 const container = document.querySelector("#search-form");
-const modalidade = container.getAttribute("data-modalidade");
-
 if (container) {
+  const modalidade = container.getAttribute("data-modalidade");
   ReactDOM.render(<CursoForm modalidadeId={modalidade} />, container);
 }

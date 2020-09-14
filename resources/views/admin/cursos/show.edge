@@ -1,29 +1,33 @@
 @layout('layouts.public')
 
 @section('content')
-  <div class="container">
+  <div class="container-fluid">
     <div class="course-container">
+      <h1 class="course-title text-white">{{ curso.nome }}</h1>
+      <div class="course-info">
+        <ul>
+          <li class="text-white">
+            <i class="mdi mdi-office-building-outline"></i>
+            Instituição: {{ curso.instituicao}}
+          </li>
+          <li class="text-white">
+            <i class="mdi mdi-earth"></i>
+            Tipo: {{ curso.tipo}}
+          </li>
+          <li class="text-white">
+            <i class="mdi mdi-calendar"></i>
+            Duração: {{ curso.duracao}}
+          </li>
+          <li class="text-white">
+            <i class="mdi mdi-clock-outline"></i>
+            CH: {{curso.ch_total }}h
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="course-price-boxes">
       <div class="course-box">
-        <h1 class="course-title">{{ curso.nome }}</h1>
-        <div class="course-info">
-          <ul>
-            <li>
-              <i class="mdi mdi-office-building-outline"></i>
-              Instituição: {{ curso.instituicao}}
-            </li>
-            <li>
-              <i class="mdi mdi-earth"></i>
-              Tipo: {{ curso.tipo}}
-            </li>
-            <li>
-              <i class="mdi mdi-calendar"></i>
-              Duração: {{ curso.duracao}}</li>
-              <li>
-                <i class="mdi mdi-clock-outline"></i>
-              CH: {{curso.ch_total }}h
-            </li>
-          </ul>
-        </div>
         <h2 class="course-grid-title">Sobre o curso</h2>
         <div class="course-description card shadow">
           {{{ curso.sobre }}}
@@ -50,24 +54,10 @@
           </table>
         </div>
       </div>
-      <div class="price-box shadow">
-        <div class="subscribe-link">
-          <a href="">Inscreva-se aqui</a>
-        </div>
-        <p>Selecione uma forma de pagamento</p>
-        @each(pg in curso.forma_pagamentos)
-          <div class="price-card {{ $loop.index == 0 ? 'payment-selected' : '' }}">
-            <span class="old-price">{{ pg.parcelas > 1 ? el('$parcelas<span>x</span>', pg) : '' }} {{ antl.formatAmount(pg.valor_parcela, 'brl').replace(',','').replace('.', ',')}}</span>
-            <span class="price">{{ pg.parcelas > 1 ? el('$parcelas<span>x</span>', pg) : '' }} {{ antl.formatAmount(pg.valor_parcela * (1 - pg.desconto / 100), 'brl').replace(',','').replace('.', ',') }}</span>
-            <span class="discount-percentage">desconto de {{ pg.desconto.replace(',','.').replace('.', ',') }}%</span>
-            <span class="discount-price">Economize {{ antl.formatAmount(pg.valor_total - pg.valor_liquido, 'brl').replace(',','').replace('.', ',') }}</span>
-
-            <div class="payment-info">
-              <span class="payment">{{ pg.tipo == 'cartao' ? 'Cartão': 'Boleto' }} em {{ pg.conclusao }}</span>
-            </div>
-          </div>
-        @endeach
+      <div class="price-box shadow" id="price-box">
+        <input type="hidden" value="{{ toJSON(curso.forma_pagamentos) }}">
       </div>
     </div>
+
   </div>
 @endsection

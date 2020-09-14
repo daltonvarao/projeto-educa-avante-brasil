@@ -6,15 +6,15 @@
   margin-bottom: 1rem;
 }
 
-a.current-page {
+.current-page {
   padding: 0.5rem 0.8rem;
   background: var(--primary);
-  color: var(--white);
+  color: #fff !important;
   border-radius: 5px;
   margin: 0 0.5rem;
 }
 
-a.pagination-link {
+.pagination-link {
   padding: 0.45rem 0.8rem;
   color: var(--primary);
   border: 1px solid transparent;
@@ -23,20 +23,20 @@ a.pagination-link {
   align-items: center;
 }
 
-a.pagination-previous::before {
+.pagination-previous::before {
   font-family: "Material Design Icons";
   content: "\f0141";
 }
 
-a.pagination-next::after {
+.pagination-next::after {
   font-family: "Material Design Icons";
   content: "\f0142";
 }
 
-a.pagination-link:hover {
+.pagination-link:hover {
   border: 1px solid #e1e4e8;
 }
 
-a.disabled {
+.disabled {
   color: #6a737d;
 }
