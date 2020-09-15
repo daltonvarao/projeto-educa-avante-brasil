@@ -347,7 +347,7 @@ code {
 }
 
 .form-group-inline {
-  margin: 0.75rem 0;
+  margin: 0.65rem 0;
   display: flex;
   align-items: center;
 }
@@ -358,8 +358,14 @@ code {
   color: var(--dark);
 }
 
+.form-group-inline button + button,
 .form-group-inline input + label {
   margin-left: 0.5rem;
+}
+
+.form-group-inline + .form-group-inline label,
+.form-group-inline + .form-group-inline {
+  margin-top: 0;
 }
 
 .w-80 {
@@ -414,6 +420,7 @@ code {
   font-weight: 400;
 }
 
+.price-box + .form-btn,
 .form-input2 + .form-btn {
   margin-top: 0.75rem;
 }
@@ -461,9 +468,56 @@ code {
   color: white;
 }
 
+.btn-outline-primary {
+  border: 1px solid var(--primary);
+  background-color: transparent;
+  color: var(--primary);
+
+  transition: all 200ms;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
 .btn-blue {
   background-color: var(--face-blue);
   color: white;
+}
+
+.btn.back {
+  position: relative;
+}
+
+.btn.continue {
+  position: relative;
+}
+
+.btn.continue::after {
+  font-family: "Material Design Icons";
+  content: "\F0142";
+  position: absolute;
+  color: var(--white);
+  font-size: 18px;
+  right: 10px;
+  top: 12px;
+  transition: all 200ms;
+}
+
+.btn.back::before {
+  font-family: "Material Design Icons";
+  content: "\F0141";
+  position: absolute;
+  color: var(--primary);
+  font-size: 18px;
+  left: 10px;
+  top: 12px;
+  transition: all 200ms;
+}
+
+.btn-outline-primary.back:hover::before {
+  color: #fff;
 }
 
 .tox-tinymce + .form-btn,
@@ -946,10 +1000,6 @@ td {
   margin-bottom: 0.75rem;
 }
 
-.step-icons svg {
-  cursor: pointer;
-}
-
 .modal-form {
   width: 100%;
 }
@@ -986,10 +1036,6 @@ td {
 
 .active {
   color: var(--primary) !important;
-}
-
-.step-icons svg:hover {
-  opacity: 0.7;
 }
 
 @keyframes spin {
@@ -1143,8 +1189,9 @@ td {
 
   .course-box {
     margin-right: 0.75rem;
-    width: 100%;
+    width: 190%;
     margin-bottom: 1rem;
+    margin-right: 1.5rem;
   }
 
   .course-info ul {
@@ -1172,9 +1219,8 @@ td {
 
   .price-box {
     margin-top: 1rem;
-    margin-left: 1rem;
     margin-bottom: 1rem;
-    width: 480px;
+    width: 100%;
   }
 
   .price-box p {
