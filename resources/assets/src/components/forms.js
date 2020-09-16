@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import InputMask from "react-input-mask";
 import cep from "cep-promise";
+import axios from "axios";
+import swal from "@sweetalert/with-react";
 
 import { Select2 } from "./inputs";
 import { FormaPagamentoBox } from "./formaPagamento";
@@ -11,6 +13,34 @@ const PERSONAL = 1;
 const ADDRESS = 2;
 const PAYMENT = 3;
 const CONTRACT = 4;
+
+async function updateMatricula(state, dispatch) {
+  try {
+    await axios.put(`/api/matriculas/${state.matricula_id}`, state);
+
+    dispatch({ type: "continue" });
+  } catch (error) {
+    swal("Erro", error.message, "error");
+  }
+}
+
+async function finalizaMatricula(state) {
+  try {
+    await axios.put(`/api/matriculas/${state.matricula_id}`, state);
+
+    swal(
+      "Concluído!",
+      "Em alguns instantes entraremos em contato com você para mais detalhes",
+      "success"
+    );
+
+    setTimeout(() => {
+      location.reload();
+    }, 5000);
+  } catch (error) {
+    swal("Erro", error.message, "error");
+  }
+}
 
 export function AccountForm({ dispatch, state }) {
   if (state.step !== CONTACT) return null;
@@ -24,6 +54,22 @@ export function AccountForm({ dispatch, state }) {
       setValid(false);
     }
   }, [state]);
+
+  async function submitForm() {
+    try {
+      const response = await axios.post("/api/matriculas", state);
+
+      dispatch({
+        type: "change",
+        stateName: "matricula_id",
+        newState: response.data?.matricula?.id,
+      });
+
+      dispatch({ type: "continue" });
+    } catch (error) {
+      swal("Erro", error.message, "error");
+    }
+  }
 
   return (
     <form className="modal-form">
@@ -75,7 +121,7 @@ export function AccountForm({ dispatch, state }) {
 
       <button
         type="button"
-        onClick={() => dispatch({ type: "continue" })}
+        onClick={submitForm}
         className="btn form-btn btn-primary continue"
         disabled={!valid}
       >
@@ -319,7 +365,7 @@ export function PersonalForm({ dispatch, state }) {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "continue" })}
+          onClick={() => updateMatricula(state, dispatch)}
           className="btn form-btn btn-primary continue w-80"
           disabled={!valid}
         >
@@ -470,7 +516,7 @@ export function AddressForm({ dispatch, state }) {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "continue" })}
+          onClick={() => updateMatricula(state, dispatch)}
           disabled={!valid}
           className="btn form-btn btn-primary continue w-80"
         >
@@ -487,7 +533,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
   function setSelected(id) {
     dispatch({
       type: "change",
-      stateName: "forma_pagamento",
+      stateName: "forma_pagamento_id",
       newState: id,
     });
   }
@@ -495,7 +541,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
   useEffect(() => {
     dispatch({
       type: "change",
-      stateName: "forma_pagamento",
+      stateName: "forma_pagamento_id",
       newState: selected,
     });
   }, []);
@@ -528,7 +574,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "continue" })}
+          onClick={() => updateMatricula(state, dispatch)}
           className="btn form-btn btn-primary continue w-80"
         >
           Continuar
@@ -540,6 +586,10 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
 
 export function ContractForm({ dispatch, state }) {
   if (state.step !== CONTRACT) return null;
+
+  useEffect(() => {
+    dispatch({ type: "finaliza" });
+  }, [state.accept_contract]);
 
   const contract =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, sed dolores optio quos, excepturi eos, architecto sint inventore perspiciatis hic nesciunt tempora. Exercitationem consectetur aut corporis aliquam repellat autem non!";
@@ -554,25 +604,25 @@ export function ContractForm({ dispatch, state }) {
       <textarea
         className="form-input2"
         rows="10"
-        defaultChecked={contract}
+        defaultValue={contract}
         readOnly
       ></textarea>
 
       <div className="form-group-inline">
         <input
           type="checkbox"
-          id="allow_contact"
-          defaultChecked={state.allow_contact}
+          id="aceita_contato"
+          defaultChecked={state.aceita_contato}
           onChange={(ev) =>
             dispatch({
               type: "change",
-              stateName: "allow_contact",
+              stateName: "aceita_contato",
               newState: ev.target.checked,
             })
           }
         />
-        <label htmlFor="allow_contact">
-          Autorizo o contato via WhatsApp no número de celular informado.
+        <label htmlFor="aceita_contato">
+          Autorizo o contato via Email e WhatsApp nos dados informados.
         </label>
       </div>
 
@@ -607,6 +657,7 @@ export function ContractForm({ dispatch, state }) {
           type="button"
           disabled={!state.accept_contract}
           className="btn form-btn btn-primary w-80"
+          onClick={() => finalizaMatricula(state)}
         >
           Finalizar
         </button>

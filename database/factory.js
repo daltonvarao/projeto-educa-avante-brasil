@@ -31,3 +31,12 @@ Factory.blueprint("App/Models/AreaEstudo", async (faker, i, data) => {
     ...data,
   };
 });
+
+Factory.blueprint("App/Models/PreMatricula", async (faker, i, data) => {
+  return {
+    nome: faker.username(),
+    email: faker.email(),
+    telefone: faker.phone(),
+    ...data,
+  };
+});

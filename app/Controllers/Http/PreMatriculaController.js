@@ -3,8 +3,9 @@
 const Matricula = use("App/Models/PreMatricula");
 
 class PreMatriculaController {
-  async store({ request }) {
-    const matriculaData = request.only([
+  matriculaData() {
+    return [
+      "step",
       "nome",
       "email",
       "telefone",
@@ -29,21 +30,35 @@ class PreMatriculaController {
       "estado",
       "forma_pagamento_id",
       "curso_id",
-      "id",
-    ]);
+      "aceita_contato",
+      "completed",
+    ];
+  }
+
+  async store({ request }) {
+    const matriculaData = request.only(this.matriculaData());
 
     try {
-      if (matriculaData.id) {
-        const matricula = await Matricula.find(matriculaData.id);
-        matricula.merge(matriculaData);
-        await matricula.save();
+      const matricula = await Matricula.create(matriculaData);
 
-        return { matricula: matricula.toJSON() };
-      } else {
-        const matricula = await Matricula.create(matriculaData);
+      return { matricula: matricula.toJSON() };
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
 
-        return { matricula: matricula.toJSON() };
-      }
+  async update({ request, params }) {
+    const matriculaData = request.only(this.matriculaData());
+    const { id } = params;
+
+    try {
+      const matricula = await Matricula.find(id);
+
+      matricula.merge(matriculaData);
+
+      await matricula.save();
+
+      return { matricula: matricula.toJSON() };
     } catch (error) {
       return { error: error.message };
     }

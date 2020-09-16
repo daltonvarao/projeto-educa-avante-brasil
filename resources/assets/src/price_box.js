@@ -34,7 +34,7 @@ function SubscriptionModal({
   selected,
 }) {
   const initialState = {
-    step: CONTRACT,
+    step: CONTACT,
     nome: "",
     email: "",
     telefone: "",
@@ -57,9 +57,10 @@ function SubscriptionModal({
     bairro: "",
     cidade: "",
     estado: "",
-    forma_pagamento: selected,
+    forma_pagamento_id: selected,
     accept_contract: false,
-    allow_contact: false,
+    aceita_contato: false,
+    completed: false,
     curso_id: cursoId,
   };
 
@@ -73,6 +74,8 @@ function SubscriptionModal({
         return { ...state, step: state.step - 1 };
       case "continue":
         return { ...state, step: state.step + 1 };
+      case "finaliza":
+        return { ...state, completed: true };
       case "step":
         return { ...state, step: newState };
       default:
@@ -87,27 +90,27 @@ function SubscriptionModal({
       <div className="step-icons">
         <RiContactsBookLine
           size={38}
-          color={state.step === CONTACT ? "#49996f" : "#bbbbbb99"}
+          color={state.step >= CONTACT ? "#49996f" : "#bbbbbb99"}
         />
 
         <AiOutlineIdcard
           size={44}
-          color={state.step === PERSONAL ? "#49996f" : "#bbbbbb99"}
+          color={state.step >= PERSONAL ? "#49996f" : "#bbbbbb99"}
         />
 
         <RiMapPinLine
           size={40}
-          color={state.step === ADDRESS ? "#49996f" : "#bbbbbb99"}
+          color={state.step >= ADDRESS ? "#49996f" : "#bbbbbb99"}
         />
 
         <RiBankCardLine
           size={40}
-          color={state.step === PAYMENT ? "#49996f" : "#bbbbbb99"}
+          color={state.step >= PAYMENT ? "#49996f" : "#bbbbbb99"}
         />
 
         <BiBadgeCheck
           size={40}
-          color={state.step === 4 ? "#49996f" : "#bbbbbb99"}
+          color={state.step >= CONTRACT ? "#49996f" : "#bbbbbb99"}
         />
       </div>
 

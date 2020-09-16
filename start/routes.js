@@ -26,6 +26,11 @@ Route.group("api", () => {
   Route.get("collections", "ApiController.collections");
   Route.get("areas", "ApiController.areas");
 
+  Route.resource("matriculas", "PreMatriculaController").except([
+    "edit",
+    "create",
+  ]);
+
   Route.resource("cursos", "CursoController")
     .validator(
       new Map([
