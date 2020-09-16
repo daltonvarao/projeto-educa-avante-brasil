@@ -2,6 +2,8 @@
 
 @section('content')
   <section class="container">
-    <div id="curso-form" data-edit="true" data="{{ toJSON(curso) }}"></div>
+    <div id="curso-form" data-edit="true">
+      <input type="hidden" value="{{ toJSON(curso) }}">
+    </div>
   </section>
 @endsection

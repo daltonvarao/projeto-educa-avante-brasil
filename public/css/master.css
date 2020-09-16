@@ -108,6 +108,10 @@ code {
   color: var(--primary) !important;
 }
 
+.text-white {
+  color: var(--white) !important;
+}
+
 .lead {
   font-weight: 400;
   color: #909090;
@@ -138,6 +142,7 @@ code {
 .hidden {
   visibility: hidden;
   opacity: 0;
+  overflow: hidden;
 
   transition: visibility 300ms, opacity 300ms linear;
 }
@@ -342,7 +347,7 @@ code {
 }
 
 .form-group-inline {
-  margin: 0.75rem 0;
+  margin: 0.65rem 0;
   display: flex;
   align-items: center;
 }
@@ -353,8 +358,14 @@ code {
   color: var(--dark);
 }
 
+.form-group-inline button + button,
 .form-group-inline input + label {
   margin-left: 0.5rem;
+}
+
+.form-group-inline + .form-group-inline label,
+.form-group-inline + .form-group-inline {
+  margin-top: 0;
 }
 
 .w-80 {
@@ -377,6 +388,10 @@ code {
   float: right;
 }
 
+.align-self-start {
+  align-self: flex-start;
+}
+
 .form-title {
   margin-bottom: 1rem;
   color: var(--primary);
@@ -386,6 +401,7 @@ code {
   margin: 1rem 0;
 }
 
+.form-input2,
 .form-input {
   width: 100%;
   padding: 0.75rem;
@@ -395,6 +411,18 @@ code {
   font-weight: 600;
   color: var(--dark);
   outline-color: rgba(0, 0, 0, 0.2);
+}
+
+.form-input2 {
+  background: transparent;
+  border: 1px solid var(--primary90);
+  color: #676767;
+  font-weight: 400;
+}
+
+.price-box + .form-btn,
+.form-input2 + .form-btn {
+  margin-top: 0.75rem;
 }
 
 .form-input + .form-input {
@@ -440,9 +468,56 @@ code {
   color: white;
 }
 
+.btn-outline-primary {
+  border: 1px solid var(--primary);
+  background-color: transparent;
+  color: var(--primary);
+
+  transition: all 200ms;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
 .btn-blue {
   background-color: var(--face-blue);
   color: white;
+}
+
+.btn.back {
+  position: relative;
+}
+
+.btn.continue {
+  position: relative;
+}
+
+.btn.continue::after {
+  font-family: "Material Design Icons";
+  content: "\F0142";
+  position: absolute;
+  color: var(--white);
+  font-size: 18px;
+  right: 10px;
+  top: 12px;
+  transition: all 200ms;
+}
+
+.btn.back::before {
+  font-family: "Material Design Icons";
+  content: "\F0141";
+  position: absolute;
+  color: var(--primary);
+  font-size: 18px;
+  left: 10px;
+  top: 12px;
+  transition: all 200ms;
+}
+
+.btn-outline-primary.back:hover::before {
+  color: #fff;
 }
 
 .tox-tinymce + .form-btn,
@@ -641,9 +716,19 @@ hr {
 }
 
 /* SHOW CURSO */
+.course-container {
+  background-color: var(--primary);
+  padding: 0.75rem;
+}
+
+.course-price-boxes {
+  padding: 0 1.5rem;
+}
+
 .course-title {
-  margin-bottom: 2.5rem;
+  margin: 1.5rem 0;
   color: var(--primary);
+  text-align: center;
 }
 
 .curso .course-title {
@@ -664,13 +749,12 @@ hr {
 
 .curso .course-info ul {
   grid-template-columns: 1fr;
-  text-align: center;
 }
 
 .course-info ul li {
   list-style: none;
   font-weight: 600;
-  color: #676767;
+  color: var(--primary);
   font-size: 14px;
 }
 
@@ -691,7 +775,7 @@ hr {
 
 .course-grid-title {
   margin: 1rem 0;
-  font-size: 28px;
+  font-size: 22px;
   color: var(--primary);
 }
 
@@ -744,10 +828,8 @@ td {
   padding: 0.75rem;
   border-radius: 5px;
   background: var(--orange-logo);
+  display: block;
   width: 100%;
-}
-
-.subscribe-link a {
   color: var(--white);
   font-size: 18px;
 }
@@ -839,6 +921,7 @@ td {
   margin: 0.5rem auto;
 }
 
+.container-fluid,
 .search-container {
   padding-top: 6rem;
 }
@@ -856,6 +939,103 @@ td {
 
 .cursos {
   padding: 1.5rem;
+}
+
+/* MODAL */
+.modal-container {
+  position: fixed;
+  z-index: 150;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  padding: 1.5rem;
+
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+  background-color: #fff;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  position: relative;
+}
+
+#modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: #676767;
+}
+
+#modal-close:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.modal-title {
+  text-align: center;
+  width: 100%;
+  color: var(--primary);
+}
+
+.step-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.modal-form {
+  width: 100%;
+}
+
+.modal-form label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.modal-form .form-input + .form-btn,
+.modal-form .form-input + .form-input {
+  margin-top: 0.75rem;
+}
+
+.modal-form-title {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 400;
+  color: var(--primary);
+  margin: 0.75rem 0;
+}
+
+.modal-form-subtitle {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 400;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.active {
+  color: var(--primary) !important;
 }
 
 @keyframes spin {
@@ -963,15 +1143,24 @@ td {
   }
 
   /* SHOW CURSO */
+  .course-price-boxes,
   .card-curso {
     margin: 0 auto;
     max-width: 1060px;
   }
 
-  .course-container {
+  .course-price-boxes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .course-container .course-title {
+    font-size: 42px;
+  }
+
+  .course-grid-title {
+    font-size: 26px;
   }
 
   .curso {
@@ -1000,13 +1189,15 @@ td {
 
   .course-box {
     margin-right: 0.75rem;
-    width: 100%;
+    width: 190%;
+    margin-bottom: 1rem;
+    margin-right: 1.5rem;
   }
 
   .course-info ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .course-info ul li + li {
@@ -1022,13 +1213,14 @@ td {
     margin-bottom: 0;
   }
 
-  .subscribe-link a {
-    font-size: 14px;
+  .subscribe-link {
+    font-size: 15px;
   }
 
   .price-box {
-    margin-left: 1rem;
-    width: 480px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
   }
 
   .price-box p {
@@ -1052,17 +1244,44 @@ td {
 
   .search-input .form-input + .form-input {
     margin-top: 0;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 
   .cursos {
     margin: 0 auto;
-    max-width: 80%;
+  }
+
+  .modal {
+    max-width: 680px;
+    padding: 4rem 3rem;
+  }
+
+  .modal-form-title {
+    font-size: 32px;
+    margin: 0.5rem 0;
+  }
+
+  .modal-form-subtitle {
+    font-size: 22px;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-form .form-input {
+    padding: 1rem;
+  }
+
+  .step-icons svg {
+    width: 52px;
+    height: 52px;
   }
 }
 
 @media (min-width: 1024px) {
   .curso {
     padding: 2rem;
+  }
+
+  .cursos {
+    max-width: 80%;
   }
 }

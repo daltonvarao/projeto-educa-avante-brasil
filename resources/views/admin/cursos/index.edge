@@ -26,6 +26,9 @@
             <li class="table-detail">{{ curso.tipo }}</li>
           </div>
           <div class="table-links">
+            <a class="link edit" href="{{ route('cursos.show', id=curso.id) }}">
+              <i data-feather="eye"></i>
+            </a>
             <a class="link edit" href="{{ route('admin.cursos.edit', id=curso.id) }}">
               <i data-feather="edit"></i>
             </a>
