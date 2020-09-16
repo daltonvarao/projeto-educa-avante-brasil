@@ -77,6 +77,12 @@ Route.group("admin", () => {
     "update",
   ]);
 
+  Route.resource("matriculas", "PreMatriculaController").only([
+    "index",
+    "show",
+    "destroy",
+  ]);
+
   Route.resource("sessions", "SessionController").only(["destroy"]);
 })
   .prefix("admin")

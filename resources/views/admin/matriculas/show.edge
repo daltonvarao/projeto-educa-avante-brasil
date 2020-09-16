@@ -1,0 +1,28 @@
+@layout('layouts.admin')
+
+@section('content')
+  <div class="container">
+    <h1>{{ matricula.nome }}</h1>
+    <br><br>
+    
+    para pegar a forma de pagamento
+    <code>
+      @{{ matricula.forma_pagamento }}
+    </code>
+
+    <br>
+    <br>
+    Ex.: Parcelas {{ matricula.forma_pagamento.parcelas }}
+    
+    <br><br>
+    <hr>
+    <br>
+    para pegar o curso
+    <code>
+      @{{ matricula.curso }}
+    </code>
+    <br>
+    <br>
+    Ex.: Curso {{ matricula.curso.nome }}
+  </div>
+@endsection

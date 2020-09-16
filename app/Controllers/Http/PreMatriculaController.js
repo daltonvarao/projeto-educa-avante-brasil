@@ -35,6 +35,16 @@ class PreMatriculaController {
     ];
   }
 
+  async index({ view, request }) {
+    const matriculas = await Matricula.query().paginate(request.qs.page || 1);
+
+    console.log(matriculas);
+
+    return view.render("admin.matriculas.index", {
+      matriculas: matriculas.toJSON(),
+    });
+  }
+
   async store({ request }) {
     const matriculaData = request.only(this.matriculaData());
 
@@ -62,6 +72,20 @@ class PreMatriculaController {
     } catch (error) {
       return { error: error.message };
     }
+  }
+
+  async show({ view, params }) {
+    const { id } = params;
+
+    const matricula = await Matricula.query()
+      .where({ id })
+      .with("forma_pagamento")
+      .with("curso")
+      .first();
+
+    return view.render("admin.matriculas.show", {
+      matricula: matricula.toJSON(),
+    });
   }
 }
 
