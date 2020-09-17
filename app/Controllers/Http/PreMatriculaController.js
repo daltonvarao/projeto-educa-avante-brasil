@@ -35,10 +35,16 @@ class PreMatriculaController {
     ];
   }
 
+  sanitizeRequestDada(requestData) {
+    requestData.telefone = requestData.telefone
+      .replace("(", "")
+      .replace(")", "")
+      .replace("-", "")
+      .replace(" ", "");
+  }
+
   async index({ view, request }) {
     const matriculas = await Matricula.query().paginate(request.qs.page || 1);
-
-    console.log(matriculas);
 
     return view.render("admin.matriculas.index", {
       matriculas: matriculas.toJSON(),
@@ -47,6 +53,8 @@ class PreMatriculaController {
 
   async store({ request }) {
     const matriculaData = request.only(this.matriculaData());
+
+    console.log(this.sanitizeRequestDada(matriculaData));
 
     try {
       const matricula = await Matricula.create(matriculaData);
@@ -60,6 +68,8 @@ class PreMatriculaController {
   async update({ request, params }) {
     const matriculaData = request.only(this.matriculaData());
     const { id } = params;
+
+    console.log(this.sanitizeRequestDada(matriculaData));
 
     try {
       const matricula = await Matricula.find(id);

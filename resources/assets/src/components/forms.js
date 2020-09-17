@@ -15,8 +15,20 @@ const PAYMENT = 3;
 const CONTRACT = 4;
 
 async function updateMatricula(state, dispatch) {
+  console.log(state);
   try {
-    await axios.put(`/api/matriculas/${state.matricula_id}`, state);
+    const method = state.matricula_id ? "put" : "post";
+    const url = state.matricula_id
+      ? `/api/matriculas/${state.matricula_id}`
+      : "/api/matriculas";
+
+    const response = await axios[method](url, state);
+
+    dispatch({
+      type: "change",
+      stateName: "matricula_id",
+      newState: response.data?.matricula?.id,
+    });
 
     dispatch({ type: "continue" });
   } catch (error) {
@@ -54,22 +66,6 @@ export function AccountForm({ dispatch, state }) {
       setValid(false);
     }
   }, [state]);
-
-  async function submitForm() {
-    try {
-      const response = await axios.post("/api/matriculas", state);
-
-      dispatch({
-        type: "change",
-        stateName: "matricula_id",
-        newState: response.data?.matricula?.id,
-      });
-
-      dispatch({ type: "continue" });
-    } catch (error) {
-      swal("Erro", error.message, "error");
-    }
-  }
 
   return (
     <form className="modal-form">
@@ -121,7 +117,7 @@ export function AccountForm({ dispatch, state }) {
 
       <button
         type="button"
-        onClick={submitForm}
+        onClick={() => updateMatricula(state, dispatch)}
         className="btn form-btn btn-primary continue"
         disabled={!valid}
       >

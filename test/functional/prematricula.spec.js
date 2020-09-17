@@ -47,3 +47,24 @@ test("should be able to update an record in PUT /api/matriculas", async ({
     matricula: matriculaData,
   });
 });
+
+test("should be able to send email when pre-matricula is completed", async ({
+  client,
+}) => {
+  const matricula = await Factory.model("App/Models/PreMatricula").create();
+  const matriculaData = {
+    email: "daltonphellipe@gmail.com",
+    nome: "Dalton Felipe",
+    telefone: "93991924014",
+    cep: "68030340",
+  };
+
+  const response = await client
+    .put(`/api/matriculas/${matricula.id}`)
+    .send(matriculaData)
+    .end();
+
+  response.assertJSONSubset({
+    matricula: matriculaData,
+  });
+});
