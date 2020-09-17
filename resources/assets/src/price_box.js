@@ -60,7 +60,7 @@ function SubscriptionModal({
     forma_pagamento_id: selected,
     accept_contract: false,
     aceita_contato: false,
-    completed: false,
+    completed: true,
     curso_id: cursoId,
   };
 
@@ -133,7 +133,11 @@ function SubscriptionModal({
 function PriceBox({ formaPagamentos, cursoId }) {
   const [selected, setSelected] = useState(formaPagamentos[0]?.id);
   const [modalVisible, setModalVisible] = useState(false);
-  return (
+  const [loading, setLoading] = useState(1);
+
+  return loading ? (
+    <div className="loader" />
+  ) : (
     <>
       <SubscriptionModal
         visible={modalVisible}

@@ -354,7 +354,7 @@ export function PersonalForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
@@ -362,7 +362,7 @@ export function PersonalForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => updateMatricula(state, dispatch)}
-          className="btn form-btn btn-primary continue w-80"
+          className="btn form-btn btn-primary continue w-md-75"
           disabled={!valid}
         >
           Continuar
@@ -505,7 +505,7 @@ export function AddressForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
@@ -514,7 +514,7 @@ export function AddressForm({ dispatch, state }) {
           type="button"
           onClick={() => updateMatricula(state, dispatch)}
           disabled={!valid}
-          className="btn form-btn btn-primary continue w-80"
+          className="btn form-btn btn-primary continue w-md-75"
         >
           Continuar
         </button>
@@ -563,7 +563,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
@@ -571,7 +571,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
         <button
           type="button"
           onClick={() => updateMatricula(state, dispatch)}
-          className="btn form-btn btn-primary continue w-80"
+          className="btn form-btn btn-primary continue w-md-75"
         >
           Continuar
         </button>
@@ -618,7 +618,7 @@ export function ContractForm({ dispatch, state }) {
           }
         />
         <label htmlFor="aceita_contato">
-          Autorizo o contato via Email e WhatsApp nos dados informados.
+          Autorizo o contato via WhatsApp no número de telefone informado.
         </label>
       </div>
 
@@ -645,14 +645,14 @@ export function ContractForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
         <button
           type="button"
           disabled={!state.accept_contract}
-          className="btn form-btn btn-primary w-80"
+          className="btn form-btn btn-primary w-md-75"
           onClick={() => finalizaMatricula(state)}
         >
           Finalizar

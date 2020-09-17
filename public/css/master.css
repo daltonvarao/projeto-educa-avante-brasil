@@ -953,18 +953,19 @@ td {
   overflow-x: hidden;
   overflow-y: auto;
 
-  padding: 1.5rem;
+  padding: 4rem 1.5rem;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal {
   background-color: #fff;
-  margin: auto;
+  margin: 0 auto;
   padding: 2rem;
   border-radius: 8px;
   width: 100%;
   position: relative;
+  border-bottom: 8px solid var(--primary);
 }
 
 #modal-close {
@@ -1273,6 +1274,14 @@ td {
   .step-icons svg {
     width: 52px;
     height: 52px;
+  }
+
+  .w-md-75 {
+    width: 75% !important;
+  }
+
+  .w-md-25 {
+    width: 25% !important;
   }
 }
 
