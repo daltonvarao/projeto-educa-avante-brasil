@@ -22,6 +22,8 @@ async function updateMatricula(state, dispatch) {
       ? `/api/matriculas/${state.matricula_id}`
       : "/api/matriculas";
 
+    dispatch({ type: "loading" });
+
     const response = await axios[method](url, state);
 
     dispatch({
@@ -30,6 +32,7 @@ async function updateMatricula(state, dispatch) {
       newState: response.data?.matricula?.id,
     });
 
+    dispatch({ type: "loaded" });
     dispatch({ type: "continue" });
   } catch (error) {
     swal("Erro", error.message, "error");
@@ -38,7 +41,11 @@ async function updateMatricula(state, dispatch) {
 
 async function finalizaMatricula(state) {
   try {
+    dispatch({ type: "loading" });
+
     await axios.put(`/api/matriculas/${state.matricula_id}`, state);
+
+    dispatch({ type: "loading" });
 
     swal(
       "Concluído!",

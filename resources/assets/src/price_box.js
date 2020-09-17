@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import {
@@ -62,6 +62,7 @@ function SubscriptionModal({
     aceita_contato: false,
     completed: true,
     curso_id: cursoId,
+    loading: false,
   };
 
   function reducer(state, { type, stateName, newState, newStates }) {
@@ -78,6 +79,10 @@ function SubscriptionModal({
         return { ...state, completed: true };
       case "step":
         return { ...state, step: newState };
+      case "loading":
+        return { ...state, loading: true };
+      case "loaded":
+        return { ...state, loading: false };
       default:
         throw new Error();
     }
@@ -114,18 +119,22 @@ function SubscriptionModal({
         />
       </div>
 
-      <div>
-        <AccountForm state={state} dispatch={dispatch} />
-        <PersonalForm state={state} dispatch={dispatch} />
-        <AddressForm state={state} dispatch={dispatch} />
-        <PaymentForm
-          state={state}
-          dispatch={dispatch}
-          formaPagamentos={formaPagamentos}
-          selected={selected}
-        />
-        <ContractForm state={state} dispatch={dispatch} />
-      </div>
+      {state.loading ? (
+        <div className="loader-green" />
+      ) : (
+        <div>
+          <AccountForm state={state} dispatch={dispatch} />
+          <PersonalForm state={state} dispatch={dispatch} />
+          <AddressForm state={state} dispatch={dispatch} />
+          <PaymentForm
+            state={state}
+            dispatch={dispatch}
+            formaPagamentos={formaPagamentos}
+            selected={selected}
+          />
+          <ContractForm state={state} dispatch={dispatch} />
+        </div>
+      )}
     </Modal>
   );
 }
@@ -134,6 +143,10 @@ function PriceBox({ formaPagamentos, cursoId }) {
   const [selected, setSelected] = useState(formaPagamentos[0]?.id);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(1);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [formaPagamentos]);
 
   return loading ? (
     <div className="loader" />
