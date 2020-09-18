@@ -69,8 +69,6 @@ test("should be able to send email when pre-matricula is completed", async ({
 
   const recentEmail = Mail.pullRecent();
 
-  console.log(recentEmail);
-
   assert.equal(recentEmail.message.to[0].address, matriculaData.email);
 
   Mail.restore();

@@ -15,7 +15,6 @@ const PAYMENT = 3;
 const CONTRACT = 4;
 
 async function updateMatricula(state, dispatch) {
-  console.log(state);
   try {
     const method = state.matricula_id ? "put" : "post";
     const url = state.matricula_id
