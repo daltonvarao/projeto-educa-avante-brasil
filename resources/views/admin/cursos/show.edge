@@ -54,8 +54,11 @@
           </table>
         </div>
       </div>
-      <div class="price-box shadow" data-curso-id="{{ curso.id }}" id="price-box">
-        <input type="hidden" value="{{ toJSON(curso.forma_pagamentos) }}">
+      <div
+        class="price-box shadow"
+        data-forma-pagamento="{{ toJSON(curso.forma_pagamentos) }}"
+        data-curso="{{ toJSON(curso) }}"
+        id="price-box">
       </div>
     </div>
 

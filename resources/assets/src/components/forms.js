@@ -8,6 +8,8 @@ import swal from "@sweetalert/with-react";
 import { Select2 } from "./inputs";
 import { FormaPagamentoBox } from "./formaPagamento";
 
+import { contratoPosGraduacao } from "./constants";
+
 const CONTACT = 0;
 const PERSONAL = 1;
 const ADDRESS = 2;
@@ -586,15 +588,21 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
   );
 }
 
-export function ContractForm({ dispatch, state }) {
+export function ContractForm({ dispatch, state, curso, formaPagamento }) {
   if (state.step !== CONTRACT) return null;
 
   useEffect(() => {
     dispatch({ type: "finaliza" });
   }, [state.accept_contract]);
 
-  const contract =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, sed dolores optio quos, excepturi eos, architecto sint inventore perspiciatis hic nesciunt tempora. Exercitationem consectetur aut corporis aliquam repellat autem non!";
+  const valor_matricula = 100;
+
+  const contract = contratoPosGraduacao(
+    state,
+    curso,
+    formaPagamento,
+    valor_matricula
+  );
 
   return (
     <form className="modal-form">
