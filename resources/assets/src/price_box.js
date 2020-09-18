@@ -60,7 +60,7 @@ function SubscriptionModal({
     forma_pagamento_id: selected,
     accept_contract: false,
     aceita_contato: false,
-    completed: false,
+    completed: true,
     curso_id: cursoId,
     loading: false,
   };
