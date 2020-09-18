@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
-    "pre-deploy": "NODE_ENV=production yarn webpack",
     "watch": "yarn webpack --watch",
-    "deploy": "yarn pre-deploy && git add . && git commit -m 'Deploy to heroku' && git push origin master"
+    "pre-deploy": "NODE_ENV=production yarn webpack",
+    "deploy": "yarn pre-deploy && git add . && git commit -m 'Deploy to production branch' && git push origin production"
   },
   "keywords": [
     "adonisjs",
