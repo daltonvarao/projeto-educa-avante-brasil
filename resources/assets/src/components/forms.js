@@ -16,8 +16,22 @@ const CONTRACT = 4;
 
 async function updateMatricula(state, dispatch) {
   try {
-    await axios.put(`/api/matriculas/${state.matricula_id}`, state);
+    const method = state.matricula_id ? "put" : "post";
+    const url = state.matricula_id
+      ? `/api/matriculas/${state.matricula_id}`
+      : "/api/matriculas";
 
+    dispatch({ type: "loading" });
+
+    const response = await axios[method](url, state);
+
+    dispatch({
+      type: "change",
+      stateName: "matricula_id",
+      newState: response.data?.matricula?.id,
+    });
+
+    dispatch({ type: "loaded" });
     dispatch({ type: "continue" });
   } catch (error) {
     swal("Erro", error.message, "error");
@@ -26,7 +40,11 @@ async function updateMatricula(state, dispatch) {
 
 async function finalizaMatricula(state) {
   try {
+    dispatch({ type: "loading" });
+
     await axios.put(`/api/matriculas/${state.matricula_id}`, state);
+
+    dispatch({ type: "loading" });
 
     swal(
       "Concluído!",
@@ -54,22 +72,6 @@ export function AccountForm({ dispatch, state }) {
       setValid(false);
     }
   }, [state]);
-
-  async function submitForm() {
-    try {
-      const response = await axios.post("/api/matriculas", state);
-
-      dispatch({
-        type: "change",
-        stateName: "matricula_id",
-        newState: response.data?.matricula?.id,
-      });
-
-      dispatch({ type: "continue" });
-    } catch (error) {
-      swal("Erro", error.message, "error");
-    }
-  }
 
   return (
     <form className="modal-form">
@@ -121,7 +123,7 @@ export function AccountForm({ dispatch, state }) {
 
       <button
         type="button"
-        onClick={submitForm}
+        onClick={() => updateMatricula(state, dispatch)}
         className="btn form-btn btn-primary continue"
         disabled={!valid}
       >
@@ -358,7 +360,7 @@ export function PersonalForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
@@ -366,7 +368,7 @@ export function PersonalForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => updateMatricula(state, dispatch)}
-          className="btn form-btn btn-primary continue w-80"
+          className="btn form-btn btn-primary continue w-md-75"
           disabled={!valid}
         >
           Continuar
@@ -509,7 +511,7 @@ export function AddressForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
@@ -518,7 +520,7 @@ export function AddressForm({ dispatch, state }) {
           type="button"
           onClick={() => updateMatricula(state, dispatch)}
           disabled={!valid}
-          className="btn form-btn btn-primary continue w-80"
+          className="btn form-btn btn-primary continue w-md-75"
         >
           Continuar
         </button>
@@ -567,7 +569,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
@@ -575,7 +577,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
         <button
           type="button"
           onClick={() => updateMatricula(state, dispatch)}
-          className="btn form-btn btn-primary continue w-80"
+          className="btn form-btn btn-primary continue w-md-75"
         >
           Continuar
         </button>
@@ -622,7 +624,7 @@ export function ContractForm({ dispatch, state }) {
           }
         />
         <label htmlFor="aceita_contato">
-          Autorizo o contato via Email e WhatsApp nos dados informados.
+          Autorizo o contato via WhatsApp no número de telefone informado.
         </label>
       </div>
 
@@ -649,14 +651,14 @@ export function ContractForm({ dispatch, state }) {
         <button
           type="button"
           onClick={() => dispatch({ type: "back" })}
-          className="btn form-btn btn-outline-primary back w-20"
+          className="btn form-btn btn-outline-primary back w-md-25"
         >
           Voltar
         </button>
         <button
           type="button"
           disabled={!state.accept_contract}
-          className="btn form-btn btn-primary w-80"
+          className="btn form-btn btn-primary w-md-75"
           onClick={() => finalizaMatricula(state)}
         >
           Finalizar

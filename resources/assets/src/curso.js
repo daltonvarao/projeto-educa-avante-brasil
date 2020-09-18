@@ -46,9 +46,7 @@ function Form({ edit, curso }) {
         setAreas(response.data.areas);
 
         setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     })();
 
     if (edit) {
