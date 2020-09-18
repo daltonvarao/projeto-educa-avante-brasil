@@ -1,6 +1,7 @@
 "use strict";
 
 const Matricula = use("App/Models/PreMatricula");
+const Mail = use("Mail");
 
 class PreMatriculaController {
   matriculaData() {
@@ -35,10 +36,16 @@ class PreMatriculaController {
     ];
   }
 
+  sanitizeRequestDada(requestData) {
+    requestData.telefone = requestData.telefone
+      .replace("(", "")
+      .replace(")", "")
+      .replace("-", "")
+      .replace(" ", "");
+  }
+
   async index({ view, request }) {
     const matriculas = await Matricula.query().paginate(request.qs.page || 1);
-
-    console.log(matriculas);
 
     return view.render("admin.matriculas.index", {
       matriculas: matriculas.toJSON(),
@@ -47,6 +54,8 @@ class PreMatriculaController {
 
   async store({ request }) {
     const matriculaData = request.only(this.matriculaData());
+
+    this.sanitizeRequestDada(matriculaData);
 
     try {
       const matricula = await Matricula.create(matriculaData);
@@ -61,12 +70,25 @@ class PreMatriculaController {
     const matriculaData = request.only(this.matriculaData());
     const { id } = params;
 
+    this.sanitizeRequestDada(matriculaData);
+
     try {
       const matricula = await Matricula.find(id);
 
       matricula.merge(matriculaData);
 
       await matricula.save();
+
+      if (matriculaData.completed) {
+        await Mail.send("emails.matricula", matriculaData, (message) => {
+          message
+            .from("atendimento@projetoeducavantebrasil.com")
+            .subject(
+              "Parabéns, agora você faz parte do melhor canal de distribuição de bolsas"
+            )
+            .to(matriculaData.email);
+        });
+      }
 
       return { matricula: matricula.toJSON() };
     } catch (error) {

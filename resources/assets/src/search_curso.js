@@ -23,9 +23,7 @@ function CursoForm({ modalidadeId }) {
       try {
         const response = await axios.get("/api/areas");
         setAreas(response.data.areas);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     })();
   }, []);
 

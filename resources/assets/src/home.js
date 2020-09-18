@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
+import axios from "axios";
+
 import Curso from "./components/cardCurso";
 
 const ws = adonis.Ws().connect();
@@ -45,13 +47,15 @@ function Form() {
   }, [curso, cursos]);
 
   useEffect(() => {
-    fetch("/api/collections")
-      .then((resp) => resp.json())
-      .then((data) => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/collections");
+        const { data } = response;
+
         setAreas(data.areas);
         setModalidades(data.modalidades);
-      })
-      .catch((error) => console.log(error));
+      } catch (error) {}
+    })();
 
     socket.on("cursos", function ({ cursos: data }) {
       setCursos(data);
