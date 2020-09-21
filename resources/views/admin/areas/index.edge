@@ -9,35 +9,34 @@
       </div>
     </div>
 
-    <div class="table">
-      <div class="table-header">
-        <ul>
-          <li>Nome</li>
-        </ul>
-        <span>Ação</span>
-      </div>
-
-      @each(area in areas.data)
-        <div class="table-content shadow">
-          <div class="table-info">
-            <li class="table-title">{{ area.nome }}</li>
-          </div>
-          <div class="table-links">
-            <a class="link edit" href="{{ route('admin.areas.edit', id=area.id) }}">
-              <i data-feather="edit"></i>
-            </a>
-            <form class="link delete" method="post" action="{{ route('admin.areas.destroy', id=area.id) }}?_method=DELETE">
-              {{ csrfField() }}
-              <button class="delete-button" type="button">
-                <i class="danger-text" data-feather="trash-2"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-      @else
-        @!component('components.empty_message', custom_link=route('admin.areas.create'))
-      @endeach
+    <div class="table shadow">
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Ação</th>
+        </thead>
+        <tbody>
+          @each(area in areas.data)
+            <tr>
+              <td class="table-title">{{ area.nome }}</td>
+              <td>
+                <div class="table-links">
+                  <a class="link edit" href="{{ route('admin.areas.edit', id=area.id) }}">
+                    <i data-feather="edit"></i>
+                  </a>
+                  <form class="link delete" method="post" action="{{ route('admin.areas.destroy', id=area.id) }}?_method=DELETE">
+                    {{ csrfField() }}
+                    <button class="delete-button" type="button">
+                      <i class="danger-text" data-feather="trash-2"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          @else
+           @!component('components.empty_message', custom_link=route('admin.areas.create'))
+          @endeach
+        </tbody>
+      </table>
     </div>
-  </div>
-  @!component('components.paginate', collection=areas)
 @endsection

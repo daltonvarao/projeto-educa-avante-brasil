@@ -8,46 +8,45 @@
         <a class="btn btn-primary" href="{{ route('admin.users.create') }}">Adicionar</a>
       </div>
     </div>
-    
-    <div class="table">
-      <div class="table-header">
-        <ul>
-          <li>Usuários</li>
-          <li>Email</li>
-          <li>Administrador</li>
-        </ul>
-        <span>Ação</span>
-      </div>
 
-      @each(user in users)
-        <div class="table-content shadow">
-          <div class="table-info">
-            <li class="table-title">{{ user.name }}</li>
-            <li class="table-detail">{{ user.email }}</li>
-            <li class="table-detail">
+
+    <div class="table shadow">
+      <table>
+        <thead>
+          <th>Usuários</th>
+          <th>Email</th>
+          <th>Administrador</th>
+          <th>Ação</th>
+        </thead>
+        <tbody>
+          @each(user in users)
+            <td class="table-title">{{ user.name }}</td>
+            <td class="table-detail">{{ user.email }}</td>
+            <td class="table-detail">
               @if(user.is_admin)
                 <span class="md-hidden">Administrador</span>
                 <span class="sm-hidden">Sim</span>
               @else
                 <span class="sm-hidden">Não</span>
               @endif
-            </li>
-          </div>
-          <div class="table-links">
-            <a class="link edit" href="{{ route('admin.users.edit', id=user.id) }}">
-              <i data-feather="edit"></i>
-            </a>
-            <form class="link delete" method="post" action="{{ route('admin.users.destroy', id=user.id) }}?_method=DELETE">
-              {{ csrfField() }}
-              <button class="delete-button" type="button">
-                <i class="danger-text" data-feather="trash-2"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-      @else
-        @!component('components.empty_message')
-      @endeach
-    </div>
-  </div>
+            </td>
+            <td>
+              <div class="table-links">
+                <a class="link edit" href="{{ route('admin.users.edit', id=user.id) }}">
+                  <i data-feather="edit"></i>
+                </a>
+                <form class="link delete" method="post" action="{{ route('admin.users.destroy', id=user.id) }}?_method=DELETE">
+                  {{ csrfField() }}
+                  <button class="delete-button" type="button">
+                    <i class="danger-text" data-feather="trash-2"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          @else
+            @!component('components.empty_message')
+          @endeach
+        </tbody>
+      </table>
+    </div> 
 @endsection
