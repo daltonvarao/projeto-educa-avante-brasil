@@ -1,134 +1,131 @@
-/* table mobile */
-.table .table-header {
+/* modelo de tabela */
+.table {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.table table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.table thead {
   display: none;
   visibility: hidden;
 }
 
-.table-content {
-  background: var(--white);
+.table tbody tr{
   padding: 1rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 8px;
-  height: 110px;
+  flex-direction: column;
 }
 
-.table-content + .table-content {
-  margin-top: 1rem;
+.table tr + tr{
+  border-top: 2px solid var(--light);
 }
 
-.table-content li {
-  list-style: none;
+.table tbody tr td + td {
+  margin-top: .5rem;
 }
 
-.table-content li + li {
-  margin-top: 0.25rem;
-}
-
-.table-content .table-title {
+.table-title {
   font-weight: 600;
   color: var(--dark);
   font-size: 18px;
 }
 
-.table-content .table-detail {
+.table-detail {
   color: #909090;
   font-size: 14px;
 }
 
-.table-content .table-links {
-  height: 100%;
+.table-link a {
+  font-weight: bold;
+  color: var(--primary);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-.table-content .table-links .link.edit {
+.table-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.table-links .link.edit {
   color: var(--edit);
 }
 
-.table-content .table-links .link.delete {
+.table-links .link.delete {
   color: var(--error);
 }
 
-.table-content .table-links .link:hover {
+.table-links .link:hover {
   opacity: 0.8;
 }
 
+
 @media (min-width: 768px) {
-  .table {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0 auto;
+  /* modelo tabela */
+  .table table {
+    border-collapse: separate;
+    border-spacing: 10px;
   }
-
-  .table .table-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
+  .table table thead {
+    padding: 1rem;
     visibility: visible;
-    padding: 1rem 0.75rem;
-  }
-
-  .table .table-header ul {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.25fr 2fr 1fr;
-  }
-
-  .table .table-header ul li {
-    list-style: none;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .table .table-header ul li.text-center {
     display: flex;
+  }
+
+  .table-title {
+    font-size: 14px;
+    color: #909090;
+    font-weight: 500;
+  }
+  .email {
+    width: 70% !important;
+  }
+
+  .table table th,
+  .table table td {
+    text-align: center;
+    width: 50%;
+  }
+  
+  .table table thead tr {
+    display: flex;
+    width: 100%;
+  }
+  
+  .table tbody tr{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .table tbody tr td + td {
+    margin-top: 0;
+  }
+  
+
+  .table-link a {
     align-items: center;
     justify-content: center;
   }
 
-  .table .table-header span {
-    font-size: 18px;
-    font-weight: 600;
-    margin-left: 0.5rem;
-  }
-
-  .table-content {
-    height: 60px;
-  }
-
-  .table-content .table-info {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.25fr 2fr 1fr;
-  }
-
-  .table-content .table-info li.text-center {
+  .table-links {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-  }
-  .table-content li + li {
     margin-top: 0;
   }
 
-  .table-content .table-title,
-  .table-content .table-detail {
-    font-weight: 400;
-    color: var(--dark);
-    font-size: 16px;
-  }
-
-  .table-content .table-links {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .table-content .table-links .link + .link {
+  .table-links .link + .link {
     margin-left: 0.75rem;
   }
 }
