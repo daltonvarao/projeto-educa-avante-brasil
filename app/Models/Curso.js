@@ -16,10 +16,6 @@ class Curso extends Model {
     });
   }
 
-  modalidade() {
-    return this.belongsTo("App/Models/Modalidade");
-  }
-
   area_estudo() {
     return this.belongsTo("App/Models/AreaEstudo");
   }

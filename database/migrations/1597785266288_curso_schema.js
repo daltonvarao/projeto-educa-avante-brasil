@@ -14,17 +14,17 @@ class CursoSchema extends Schema {
       table.string("tipo").notNullable();
       table.string("duracao").notNullable();
 
+      /*
+        curso = curso-profissionalizante
+        pos = pos-graducao
+      */
+      table.enu("modalidade", ["curso", "pos"]).notNullable();
+
       table
         .integer("area_estudo_id")
         .unsigned()
         .references("id")
         .inTable("area_estudos");
-
-      table
-        .integer("modalidade_id")
-        .unsigned()
-        .references("id")
-        .inTable("modalidades");
 
       table.timestamps();
     });

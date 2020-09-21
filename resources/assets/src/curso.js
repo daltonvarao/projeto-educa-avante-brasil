@@ -9,15 +9,14 @@ import { CargasHorarias } from "./components/cargaHoraria";
 import { FormasPagamentos } from "./components/formaPagamento";
 
 function Form({ edit, curso }) {
-  const [modalidades, setModalidades] = useState([]);
   const [areas, setAreas] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(0);
   const [nome, setNome] = useState(curso?.nome ?? "");
   const [instituicao, setInstituicao] = useState(curso?.instituicao ?? "");
   const [tipo, setTipo] = useState(curso?.tipo ?? "");
   const [duracao, setDuracao] = useState(curso?.duracao ?? "");
   const [sobre, setSobre] = useState(curso?.sobre ?? "");
-  const [modalidade, setModalidade] = useState(curso?.modalidade_id ?? "");
+  const [modalidade, setModalidade] = useState(curso?.modalidade ?? "");
   const [area, setArea] = useState(curso?.area_estudo_id ?? "");
   const [cargasHorarias, setCargasHorarias] = useState([
     { disciplina: "", carga_horaria: "", id: "" },
@@ -42,7 +41,6 @@ function Form({ edit, curso }) {
       try {
         const response = await axios.get("/api/collections?all=true");
 
-        setModalidades(response.data.modalidades);
         setAreas(response.data.areas);
 
         setLoading(false);
@@ -50,7 +48,7 @@ function Form({ edit, curso }) {
     })();
 
     if (edit) {
-      setCargasHorarias((state) => [
+      setCargasHorarias(() => [
         ...curso?.carga_horarias.map(({ disciplina, carga_horaria, id }) => ({
           disciplina,
           carga_horaria,
@@ -58,7 +56,7 @@ function Form({ edit, curso }) {
         })),
       ]);
 
-      setFormasPagamentos((state) => [
+      setFormasPagamentos(() => [
         ...curso?.forma_pagamentos.map(
           ({ parcelas, conclusao, tipo, desconto, valor_parcela, id }) => ({
             parcelas,
@@ -80,7 +78,7 @@ function Form({ edit, curso }) {
       tipo,
       duracao,
       sobre,
-      modalidade_id: modalidade,
+      modalidade: modalidade,
       area_estudo_id: area,
       cargas_horarias: cargasHorarias,
       formas_pagamentos: formasPagamentos,
@@ -122,9 +120,12 @@ function Form({ edit, curso }) {
           <InputValidation field="nome" error={error} />
 
           <div className="form-group-inline">
-            <Select
+            <Select2
               name="Modalidade"
-              options={modalidades}
+              options={[
+                ["pos", "Pós-Graduação"],
+                ["curso", "Curso Profissionalizante"],
+              ]}
               setSelected={setModalidade}
               defaultValue={modalidade}
             />
@@ -136,7 +137,7 @@ function Form({ edit, curso }) {
             />
           </div>
           <InputValidation
-            field={["area_estudo_id", "modalidade_id"]}
+            field={["area_estudo_id", "modalidade"]}
             error={error}
           />
 
@@ -149,7 +150,7 @@ function Form({ edit, curso }) {
             />
             <Select2
               name="Tipo"
-              options={["Presencial", "Online"].map((item) => [item, item])}
+              options={[["Online", "Online"]]}
               setSelected={setTipo}
               defaultValue={tipo}
             />
