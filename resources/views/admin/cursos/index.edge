@@ -9,40 +9,42 @@
       </div>
     </div>
 
-    <div class="table">
-      <div class="table-header">
-        <ul>
-          <li>Nome</li>
-          <li>Instituição</li>
-          <li>Tipo</li>
-        </ul>
-        <span>Ação</span>
-      </div>
-      @each(curso in cursos)
-        <div class="table-content shadow">
-          <div class="table-info">
-            <li class="table-title">{{ curso.nome }}</li>
-            <li class="table-detail">{{ curso.instituicao}}</li>
-            <li class="table-detail">{{ curso.tipo }}</li>
-          </div>
-          <div class="table-links">
-            <a class="link edit" href="{{ route('cursos.show', id=curso.id) }}">
-              <i data-feather="eye"></i>
-            </a>
-            <a class="link edit" href="{{ route('admin.cursos.edit', id=curso.id) }}">
-              <i data-feather="edit"></i>
-            </a>
-            <form class="link delete" method="post" action="{{ route('admin.cursos.destroy', id=curso.id) }}?_method=DELETE">
-              {{ csrfField() }}
-              <button class="delete-button" type="button">
-                <i class="danger-text" data-feather="trash-2"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-      @else
-        @!component('components.empty_message', custom_link=route('admin.cursos.create'))
-      @endeach
+    <div class="table shadow">
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Instituição</th>
+          <th>Tipo</th>
+          <th>Ações</th>
+        </thead>
+        <tbody>
+          @each(curso in cursos.data)
+            <tr>
+              <td class="table-title">{{ curso.nome }}</td>
+              <td class="table-detail">{{ curso.instituicao}}</td>
+              <td class="table-detail">{{ curso.tipo }}</td>
+              <td>
+                <div class="table-links">
+                  <a class="link edit" href="{{ route('cursos.show', id=curso.id) }}">
+                    <i data-feather="eye"></i>
+                  </a>
+                  <a class="link edit" href="{{ route('admin.cursos.edit', id=curso.id) }}">
+                    <i data-feather="edit"></i>
+                  </a>
+                  <form class="link delete" method="post" action="{{ route('admin.cursos.destroy', id=curso.id) }}?_method=DELETE">
+                    {{ csrfField() }}
+                    <button class="delete-button" type="button">
+                      <i class="danger-text" data-feather="trash-2"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          @else
+            @!component('components.empty_message', custom_link=route('admin.cursos.create'))
+          @endeach
+        </tbody>
+      </table>
     </div>
-  </div>
+    @!component('components.paginate', collection=cursos)
 @endsection
