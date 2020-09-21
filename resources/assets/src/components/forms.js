@@ -96,7 +96,7 @@ export function AccountForm({ dispatch, state }) {
 
       <InputMask
         placeholder="Telefone"
-        mask="(99) 99999-9999"
+        mask="55 99 99999-9999"
         onChange={(ev) =>
           dispatch({
             type: "change",

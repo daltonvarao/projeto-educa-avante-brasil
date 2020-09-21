@@ -18,8 +18,10 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ view }) {
-    const cursos = await Curso.query().orderBy("nome").fetch();
+  async index({ view, request }) {
+    const cursos = await Curso.query()
+      .orderBy("nome")
+      .paginate(request.qs.page || 1);
 
     return view.render("admin.cursos.index", { cursos: cursos.toJSON() });
   }

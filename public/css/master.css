@@ -16,6 +16,7 @@
   --orange-logo: #f07c00;
   --green-logo: #b1c900;
   --yellow-logo-font: #dbd900;
+  --mail-color: #d44638;
 }
 
 html,
@@ -468,6 +469,11 @@ code {
   color: white;
 }
 
+.btn-mail {
+  background-color: var(--mail-color);
+  color: white;
+}
+
 .btn-outline-primary {
   border: 1px solid var(--primary);
   background-color: transparent;
@@ -800,7 +806,7 @@ hr {
 }
 
 .course-table th,
-td {
+.course-table td {
   border-bottom: 1px solid var(--light);
 }
 
@@ -1058,6 +1064,60 @@ td {
   }
 }
 
+/* show matricula */
+.matricula-title {
+  color: var(--primary);
+  font-size: 12px;
+  padding: 1rem 0;
+}
+
+.card-matricula-title {
+  color: var(--primary);
+  font-size: 18px;
+  padding: 1rem 0;
+  font-weight: 700;
+}
+
+.card-matricula {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.field {
+  padding-bottom: 1rem;
+}
+
+.field-label {
+  color: var(--primary);
+  padding-bottom: 0.75rem;
+}
+
+.field-content {
+  color: var(--dark);
+  margin-left: 10px;
+}
+
+.actions-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions-buttons .btn {
+  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions-buttons .btn + .btn {
+  margin-left: 0.5rem;
+}
+
+h1 + .actions-buttons {
+  margin-top: 1rem;
+}
+
 @media (min-width: 768px) {
   .form-content {
     height: 70vh;
@@ -1284,6 +1344,30 @@ td {
   .step-icons svg {
     width: 52px;
     height: 52px;
+  }
+
+  .matricula-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 + .actions-buttons {
+    margin: 0;
+  }
+
+  .actions-buttons .btn .mdi {
+    margin-left: 0.5rem;
+  }
+
+  .matricula-title h1 {
+    font-size: 32px;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 1rem;
   }
 
   .w-md-75 {
