@@ -103,6 +103,7 @@ class PreMatriculaController {
       .where({ id })
       .with("forma_pagamento")
       .with("curso")
+      .with("curso.area_estudo")
       .first();
 
     return view.render("admin.matriculas.show", {

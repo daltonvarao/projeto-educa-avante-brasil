@@ -43,7 +43,7 @@
     <div class="card-matricula shadow">
       <div class="field-grid">
         @!component('components.matricula_field', { label: 'Curso Matriculado', value: matricula.curso.nome })
-        @!component('components.matricula_field', { label: 'Área do Curso', value: matricula.curso.area_estudos })
+        @!component('components.matricula_field', { label: 'Área do Curso', value: matricula.curso.area_estudo.nome })
         @!component('components.matricula_field', { label: 'Data da Matrícula', value: matricula.created_at })
       </div>
     </div>
@@ -53,11 +53,11 @@
     </div>
     <div class="card-matricula shadow">
       <div class="field-grid">
-        @!component('components.matricula_field', { label: 'Parcelas', value: matricula.forma_pagamento.parcelas })
-        @!component('components.matricula_field', { label: 'Valor da Parcela', value: matricula.forma_pagamento.valor_parcela })
+        @!component('components.matricula_field', { label: 'Parcelas', value: el('$parcelas</>x', matricula.forma_pagamento) })
+        @!component('components.matricula_field', { label: 'Valor da Parcela', value: el('R$ $valor_parcela', matricula.forma_pagamento) })
         @!component('components.matricula_field', { label: 'Conclusão', value: matricula.forma_pagamento.conclusao })
-        @!component('components.matricula_field', { label: 'Pagamento', value: matricula.forma_pagamento.tipo })
-        @!component('components.matricula_field', { label: 'Desconto', value: matricula.forma_pagamento.desconto })
+        @!component('components.matricula_field', { label: 'Pagamento', value: matricula.forma_pagamento.tipo == 'cartao' ? 'Cartão' : 'Boleto' })
+        @!component('components.matricula_field', { label: 'Desconto', value: el('$desconto</>%', matricula.forma_pagamento) })
       </div>
     </div>
 

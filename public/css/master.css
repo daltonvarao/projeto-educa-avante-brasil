@@ -1067,6 +1067,7 @@ hr {
 
 .card-matricula-title {
   color: var(--primary);
+  font-size: 18px;
   padding: 1rem 0;
   font-weight: 700;
 }
@@ -1083,14 +1084,13 @@ hr {
 
 .field-label {
   color: var(--primary);
-  padding-bottom: .75rem;
+  padding-bottom: 0.75rem;
 }
 
 .field-content {
   color: var(--dark);
   margin-left: 10px;
 }
-
 
 @media (min-width: 768px) {
   .form-content {
@@ -1320,12 +1320,16 @@ hr {
     height: 52px;
   }
 
+  .matricula-title h1 {
+    font-size: 32px;
+  }
+
   .field-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: 1rem;
   }
-  
+
   .w-md-75 {
     width: 75% !important;
   }
