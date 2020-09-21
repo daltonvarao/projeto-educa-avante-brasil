@@ -4,6 +4,16 @@
   <div class="container">
     <div class="matricula-title">
       <h1>{{ matricula.nome }}</h1>
+
+      <div class="actions-buttons">
+        <a class="btn btn-mail" href="mailto:{{ matricula.email }}">
+          Email <i class="mdi mdi-email"></i>
+        </a>
+
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ matricula.telefone }}">
+          Whatsapp <i class="mdi mdi-whatsapp"></i>
+        </a>
+      </div>
     </div>
 
     <div class="card-matricula-title">

@@ -41,6 +41,7 @@ class PreMatriculaController {
       .replace("(", "")
       .replace(")", "")
       .replace("-", "")
+      .replace(" ", "")
       .replace(" ", "");
   }
 

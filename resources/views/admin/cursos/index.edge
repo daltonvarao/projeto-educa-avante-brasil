@@ -18,7 +18,7 @@
           <th>Ações</th>
         </thead>
         <tbody>
-          @each(curso in cursos)
+          @each(curso in cursos.data)
             <tr>
               <td class="table-title">{{ curso.nome }}</td>
               <td class="table-detail">{{ curso.instituicao}}</td>
@@ -46,4 +46,5 @@
         </tbody>
       </table>
     </div>
+    @!component('components.paginate', collection=cursos)
 @endsection
