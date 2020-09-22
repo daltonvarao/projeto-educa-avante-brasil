@@ -14,11 +14,11 @@ class CursoController {
     this.request = request;
   }
 
-  async onSearch({ modalidade_id, area_estudo_id, nome, page }) {
+  async onSearch({ modalidade, area_estudo_id, nome, page }) {
     let query = Curso.query().where("nome", "ilike", `%${nome}%`);
 
     query = applyFilter(query, { area_estudo_id });
-    query = applyFilter(query, { modalidade_id });
+    query = applyFilter(query, { modalidade });
 
     const cursos = await query
       .with("forma_pagamentos")

@@ -70,7 +70,6 @@ Route.group("admin", () => {
   ]);
 
   Route.resource("areas", "AreaEstudoController").except(["show"]);
-  Route.resource("modalidades", "ModalidadeController").except(["show"]);
   Route.resource("cursos", "CursoController").except([
     "show",
     "store",

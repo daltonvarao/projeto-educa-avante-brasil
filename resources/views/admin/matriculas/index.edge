@@ -22,12 +22,13 @@
             <td class="table-detail">{{matricula.telefone}}</td>
             <td class="table-link"><a href="{{ route('admin.matriculas.show', id=matricula.id) }}" >ver</a></td>
           </tr>
+          @else
+            @!component('components.empty_message')
           @endeach
         </tbody>
       </table>
     </div>
   @!component('components.paginate', collection=matriculas)
-  
 </div>  
 
 @endsection
