@@ -122,7 +122,6 @@ class CursoController {
 
       return view.render("admin.cursos.edit", {
         areas: areas.toJSON(),
-        modalidades: modalidades.toJSON(),
         curso: curso.toJSON(),
       });
     } catch (error) {
