@@ -11,13 +11,13 @@ const menuNav = document.querySelector(".nav-menu");
 
 if (closeButtonNav) {
   closeButtonNav.onclick = function () {
-    menuNav.classList.replace("show", "hidden");
+    menuNav.classList.add("nav-hidden");
   };
 }
 
 if (showButtonNav) {
   showButtonNav.onclick = function () {
-    menuNav.classList.replace("hidden", "show");
+    menuNav.classList.remove("nav-hidden");
   };
 }
 
@@ -37,16 +37,12 @@ const dropdownContent = document.querySelector(".dropdown-content");
 
 if (dropdownButton) {
   dropdownButton.onclick = function () {
-    if (dropdownContent.classList.contains("hidden")) {
-      dropdownContent.classList.replace("hidden", "show");
-    } else {
-      dropdownContent.classList.replace("show", "hidden");
-    }
+    dropdownContent.classList.toggle("dropdown-hidden");
   };
 
   window.onclick = function (ev) {
     if (!ev.target.matches(".dropdown-button"))
-      dropdownContent.classList.replace("show", "hidden");
+      dropdownContent.classList.add("dropdown-hidden");
   };
 }
 
