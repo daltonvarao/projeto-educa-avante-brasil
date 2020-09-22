@@ -8,6 +8,8 @@ import Curso from "./components/cardCurso";
 const ws = adonis.Ws().connect();
 const socket = ws.subscribe("home");
 
+import { Select2 } from "./components/inputs";
+
 function Select({ name, setSelected, options }) {
   return (
     <select onChange={(ev) => setSelected(ev.target.value)}>
@@ -22,7 +24,6 @@ function Select({ name, setSelected, options }) {
 }
 
 function Form() {
-  const [modalidades, setModalidades] = useState([]);
   const [areas, setAreas] = useState([]);
   const [cursos, setCursos] = useState([]);
 
@@ -34,7 +35,7 @@ function Form() {
   useEffect(() => {
     if (modalidade && area) {
       socket.emit("inputChange", {
-        modalidade_id: modalidade,
+        modalidade,
         area_estudo_id: area,
       });
     }
@@ -53,7 +54,6 @@ function Form() {
         const { data } = response;
 
         setAreas(data.areas);
-        setModalidades(data.modalidades);
       } catch (error) {}
     })();
 
@@ -66,10 +66,14 @@ function Form() {
     <React.Fragment>
       <h3 className="homepage-subtitle">Escolha um curso abaixo</h3>
       <form id="homepage-form" className="homepage-inputs">
-        <Select
-          setSelected={setModalidade}
+        <Select2
           name="Modalidade"
-          options={modalidades}
+          options={[
+            ["pos", "Pós-Graduação"],
+            ["curso", "Curso Profissionalizante"],
+          ]}
+          setSelected={setModalidade}
+          defaultValue={modalidade}
         />
         <Select setSelected={setArea} name="Área" options={areas} />
         <Select setSelected={setCurso} name="Curso" options={cursos} />

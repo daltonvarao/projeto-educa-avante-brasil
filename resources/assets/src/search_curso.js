@@ -9,9 +9,8 @@ import Pagination from "./components/pagination";
 const ws = adonis.Ws().connect();
 const socket = ws.subscribe("cursos");
 
-function CursoForm({ modalidadeId }) {
+function CursoForm({ modalidade }) {
   const [area, setArea] = useState("");
-  const [modalidade, setModalidade] = useState(modalidadeId);
   const [nome, setNome] = useState("");
   const [areas, setAreas] = useState([]);
   const [cursos, setCursos] = useState([]);
@@ -34,7 +33,7 @@ function CursoForm({ modalidadeId }) {
   useEffect(() => {
     socket.emit("search", {
       area_estudo_id: area,
-      modalidade_id: modalidade,
+      modalidade,
       nome,
       page,
     });
@@ -51,7 +50,7 @@ function CursoForm({ modalidadeId }) {
     <Fragment>
       <form className="search-form shadow">
         <h1 className="text-primary">
-          {modalidadeId === "1"
+          {modalidade === "pos"
             ? "Pós-Graduação"
             : "Cursos Profissionalizantes"}
         </h1>
@@ -88,5 +87,5 @@ function CursoForm({ modalidadeId }) {
 const container = document.querySelector("#search-form");
 if (container) {
   const modalidade = container.getAttribute("data-modalidade");
-  ReactDOM.render(<CursoForm modalidadeId={modalidade} />, container);
+  ReactDOM.render(<CursoForm modalidade={modalidade} />, container);
 }

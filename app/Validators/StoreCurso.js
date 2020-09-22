@@ -6,7 +6,7 @@ class StoreCurso {
   get rules() {
     return {
       nome: "required|unique:cursos,nome",
-      modalidade_id: "required",
+      modalidade: "required",
       area_estudo_id: "required",
       instituicao: "required",
       tipo: "required",
@@ -27,7 +27,7 @@ class StoreCurso {
       "instituicao.required": "A Instituição é obrigatória.",
       "sobre.required": "O campo Sobre é obrigatório.",
       "duracao.required": "A Duração é obrigatória.",
-      "modalidade_id.required": "A Modalidade é obrigatória.",
+      "modalidade.required": "A Modalidade é obrigatória.",
       "area_estudo_id.required": "A Área de estudo é obrigatória.",
     };
   }

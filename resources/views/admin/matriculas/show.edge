@@ -54,6 +54,7 @@
       <div class="field-grid">
         @!component('components.matricula_field', { label: 'Curso Matriculado', value: matricula.curso.nome })
         @!component('components.matricula_field', { label: 'Área do Curso', value: matricula.curso.area_estudo.nome })
+        @!component('components.matricula_field', { label: 'Modalidade do Curso', value: matricula.curso.modalidade == 'pos' ? 'Pós-Graduação' : 'Curso Profissionalizante' })
         @!component('components.matricula_field', { label: 'Data da Matrícula', value: matricula.created_at })
       </div>
     </div>
@@ -84,6 +85,5 @@
         @!component('components.matricula_field', { label: 'Estado', value: matricula.estado })
       </div>
     </div>
-
   </div>
 @endsection
