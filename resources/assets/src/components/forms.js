@@ -8,6 +8,11 @@ import swal from "@sweetalert/with-react";
 import { Select2 } from "./inputs";
 import { FormaPagamentoBox } from "./formaPagamento";
 
+import {
+  contratoPosGraduacao,
+  contratoCursoProfissionalizante,
+} from "./constants";
+
 const CONTACT = 0;
 const PERSONAL = 1;
 const ADDRESS = 2;
@@ -38,13 +43,13 @@ async function updateMatricula(state, dispatch) {
   }
 }
 
-async function finalizaMatricula(state) {
+async function finalizaMatricula(state, dispatch) {
   try {
     dispatch({ type: "loading" });
 
     await axios.put(`/api/matriculas/${state.matricula_id}`, state);
 
-    dispatch({ type: "loading" });
+    dispatch({ type: "loaded" });
 
     swal(
       "Concluído!",
@@ -94,7 +99,7 @@ export function AccountForm({ dispatch, state }) {
 
       <InputMask
         placeholder="Telefone"
-        mask="(99) 99999-9999"
+        mask="55 99 99999-9999"
         onChange={(ev) =>
           dispatch({
             type: "change",
@@ -586,15 +591,25 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
   );
 }
 
-export function ContractForm({ dispatch, state }) {
+export function ContractForm({
+  dispatch,
+  state,
+  curso,
+  formaPagamento,
+  valorMatricula,
+}) {
   if (state.step !== CONTRACT) return null;
 
   useEffect(() => {
     dispatch({ type: "finaliza" });
   }, [state.accept_contract]);
 
-  const contract =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, sed dolores optio quos, excepturi eos, architecto sint inventore perspiciatis hic nesciunt tempora. Exercitationem consectetur aut corporis aliquam repellat autem non!";
+  const contracts = {
+    pos: contratoPosGraduacao(state, curso, formaPagamento, valorMatricula),
+    curso: contratoCursoProfissionalizante(state, curso, formaPagamento),
+  };
+
+  const contract = contracts[curso.modalidade];
 
   return (
     <form className="modal-form">
@@ -659,7 +674,7 @@ export function ContractForm({ dispatch, state }) {
           type="button"
           disabled={!state.accept_contract}
           className="btn form-btn btn-primary w-md-75"
-          onClick={() => finalizaMatricula(state)}
+          onClick={() => finalizaMatricula(state, dispatch)}
         >
           Finalizar
         </button>

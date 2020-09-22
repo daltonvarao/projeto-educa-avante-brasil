@@ -5,12 +5,30 @@
     <div class="container-header">
       <h2 class="header-title">Pré-Matriculas</h2>
     </div>
-  </div>  
-
-  <ul>
-    @each(matricula in matriculas.data)
-      <li>{{ matricula.nome }} - <a href="{{ route('admin.matriculas.show', id=matricula.id) }}">ver</a></li>
-    @endeach
-  </ul>
+    
+    <div class="table shadow">
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th class="email">Email</th>
+          <th>Telefone</th>
+          <th>Ação</th>
+        </thead>
+        <tbody>
+          @each(matricula in matriculas.data)
+          <tr>
+            <td class="table-title relative">{{ matricula.nome }} {{ !matricula.viewed ? el('<span class="badge">Nova</span>') : '' }} </td>
+            <td class="table-detail email">{{matricula.email}}</td>
+            <td class="table-detail">{{matricula.telefone}}</td>
+            <td class="table-link"><a href="{{ route('admin.matriculas.show', id=matricula.id) }}" >Ver</a></td>
+          </tr>
+          @else
+            @!component('components.empty_message')
+          @endeach
+        </tbody>
+      </table>
+    </div>
+  @!component('components.paginate', collection=matriculas)
+</div>  
 
 @endsection

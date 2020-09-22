@@ -8,10 +8,10 @@ class HomeController {
     this.request = request;
   }
 
-  async onInputChange({ modalidade_id, area_estudo_id }) {
+  async onInputChange({ modalidade, area_estudo_id }) {
     try {
       const cursos = await Curso.query()
-        .where({ modalidade_id, area_estudo_id })
+        .where({ modalidade, area_estudo_id })
         .with("forma_pagamentos")
         .with("carga_horarias")
         .fetch();

@@ -45,6 +45,7 @@
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "3",
     "cep-promise": "^4.0.0",
+    "extenso": "^2.0.1",
     "intl": "^1.2.5",
     "pg": "^8.3.0",
     "preact": "^10.4.8",

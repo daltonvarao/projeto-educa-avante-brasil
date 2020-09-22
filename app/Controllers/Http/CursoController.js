@@ -6,7 +6,6 @@
 
 const Curso = use("App/Models/Curso");
 const AreaEstudo = use("App/Models/AreaEstudo");
-const Modalidade = use("App/Models/Modalidade");
 
 class CursoController {
   /**
@@ -18,8 +17,23 @@ class CursoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ view }) {
-    const cursos = await Curso.query().orderBy("nome").fetch();
+
+  cursoData() {
+    return [
+      "nome",
+      "tipo",
+      "sobre",
+      "instituicao",
+      "duracao",
+      "area_estudo_id",
+      "modalidade",
+    ];
+  }
+
+  async index({ view, request }) {
+    const cursos = await Curso.query()
+      .orderBy("nome")
+      .paginate(request.qs.page || 1);
 
     return view.render("admin.cursos.index", { cursos: cursos.toJSON() });
   }
@@ -35,11 +49,9 @@ class CursoController {
    */
   async create({ view }) {
     const areas = await AreaEstudo.all();
-    const modalidades = await Modalidade.all();
 
     return view.render("admin.cursos.create", {
       areas: areas.toJSON(),
-      modalidades: modalidades.toJSON(),
     });
   }
 
@@ -52,15 +64,7 @@ class CursoController {
    * @param {Response} ctx.response
    */
   async store({ request }) {
-    const cursoData = request.only([
-      "nome",
-      "tipo",
-      "sobre",
-      "instituicao",
-      "duracao",
-      "area_estudo_id",
-      "modalidade_id",
-    ]);
+    const cursoData = request.only(this.cursoData());
 
     const cargaHorariaData = request.input("cargas_horarias");
     const formaPagamentoData = request.input("formas_pagamentos");
@@ -108,7 +112,6 @@ class CursoController {
    */
   async edit({ params, session, response, view }) {
     const areas = await AreaEstudo.all();
-    const modalidades = await Modalidade.all();
 
     try {
       const curso = await Curso.query()
@@ -119,7 +122,6 @@ class CursoController {
 
       return view.render("admin.cursos.edit", {
         areas: areas.toJSON(),
-        modalidades: modalidades.toJSON(),
         curso: curso.toJSON(),
       });
     } catch (error) {
@@ -138,15 +140,7 @@ class CursoController {
    * @param {Response} ctx.response
    */
   async update({ params, request }) {
-    const cursoData = request.only([
-      "nome",
-      "tipo",
-      "sobre",
-      "instituicao",
-      "duracao",
-      "area_estudo_id",
-      "modalidade_id",
-    ]);
+    const cursoData = request.only(this.cursoData());
 
     const cargaHorariaData = request.input("cargas_horarias");
     const formaPagamentoData = request.input("formas_pagamentos");
@@ -246,9 +240,11 @@ class CursoController {
   }
 
   async search({ view, request }) {
-    const modalidade_id = request.url().includes("pos-graduacao") ? 1 : 2;
+    const modalidade = request.match(["/cursos/pos-graduacao"])
+      ? "pos"
+      : "curso";
 
-    return view.render("admin.cursos.search", { modalidade_id });
+    return view.render("admin.cursos.search", { modalidade });
   }
 
   /**

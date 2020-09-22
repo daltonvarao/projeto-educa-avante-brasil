@@ -2,27 +2,88 @@
 
 @section('content')
   <div class="container">
-    <h1>{{ matricula.nome }}</h1>
-    <br><br>
-    
-    para pegar a forma de pagamento
-    <code>
-      @{{ matricula.forma_pagamento }}
-    </code>
+    <div class="matricula-title">
+      <h1>{{ matricula.nome }}</h1>
 
-    <br>
-    <br>
-    Ex.: Parcelas {{ matricula.forma_pagamento.parcelas }}
-    
-    <br><br>
-    <hr>
-    <br>
-    para pegar o curso
-    <code>
-      @{{ matricula.curso }}
-    </code>
-    <br>
-    <br>
-    Ex.: Curso {{ matricula.curso.nome }}
+      <div class="actions-buttons">
+        <a class="btn btn-mail" href="mailto:{{ matricula.email }}">
+          Email <i class="mdi mdi-email"></i>
+        </a>
+
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ matricula.telefone }}">
+          Whatsapp <i class="mdi mdi-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="card-matricula-title">
+      Contato
+    </div>
+    <div class="card-matricula shadow">
+      <div class="field-grid">
+        @!component('components.matricula_field', { label: 'Telefone', value: matricula.telefone })
+        @!component('components.matricula_field', { label: 'Email', value: matricula.email })
+      </div>
+    </div>
+
+    <div class="card-matricula-title">
+      Dados Pessoais
+    </div>
+    <div class="card-matricula shadow">
+      <div class="field-grid">
+        @!component('components.matricula_field', { label: 'Sexo', value: matricula.sexo })
+        @!component('components.matricula_field', { label: 'Estado Civil', value: matricula.estado_civil })
+        @!component('components.matricula_field', { label: 'Data de Nascimento', value: matricula.data_nascimento })
+        @!component('components.matricula_field', { label: 'Cidade de Nascimento', value: matricula.cidade_nascimento })
+        @!component('components.matricula_field', { label: 'Estado de Nascimento', value: matricula.estado_nascimento })
+        @!component('components.matricula_field', { label: 'Nome da Mãe', value: matricula.nome_mae })
+        @!component('components.matricula_field', { label: 'Nome do Pai', value: matricula.nome_pai })
+        @!component('components.matricula_field', { label: 'CPF', value: matricula.cpf })
+        @!component('components.matricula_field', { label: 'RG', value: matricula.rg })
+        @!component('components.matricula_field', { label: 'Data de expedição do RG', value: matricula.data_expedicao_rg })
+        @!component('components.matricula_field', { label: 'Órgão emissor do RG', value: matricula.orgao_emissor_rg })
+        @!component('components.matricula_field', { label: 'UF do RG', value: matricula.uf_rg })
+        @!component('components.matricula_field', { label: 'Já colou grau?', value: matricula.colou_grau })
+      </div>
+    </div>
+
+    <div class="card-matricula-title">
+      Dados do Curso
+    </div>
+    <div class="card-matricula shadow">
+      <div class="field-grid">
+        @!component('components.matricula_field', { label: 'Curso Matriculado', value: matricula.curso.nome })
+        @!component('components.matricula_field', { label: 'Área do Curso', value: matricula.curso.area_estudo.nome })
+        @!component('components.matricula_field', { label: 'Modalidade do Curso', value: matricula.curso.modalidade == 'pos' ? 'Pós-Graduação' : 'Curso Profissionalizante' })
+        @!component('components.matricula_field', { label: 'Data da Matrícula', value: matricula.created_at })
+      </div>
+    </div>
+
+    <div class="card-matricula-title">
+      Forma de Pagamento
+    </div>
+    <div class="card-matricula shadow">
+      <div class="field-grid">
+        @!component('components.matricula_field', { label: 'Parcelas', value: el('$parcelas</>x', matricula.forma_pagamento) })
+        @!component('components.matricula_field', { label: 'Valor da Parcela', value: el('R$ $valor_parcela', matricula.forma_pagamento) })
+        @!component('components.matricula_field', { label: 'Conclusão', value: matricula.forma_pagamento.conclusao })
+        @!component('components.matricula_field', { label: 'Pagamento', value: matricula.forma_pagamento.tipo == 'cartao' ? 'Cartão' : 'Boleto' })
+        @!component('components.matricula_field', { label: 'Desconto', value: el('$desconto</>%', matricula.forma_pagamento) })
+      </div>
+    </div>
+
+    <div class="card-matricula-title">
+      Localização
+    </div>
+    <div class="card-matricula shadow">
+      <div class="field-grid">
+        @!component('components.matricula_field', { label: 'CEP', value: matricula.cep })
+        @!component('components.matricula_field', { label: 'Rua', value: matricula.rua })
+        @!component('components.matricula_field', { label: 'Número', value: matricula.numero })
+        @!component('components.matricula_field', { label: 'Bairro', value: matricula.bairro })
+        @!component('components.matricula_field', { label: 'Cidade', value: matricula.cidade })
+        @!component('components.matricula_field', { label: 'Estado', value: matricula.estado })
+      </div>
+    </div>
   </div>
 @endsection

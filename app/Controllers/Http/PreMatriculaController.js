@@ -41,11 +41,14 @@ class PreMatriculaController {
       .replace("(", "")
       .replace(")", "")
       .replace("-", "")
+      .replace(" ", "")
       .replace(" ", "");
   }
 
   async index({ view, request }) {
-    const matriculas = await Matricula.query().paginate(request.qs.page || 1);
+    const matriculas = await Matricula.query()
+      .orderBy("created_at")
+      .paginate(request.qs.page || 1);
 
     return view.render("admin.matriculas.index", {
       matriculas: matriculas.toJSON(),
@@ -103,7 +106,12 @@ class PreMatriculaController {
       .where({ id })
       .with("forma_pagamento")
       .with("curso")
+      .with("curso.area_estudo")
       .first();
+
+    matricula.viewed = true;
+
+    await matricula.save();
 
     return view.render("admin.matriculas.show", {
       matricula: matricula.toJSON(),
