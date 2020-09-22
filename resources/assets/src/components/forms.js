@@ -8,7 +8,10 @@ import swal from "@sweetalert/with-react";
 import { Select2 } from "./inputs";
 import { FormaPagamentoBox } from "./formaPagamento";
 
-import { contratoPosGraduacao } from "./constants";
+import {
+  contratoPosGraduacao,
+  contratoCursoProfissionalizante,
+} from "./constants";
 
 const CONTACT = 0;
 const PERSONAL = 1;
@@ -40,13 +43,13 @@ async function updateMatricula(state, dispatch) {
   }
 }
 
-async function finalizaMatricula(state) {
+async function finalizaMatricula(state, dispatch) {
   try {
     dispatch({ type: "loading" });
 
     await axios.put(`/api/matriculas/${state.matricula_id}`, state);
 
-    dispatch({ type: "loading" });
+    dispatch({ type: "loaded" });
 
     swal(
       "Concluído!",
@@ -588,21 +591,25 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
   );
 }
 
-export function ContractForm({ dispatch, state, curso, formaPagamento }) {
+export function ContractForm({
+  dispatch,
+  state,
+  curso,
+  formaPagamento,
+  valorMatricula,
+}) {
   if (state.step !== CONTRACT) return null;
 
   useEffect(() => {
     dispatch({ type: "finaliza" });
   }, [state.accept_contract]);
 
-  const valor_matricula = 100;
+  const contracts = {
+    pos: contratoPosGraduacao(state, curso, formaPagamento, valorMatricula),
+    curso: contratoCursoProfissionalizante(state, curso, formaPagamento),
+  };
 
-  const contract = contratoPosGraduacao(
-    state,
-    curso,
-    formaPagamento,
-    valor_matricula
-  );
+  const contract = contracts[curso.modalidade];
 
   return (
     <form className="modal-form">
@@ -667,7 +674,7 @@ export function ContractForm({ dispatch, state, curso, formaPagamento }) {
           type="button"
           disabled={!state.accept_contract}
           className="btn form-btn btn-primary w-md-75"
-          onClick={() => finalizaMatricula(state)}
+          onClick={() => finalizaMatricula(state, dispatch)}
         >
           Finalizar
         </button>

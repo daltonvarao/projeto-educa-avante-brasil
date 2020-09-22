@@ -12,7 +12,6 @@ class ConfiguracoesSchema extends Schema {
       table.string("pos_grad_url");
       table.decimal("pos_grad_valor_matricula");
       table.string("cur_prof_url");
-      table.decimal("cur_prof_valor_matricula");
 
       table.timestamps();
     });

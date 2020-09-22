@@ -144,7 +144,10 @@ function Form({ edit, curso }) {
           <div className="form-group-inline">
             <Select2
               name="Instituição"
-              options={[["Fael", "Fael"]]}
+              options={[
+                ["Fael", "Fael"],
+                ["Forma Cursos", "Forma Cursos"],
+              ]}
               setSelected={setInstituicao}
               defaultValue={instituicao}
             />

@@ -17,10 +17,10 @@
         <tbody>
           @each(matricula in matriculas.data)
           <tr>
-            <td class="table-title">{{ matricula.nome }}</td>
+            <td class="table-title relative">{{ matricula.nome }} {{ !matricula.viewed ? el('<span class="badge">Nova</span>') : '' }} </td>
             <td class="table-detail email">{{matricula.email}}</td>
             <td class="table-detail">{{matricula.telefone}}</td>
-            <td class="table-link"><a href="{{ route('admin.matriculas.show', id=matricula.id) }}" >ver</a></td>
+            <td class="table-link"><a href="{{ route('admin.matriculas.show', id=matricula.id) }}" >Ver</a></td>
           </tr>
           @else
             @!component('components.empty_message')

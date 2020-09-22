@@ -34,6 +34,7 @@ class ConfiguracaoController {
       "pos_grad_url",
       "cur_prof_url",
       "facebook_url",
+      "pos_grad_valor_matricula",
     ]);
 
     const config = await Configuracao.find(1);

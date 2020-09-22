@@ -18,11 +18,15 @@
         <input id="facebook" class="form-input" type="url" name="facebook_url" placeholder="https://projetoeducavantebrasil.com" value="{{ request.configs.facebook_url || '' }}">
       </div>
       <div class="form-group">
-        <label for="posgrad">Link para Pós Graduação</label>
+        <label for="posgrad">Sala de Aula Pós Graduação</label>
         <input id="posgrad" class="form-input" type="url" name="pos_grad_url" placeholder="https://projetoeducavantebrasil.com" value="{{ request.configs.pos_grad_url || '' }}">
       </div>
       <div class="form-group">
-        <label for="cursos">Link para Cursos Profissionalizantes</label>
+        <label for="posgrad_valor_matricula">Valor da Matrícula Pós Graduação</label>
+        <input id="posgrad_valor_matricula" class="form-input" type="number" name="pos_grad_valor_matricula"value="{{ request.configs.pos_grad_valor_matricula || '0' }}">
+      </div>
+      <div class="form-group">
+        <label for="cursos">Sala de Aula Cursos Profissionalizantes</label>
         <input id="cursos" class="form-input" type="url" name="cur_prof_url" placeholder="https://projetoeducavantebrasil.com" value="{{ request.configs.cur_prof_url || '' }}">
       </div>
       <button class="form-btn btn-primary">Salvar</button>

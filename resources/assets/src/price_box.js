@@ -33,9 +33,10 @@ function SubscriptionModal({
   cursoId,
   selected,
   curso,
+  valorMatricula,
 }) {
   const initialState = {
-    step: CONTRACT,
+    step: CONTACT,
     nome: "",
     email: "",
     telefone: "",
@@ -137,6 +138,7 @@ function SubscriptionModal({
             state={state}
             dispatch={dispatch}
             curso={curso}
+            valorMatricula={valorMatricula}
             formaPagamento={
               formaPagamentos.filter((item) => item.id === selected)[0]
             }
@@ -147,7 +149,7 @@ function SubscriptionModal({
   );
 }
 
-function PriceBox({ formaPagamentos, curso }) {
+function PriceBox({ formaPagamentos, curso, valorMatricula }) {
   const [selected, setSelected] = useState(formaPagamentos[0]?.id);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(1);
@@ -167,6 +169,7 @@ function PriceBox({ formaPagamentos, curso }) {
         selected={selected}
         cursoId={curso.id}
         curso={curso}
+        valorMatricula={valorMatricula}
       />
 
       <button className="subscribe-link" onClick={() => setModalVisible(true)}>
@@ -195,9 +198,14 @@ if (container) {
   );
 
   const curso = JSON.parse(container.getAttribute("data-curso"));
+  const valorMatricula = container.getAttribute("data-valor-matricula");
 
   ReactDOM.render(
-    <PriceBox curso={curso} formaPagamentos={formaPagamentos} />,
+    <PriceBox
+      curso={curso}
+      formaPagamentos={formaPagamentos}
+      valorMatricula={valorMatricula}
+    />,
     container
   );
 }
