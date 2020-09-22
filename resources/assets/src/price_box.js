@@ -32,6 +32,8 @@ function SubscriptionModal({
   formaPagamentos,
   cursoId,
   selected,
+  curso,
+  valorMatricula,
 }) {
   const initialState = {
     step: CONTACT,
@@ -132,14 +134,22 @@ function SubscriptionModal({
             formaPagamentos={formaPagamentos}
             selected={selected}
           />
-          <ContractForm state={state} dispatch={dispatch} />
+          <ContractForm
+            state={state}
+            dispatch={dispatch}
+            curso={curso}
+            valorMatricula={valorMatricula}
+            formaPagamento={
+              formaPagamentos.filter((item) => item.id === selected)[0]
+            }
+          />
         </div>
       )}
     </Modal>
   );
 }
 
-function PriceBox({ formaPagamentos, cursoId }) {
+function PriceBox({ formaPagamentos, curso, valorMatricula }) {
   const [selected, setSelected] = useState(formaPagamentos[0]?.id);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(1);
@@ -157,7 +167,9 @@ function PriceBox({ formaPagamentos, cursoId }) {
         setVisible={setModalVisible}
         formaPagamentos={formaPagamentos}
         selected={selected}
-        cursoId={cursoId}
+        cursoId={curso.id}
+        curso={curso}
+        valorMatricula={valorMatricula}
       />
 
       <button className="subscribe-link" onClick={() => setModalVisible(true)}>
@@ -182,13 +194,18 @@ const container = document.querySelector("#price-box");
 
 if (container) {
   const formaPagamentos = JSON.parse(
-    container.querySelector('input[type="hidden"]').value
+    container.getAttribute("data-forma-pagamento")
   );
 
-  const cursoId = container.getAttribute("data-curso-id");
+  const curso = JSON.parse(container.getAttribute("data-curso"));
+  const valorMatricula = container.getAttribute("data-valor-matricula");
 
   ReactDOM.render(
-    <PriceBox cursoId={cursoId} formaPagamentos={formaPagamentos} />,
+    <PriceBox
+      curso={curso}
+      formaPagamentos={formaPagamentos}
+      valorMatricula={valorMatricula}
+    />,
     container
   );
 }
