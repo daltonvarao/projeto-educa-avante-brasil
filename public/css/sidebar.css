@@ -13,11 +13,6 @@
   z-index: 5;
 }
 
-.sidebar-collapsed .sidebar-subtitle,
-.sidebar-collapsed .sidebar-nav {
-  display: none;
-}
-
 .sidebar-header {
   display: flex;
   justify-content: space-between;
@@ -39,7 +34,10 @@
 
 .sidebar-nav {
   display: flex;
+  overflow: hidden;
   flex-direction: column;
+
+  transition: max-height 200ms linear;
 }
 
 .sidebar-link {
@@ -73,6 +71,12 @@
   color: #fff;
 
   transition: background-color 300ms linear, color 300ms linear;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar-nav {
+    max-height: 0;
+  }
 }
 
 @media screen and (min-width: 768px) {

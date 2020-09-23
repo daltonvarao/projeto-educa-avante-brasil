@@ -70,11 +70,14 @@ if (currentYear) {
 // sidebar
 
 const sidebarCollapseBtn = document.querySelector(".sidebar-button");
-const sidebar = document.querySelector(".sidebar");
+const sidebar = document.querySelector(".sidebar-nav");
 
 if (sidebar) {
+  console.log(sidebar.style.maxHeight);
   sidebarCollapseBtn.onclick = function () {
-    sidebar.classList.toggle("sidebar-collapsed");
+    if (sidebar.style.maxHeight) {
+      sidebar.style.maxHeight = null;
+    } else sidebar.style.maxHeight = `${sidebar.scrollHeight}px`;
   };
 }
 

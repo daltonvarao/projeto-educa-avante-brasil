@@ -17,7 +17,7 @@
         <tbody>
           @each(matricula in matriculas.data)
           <tr>
-            <td class="table-title relative">{{ matricula.nome }} {{ !matricula.viewed ? el('<span class="badge">Nova</span>') : '' }} </td>
+            <td class="table-title relative {{ !matricula.viewed ? 'bolder' : '' }}">{{ matricula.nome }} {{ !matricula.viewed ? el('<span class="badge">Novo</span>') : '' }} </td>
             <td class="table-detail email">{{matricula.email}}</td>
             <td class="table-detail">{{matricula.telefone}}</td>
             <td class="table-link"><a href="{{ route('admin.matriculas.show', id=matricula.id) }}" >Ver</a></td>

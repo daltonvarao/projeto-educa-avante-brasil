@@ -118,6 +118,10 @@ code {
   color: #909090;
 }
 
+.bolder {
+  font-weight: bold !important;
+}
+
 .logout-btn {
   color: var(--primary);
   font-size: 20px;
