@@ -32,27 +32,29 @@
         <div class="course-description card shadow">
           {{{ curso.sobre }}}
         </div>
-        <h2 class="course-grid-title">Grade curricular</h2>
-        <div class="course-table shadow">
-          <table>
-            <thead>
-              <th class="text-left">Disciplina</th>
-              <th class="text-center">Carga horária</th>
-            </thead>
-            <tbody>
-              @each(ch in curso.carga_horarias)
+        @if(curso.carga_horarias.size)
+          <h2 class="course-grid-title">Grade curricular</h2>
+          <div class="course-table shadow">
+            <table>
+              <thead>
+                <th class="text-left">Disciplina</th>
+                <th class="text-center">Carga horária</th>
+              </thead>
+              <tbody>
+                @each(ch in curso.carga_horarias)
+                  <tr>
+                    <td>{{ch.disciplina}}</td>
+                    <td class="text-center">{{ch.carga_horaria}}</td>
+                  </tr>
+                @endeach
                 <tr>
-                  <td>{{ch.disciplina}}</td>
-                  <td class="text-center">{{ch.carga_horaria}}</td>
+                  <td>Total</td>
+                  <td class="text-center">{{curso.ch_total}}</td>
                 </tr>
-              @endeach
-              <tr>
-                <td>Total</td>
-                <td class="text-center">{{curso.ch_total}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
+        @endif
       </div>
       <div
         class="price-box shadow"

@@ -198,7 +198,7 @@ export const contratoCursoProfissionalizante = (
 
   return `
 
-CONTRATO DE BOLSA DE ESTUDOS DO PROJETO EDUCABRASIL
+CONTRATO DE BOLSA DE ESTUDOS DO PROJETO EDUCA AVANTE BRASIL
 
 Pelo presente instrumento particular e na melhor forma de direito, as partes:
 
