@@ -2,6 +2,7 @@
 
 const Matricula = use("App/Models/PreMatricula");
 const Mail = use("Mail");
+const Helpers = use("Helpers");
 
 class PreMatriculaController {
   matriculaData() {
@@ -86,6 +87,7 @@ class PreMatriculaController {
         await Mail.send("emails.matricula", matriculaData, (message) => {
           message
             .from("atendimento@projetoeducavantebrasil.com")
+            .embed(Helpers.publicPath("assets/background.jpg"), "darthvader")
             .subject(
               "Parabéns, agora você faz parte do melhor canal de distribuição de bolsas"
             )
