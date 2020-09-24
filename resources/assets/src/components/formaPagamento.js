@@ -92,7 +92,7 @@ const FormaPagamento = ({
       <div className="form-group-inline">
         <Select2
           name="Parcelas"
-          options={[1, 6, 9, 12, 15, 18].map((item) => [item, item])}
+          options={[1, 2, 3, 6, 9, 12, 15, 18].map((item) => [item, item])}
           defaultValue={data.parcelas}
           setSelected={(value) => {
             let newState = [...formasPagamentos];
