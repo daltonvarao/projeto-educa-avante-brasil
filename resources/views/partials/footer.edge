@@ -1,11 +1,11 @@
 <footer>
   <div class="footer-content">
     <div class="footer-contact">
-      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ route(request.configs.telefone_wpp) }}">
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">
         <i class="mdi mdi-whatsapp"></i>
-        Whatsapp 
+        Whatsapp
       </a>
-      <a class="btn btn-blue" href="{{ route(request.configs.facebook_url) }}">
+      <a class="btn btn-blue" href="{{ request.configs.facebook_url }}">
         <i class="mdi mdi-facebook"></i>
         Facebook 
       </a>
