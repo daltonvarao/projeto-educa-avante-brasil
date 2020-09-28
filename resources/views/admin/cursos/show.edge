@@ -32,7 +32,7 @@
         <div class="course-description card shadow">
           {{{ curso.sobre }}}
         </div>
-        @if(curso.carga_horarias.size)
+        @if(curso.carga_horarias.length > 0)
           <h2 class="course-grid-title">Grade curricular</h2>
           <div class="course-table shadow">
             <table>
