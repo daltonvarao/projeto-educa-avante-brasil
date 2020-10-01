@@ -18,10 +18,12 @@
             <i class="mdi mdi-calendar"></i>
             Duração: {{ curso.duracao}}
           </li>
-          <li class="text-white">
-            <i class="mdi mdi-clock-outline"></i>
-            CH: {{curso.ch_total }}h
-          </li>
+          @if(curso.ch_total)
+            <li class="text-white">
+              <i class="mdi mdi-clock-outline"></i>
+              CH: {{curso.ch_total }}h
+            </li>
+          @endif
         </ul>
       </div>
     </div>
