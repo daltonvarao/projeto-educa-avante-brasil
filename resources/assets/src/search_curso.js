@@ -20,7 +20,7 @@ function CursoForm({ modalidade }) {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/areas");
+        const response = await axios.get(`/api/areas?modalidade=${modalidade}`);
         setAreas(response.data.areas);
       } catch (error) {}
     })();
