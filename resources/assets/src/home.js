@@ -50,17 +50,15 @@ function Form() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/collections");
-        const { data } = response;
-
-        setAreas(data.areas);
+        const response = await axios.get(`/api/areas?modalidade=${modalidade}`);
+        setAreas(response.data.areas);
       } catch (error) {}
     })();
 
     socket.on("cursos", function ({ cursos: data }) {
       setCursos(data);
     });
-  }, []);
+  }, [modalidade]);
 
   return (
     <React.Fragment>

@@ -36,8 +36,14 @@ class ApiController {
     }
   }
 
-  async areas() {
-    const areas = await AreaEstudo.query().has("cursos").fetch();
+  async areas({ request }) {
+    const modalidade = request.qs.modalidade;
+
+    const areas = await AreaEstudo.query()
+      .whereHas("cursos", (builder) => {
+        if (modalidade) builder.where({ modalidade });
+      })
+      .fetch();
 
     return {
       areas: areas.toJSON(),

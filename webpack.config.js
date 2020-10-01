@@ -15,10 +15,7 @@ function scriptRules() {
 module.exports = {
   mode: process.env.NODE_ENV || "development",
   entry: "./resources/assets/src/app.js",
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
-  },
+
   output: {
     path: path.resolve(__dirname, "public", "js"),
     filename: "react_bundle.js",
