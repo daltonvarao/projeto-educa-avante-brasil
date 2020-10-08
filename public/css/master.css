@@ -588,68 +588,48 @@ footer {
   overflow: auto;
 }
 
-footer .footer-content {
+footer {
+  padding: 0 2rem;
+}
+
+.footer-content {
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem;
 }
 
-footer .footer-content .info-links {
-  margin-bottom: 2rem;
+.info-links + .info-links {
+  margin-top: 2rem;
 }
 
-footer .footer-content .info-links .info-link {
+.info-links h4 {
+  color: var(--primary);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.info-link {
   display: flex;
   align-items: center;
 }
 
-footer .footer-content .info-links .info-link .btn-link {
+.info-link .btn-link {
   color: var(--primary);
 }
 
-footer .footer-content .info-links .info-link a {
+.info-link a {
   font-size: 16px;
   color: var(--dark);
 }
 
-footer .footer-content .info-links .info-link + .info-link {
+.info-link + .info-link {
   margin-top: 0.5rem;
 }
 
-footer .footer-content .footer-contact {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-footer .footer-content .footer-logo {
+.footer-logo {
   align-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-footer .footer-content .footer-contact a {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 2rem;
-  justify-content: center;
-}
-
-footer .footer-content .footer-contact a + a {
-  margin-top: 0.5rem;
-}
-
-footer .footer-content .footer-contact a svg {
-  font-size: 10px;
-}
-
-.footer-copy {
-  font-size: 14px;
-  color: #333;
-  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-credits {
@@ -662,7 +642,11 @@ footer .footer-content .footer-contact a svg {
   border-top: 1px solid #bbb5;
 }
 
-.footer-credits a {
+.footer-copy {
+  margin-bottom: .5rem;
+}
+
+.footer-credit a {
   color: var(--primary);
   font-weight: 700;
 }
@@ -1228,30 +1212,33 @@ h1 + .actions-buttons {
     bottom: 0;
   }
 
-  footer .footer-content {
+  .footer-content {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 2.5rem;
   }
 
-  footer .footer-content .info-links {
-    margin-bottom: 0;
+  .section-links {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
   }
 
-  footer .footer-content .footer-logo {
+  .info-links + .info-links {
+    margin-top: 0;
+  }
+
+  .footer-logo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
-  footer .footer-content .footer-contact {
-    margin-bottom: 0;
-  }
-
-  footer .footer-content .footer-contact a {
-    width: 220px;
+  .footer-credits {
+    display: flex;
+    justify-content: space-between;
   }
 
   /* SHOW CURSO */
