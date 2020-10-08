@@ -699,9 +699,14 @@ hr {
 
 /* HOME PAGE CURSO */
 .card-curso {
-  padding: 1rem 1.5rem;
-  margin: 0 auto;
-  width: 100%;
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .curso {
@@ -1255,8 +1260,7 @@ h1 + .actions-buttons {
   }
 
   /* SHOW CURSO */
-  .course-price-boxes,
-  .card-curso {
+  .course-price-boxes {
     margin: 0 auto;
     max-width: 1060px;
   }
