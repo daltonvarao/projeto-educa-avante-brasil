@@ -1,42 +1,51 @@
 <footer>
   <div class="footer-content">
-    <div class="footer-contact">
-      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">
-        <i class="mdi mdi-whatsapp"></i>
-        Whatsapp
-      </a>
-      <a class="btn btn-blue" href="{{ request.configs.facebook_url }}">
-        <i class="mdi mdi-facebook"></i>
-        Facebook 
-      </a>
-    </div>
-
-    <div class="info-links">
-      <div class="info-link">
-        <i class="btn-link" data-feather="chevron-right"></i>
-        <a href="{{ route('sobre.index') }}">Sobre nós</a>
-      </div>
-      <div class="info-link">
-        <i class="btn-link" data-feather="chevron-right"></i>
-        <a href="/cursos/pos-graduacao">Pós graduação</a>
-      </div>
-      <div class="info-link">
-        <i class="btn-link" data-feather="chevron-right"></i>
-        <a href="/cursos/profissionalizantes">Cursos Profissionalizantes</a>
-      </div>
-    </div>
-
     <div class="footer-logo">
       @inlineSvg('assets/logo')
-      <div class="footer-copy">
-        <span>&copy;</span> <span id="current-year"></span> -
-        Todos os direitos reservados.
+    </div>
+    
+    <div class="section-links">
+
+      <div class="info-links">
+        <h4>empresa</h4>
+        <div class="info-link">
+          <a href="{{ route('sobre.index') }}">Sobre nós</a>
+        </div>
+        <div class="info-link">
+          <a href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Fale conosco</a>
+        </div>
+      </div>
+      
+      <div class="info-links">
+        <h4>cursos</h4>
+        <div class="info-link">
+          <a href="/cursos/pos-graduacao">Pós graduação</a>
+        </div>
+        <div class="info-link">
+          <a href="/cursos/profissionalizantes">Cursos Profissionalizantes</a>
+        </div>
+      </div>
+      
+      <div class="info-links">
+        <h4>social</h4>
+        <div class="info-link">
+          <a href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Whatsapp</a>
+        </div>
+        <div class="info-link">
+          <a href="{{ request.configs.facebook_url }}">Facebook</a>
+        </div>
       </div>
     </div>
-
+      
+    
   </div>
   <div class="footer-credits">
-    Desenvolvido por 
-    <a href="#">Dalton Felipe</a>
+    <div class="footer-copy">
+      <span>&copy;</span> <span id="current-year"></span> -
+      Todos os direitos reservados.
+    </div>
+    <div class="footer-credit">
+      Desenvolvido por <a href="#">Dygital</a>
+    </div>
   </div>
 </footer>
