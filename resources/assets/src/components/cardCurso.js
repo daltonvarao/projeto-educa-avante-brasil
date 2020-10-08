@@ -2,20 +2,21 @@ import React from "react";
 
 import { FormattedNumber, IntlProvider } from "react-intl";
 
-export default function Curso({ data }) {
+export default function Curso({ data, closeTab }) {
   const pg = data?.forma_pagamentos[0];
 
   return (
-    <div
-      className="curso shadow"
-      onClick={() => (location.href = `/cursos/${data.id}`)}
-    >
+    <div className="curso shadow">
+      <button
+        onClick={closeTab}
+        className="close-curso shadow mdi mdi-chevron-left mdi-24px"
+      />
       <div className="curso-box">
         <h1 className="course-title">{data.nome}</h1>
         <div className="course-info">
           <ul>
             <li>
-              <i className="mdi mdi-office-building-outline"></i>
+              <i className="mdi mdi-bank"></i>
               Instituição: {data.instituicao}
             </li>
             <li>
@@ -23,15 +24,15 @@ export default function Curso({ data }) {
               Tipo: {data.tipo}
             </li>
             <li>
-              <i className="mdi mdi-calendar"></i>
+              <i className="mdi mdi-clock-outline"></i>
               Duração: {data.duracao}
             </li>
           </ul>
         </div>
       </div>
 
-      <IntlProvider locale="pt-br" defaultLocale="pt-br">
-        <div className="price-card">
+      <div className="price-card">
+        <IntlProvider locale="pt-br" defaultLocale="pt-br">
           <span className="old-price">
             {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}{" "}
             <FormattedNumber
@@ -66,8 +67,11 @@ export default function Curso({ data }) {
               {pg?.tipo == "cartao" ? "Cartão" : "Boleto"} em {pg?.conclusao}
             </span>
           </div>
-        </div>
-      </IntlProvider>
+        </IntlProvider>
+      </div>
+      <a className="open-curso" href={`/cursos/${data.id}`}>
+        Ver mais detalhes <span className="mdi mdi-arrow-right"></span>
+      </a>
     </div>
   );
 }

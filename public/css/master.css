@@ -705,48 +705,71 @@ hr {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 100;
 
-  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+
+  animation: slide-tab 0.25s linear forwards;
+}
+
+.close-tab {
+  animation: slide-tab 0.25s linear reverse forwards;
+}
+
+@keyframes slide-tab {
+  from {
+    left: -340px;
+  }
+
+  to {
+    left: 0;
+  }
 }
 
 .curso {
   background-color: #fff;
-  border-radius: 8px;
+  margin-top: 2rem;
+  width: 320px;
+  max-width: 320px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
   cursor: pointer;
-  padding: 1.5rem 1rem;
-  position: relative;
+  padding: 2.5rem 2rem;
 
-  transition: all 600ms;
+  padding-right: 2.5rem;
+  position: relative;
+}
+
+.close-curso {
+  position: absolute;
+  background: var(--primary);
+  height: 72px;
+  right: 0;
+  top: calc(50% - 36px);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: #fff;
+  width: 36px;
+}
+
+.open-curso {
+  display: block;
+  text-align: center;
+  width: 100%;
+  color: var(--primary);
+  margin-top: 1rem;
 }
 
 .curso + .curso {
   margin-top: 1rem;
 }
 
-.curso:hover {
-  background-color: var(--primary);
-}
-
-.curso:hover .course-title,
-.curso:hover .course-info ul li {
-  color: white;
-}
-
-.curso:hover::after {
-  font-family: "Material Design Icons";
-  content: "\F0133";
-  position: absolute;
-  /* top: calc(50% - 32px); */
-  color: var(--white);
-  font-size: 64px;
-  left: 12px;
-  top: 12px;
-}
-
 /* SHOW CURSO */
 .course-container {
   background-color: var(--primary);
-  padding: 0.75rem;
+  /* padding: 0.75rem; */
 }
 
 .course-price-boxes {
@@ -754,18 +777,13 @@ hr {
 }
 
 .course-title {
-  margin: 1.5rem 0;
+  font-size: 20px;
   color: var(--primary);
   text-align: center;
 }
 
-.curso .course-title {
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
 .course-info {
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .course-info ul {
@@ -782,12 +800,13 @@ hr {
 .course-info ul li {
   list-style: none;
   font-weight: 600;
+  text-transform: uppercase;
   color: var(--primary);
   font-size: 14px;
 }
 
-.curso .course-info ul li {
-  font-size: 16px;
+.course-info ul li i {
+  margin-right: 0.25rem;
 }
 
 .course-description p {
@@ -1280,28 +1299,28 @@ h1 + .actions-buttons {
   }
 
   .curso {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    max-width: 360px;
+    width: 360px;
+    padding: 3rem;
   }
 
-  .curso .course-info,
+  /* .curso .course-info,
   .curso .course-info ul {
     margin-bottom: 0;
-  }
+  } */
 
-  .curso .price-card {
+  /* .curso .price-card {
     margin-left: 1rem;
-  }
+  } */
 
-  .curso .course-title {
+  /* .curso .course-title {
     text-align: left;
     font-size: 32px;
-  }
+  } */
 
-  .curso ul li {
+  /* .curso ul li {
     text-align: left;
-  }
+  } */
 
   .course-box {
     margin-right: 0.75rem;
@@ -1309,21 +1328,21 @@ h1 + .actions-buttons {
     margin-bottom: 1rem;
     margin-right: 1.5rem;
   }
-
+  /* 
   .course-info ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
+  } */
 
-  .course-info ul li + li {
+  /* .course-info ul li + li {
     margin-top: 0;
     margin-left: 0.5rem;
-  }
-
+  } */
+  /* 
   .course-description p {
     font-size: 16px;
-  }
+  } */
 
   .course-table {
     margin-bottom: 0;
@@ -1425,10 +1444,6 @@ h1 + .actions-buttons {
 }
 
 @media (min-width: 1024px) {
-  .curso {
-    padding: 2rem;
-  }
-
   .cursos {
     max-width: 80%;
   }
