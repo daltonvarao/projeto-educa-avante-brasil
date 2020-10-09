@@ -902,11 +902,17 @@ hr {
   text-align: center;
   padding: 0.75rem;
   border-radius: 5px;
-  background: var(--orange-logo);
+  background: var(--yellow-logo);
   display: block;
   width: 100%;
   color: var(--white);
   font-size: 18px;
+
+  transition: all 200ms;
+}
+
+.subscribe-link:hover {
+  background-color: rgb(211, 169, 4);
 }
 
 .price-box p {
