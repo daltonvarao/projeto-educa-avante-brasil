@@ -32,6 +32,16 @@ function Form() {
   const [curso, setCurso] = useState("default");
   const [selectedCurso, setSelectedCurso] = useState(false);
 
+  function closeTab(ev) {
+    if (ev.target.matches(".card-curso")) {
+      document.querySelector(".curso").classList.add("close-tab");
+    } else {
+      ev.target.parentElement.classList.add("close-tab");
+    }
+
+    setTimeout(() => setSelectedCurso(null), 300);
+  }
+
   useEffect(() => {
     if (modalidade && area) {
       socket.emit("inputChange", {
@@ -78,8 +88,8 @@ function Form() {
       </form>
 
       {selectedCurso && area && modalidade ? (
-        <div className="card-curso">
-          <Curso data={selectedCurso} />
+        <div className="card-curso" onClick={closeTab}>
+          <Curso home closeTab={closeTab} data={selectedCurso} />
         </div>
       ) : null}
     </React.Fragment>

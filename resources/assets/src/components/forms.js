@@ -558,7 +558,7 @@ export function PaymentForm({ dispatch, state, formaPagamentos, selected }) {
       <h2 className="modal-form-title">Informações de pagamento</h2>
       <h6 className="modal-form-subtitle">Confirme a forma de pagamento</h6>
 
-      <div className="price-box">
+      <div className="price-box padding-0">
         {formaPagamentos.map((pg, index) => (
           <FormaPagamentoBox
             setSelected={setSelected}
