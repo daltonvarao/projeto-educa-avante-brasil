@@ -12,7 +12,7 @@
           <a href="{{ route('sobre.index') }}">Sobre nós</a>
         </div>
         <div class="info-link">
-          <a href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Fale conosco</a>
+          <a target="_blank" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Fale conosco</a>
         </div>
       </div>
       
@@ -29,10 +29,10 @@
       <div class="info-links">
         <h4>social</h4>
         <div class="info-link">
-          <a href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Whatsapp</a>
+          <a target="_blank" href="https://api.whatsapp.com/send?phone={{ request.configs.telefone_wpp }}">Whatsapp</a>
         </div>
         <div class="info-link">
-          <a href="{{ request.configs.facebook_url }}">Facebook</a>
+          <a target="_blank" href="{{ request.configs.facebook_url }}">Facebook</a>
         </div>
       </div>
     </div>
