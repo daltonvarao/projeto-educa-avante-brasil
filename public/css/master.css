@@ -604,14 +604,15 @@ footer {
 
 .info-links h4 {
   color: var(--primary);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .info-link {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .info-link .btn-link {
@@ -619,9 +620,34 @@ footer {
 }
 
 .info-link a {
-  font-size: 16px;
-  color: var(--dark);
+  font-size: 14px;
+  color: var(--secondary);
 }
+
+.info-link a:hover {
+  text-decoration: underline;
+}
+
+/* .info-link::after {
+  font-family: "Material Design Icons";
+  content: "\F0054";
+  position: absolute;
+  color: var(--secondary);
+  font-size: 18px;
+  left: -23px;
+  top: 0;
+  transition: all 200ms;
+}
+
+.info-link:hover::after {
+  font-family: "Material Design Icons";
+  content: "\F0054";
+  position: absolute;
+  color: var(--secondary);
+  font-size: 18px;
+  left: -18px;
+  transition: all 200ms;
+} */
 
 .info-link + .info-link {
   margin-top: 0.5rem;
@@ -643,7 +669,7 @@ footer {
 }
 
 .footer-copy {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer-credit a {
@@ -1273,13 +1299,12 @@ h1 + .actions-buttons {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 2.5rem;
   }
 
   .section-links {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 70%;
   }
 
   .info-links + .info-links {
@@ -1470,5 +1495,8 @@ h1 + .actions-buttons {
 
   .cursos .curso {
     width: 340px;
+  }
+
+  .footer-content {
   }
 }
