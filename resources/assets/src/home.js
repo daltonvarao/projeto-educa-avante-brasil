@@ -34,8 +34,7 @@ function Form() {
 
   function closeTab(ev) {
     if (ev.target.matches(".card-curso")) {
-      setSelectedCurso(null);
-      ev.target.classList.add("close-tab");
+      document.querySelector(".curso").classList.add("close-tab");
     } else {
       ev.target.parentElement.classList.add("close-tab");
     }
@@ -90,7 +89,7 @@ function Form() {
 
       {selectedCurso && area && modalidade ? (
         <div className="card-curso" onClick={closeTab}>
-          <Curso closeTab={closeTab} data={selectedCurso} />
+          <Curso home closeTab={closeTab} data={selectedCurso} />
         </div>
       ) : null}
     </React.Fragment>
