@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300.400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300.400,500,600,700,800,900");
 
 :root {
   --primary: #49996f;
@@ -699,90 +699,127 @@ hr {
 
 /* HOME PAGE CURSO */
 .card-curso {
-  padding: 1rem 1.5rem;
-  margin: 0 auto;
-  width: 100%;
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+
+  animation: slide-tab 0.25s linear forwards;
+}
+
+.close-tab {
+  animation: slide-tab 0.25s linear reverse forwards;
+}
+
+@keyframes slide-tab {
+  from {
+    left: -340px;
+  }
+
+  to {
+    left: 0;
+  }
 }
 
 .curso {
   background-color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+  width: 320px;
+  max-width: 320px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 2.5rem 2rem;
+
+  padding-right: 2.5rem;
   position: relative;
 
-  transition: all 600ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.curso.fully-rounded {
+  border-radius: 12px;
+  margin-top: 0;
+  width: 100%;
+  padding: 2.5rem 2rem;
+}
+
+.close-curso {
+  position: absolute;
+  background: var(--primary);
+  height: 72px;
+  right: 0;
+  top: calc(50% - 36px);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: #fff;
+  width: 36px;
+}
+
+.open-curso {
+  display: block;
+  text-align: center;
+  width: 100%;
+  color: var(--primary);
+  margin-top: 1rem;
 }
 
 .curso + .curso {
   margin-top: 1rem;
 }
 
-.curso:hover {
-  background-color: var(--primary);
-}
-
-.curso:hover .course-title,
-.curso:hover .course-info ul li {
-  color: white;
-}
-
-.curso:hover::after {
-  font-family: "Material Design Icons";
-  content: "\F0133";
-  position: absolute;
-  /* top: calc(50% - 32px); */
-  color: var(--white);
-  font-size: 64px;
-  left: 12px;
-  top: 12px;
-}
-
 /* SHOW CURSO */
 .course-container {
   background-color: var(--primary);
-  padding: 0.75rem;
+  padding: 1.5rem 1rem;
 }
 
 .course-price-boxes {
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+.course-container .course-title {
+  margin-bottom: 1.5rem;
 }
 
 .course-title {
-  margin: 1.5rem 0;
+  font-size: 20px;
   color: var(--primary);
   text-align: center;
 }
 
-.curso .course-title {
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
 .course-info {
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 }
 
-.course-info ul {
-  margin-bottom: 0.75rem;
-  display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr;
-  grid-gap: 0.5rem;
+.curso-info ul li + li,
+.course-info ul li + li {
+  margin-top: 0.5rem;
 }
 
 .curso .course-info ul {
   grid-template-columns: 1fr;
 }
 
+.curso-info ul li,
 .course-info ul li {
   list-style: none;
   font-weight: 600;
+  text-transform: uppercase;
   color: var(--primary);
   font-size: 14px;
 }
 
-.curso .course-info ul li {
-  font-size: 16px;
+.course-info ul li i {
+  margin-right: 0.25rem;
 }
 
 .course-description p {
@@ -841,9 +878,14 @@ hr {
 }
 
 .price-box {
-  background: var(--primary);
+  background: var(--white);
   padding: 1.5rem;
+  margin-bottom: 1rem;
   border-radius: 10px;
+}
+
+.price-box.padding-0 {
+  padding: 1.5rem 0;
 }
 
 .subscribe-link {
@@ -858,31 +900,32 @@ hr {
 }
 
 .price-box p {
-  color: var(--white);
+  color: var(--secondary);
   font-size: 14px;
   padding: 0.75rem 0;
 }
 
 .price-card {
-  background-color: var(--primary);
-  color: #fff;
+  background-color: var(--white);
+  color: #676767;
   padding: 1rem;
   border-radius: 10px;
+
   display: flex;
-  flex-direction: column;
+
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: 2px solid white;
+  justify-content: space-between;
+
+  border: 1px solid #d5d5d5;
 
   transition: all 0.4s;
 }
 
 .payment-selected,
 .price-card:hover {
-  background: var(--white);
-  border-color: var(--primary);
-  color: #333;
+  background: var(--primary);
+  border-color: var(--white);
+  color: #fff;
 }
 
 .curso .price-card:hover {
@@ -895,43 +938,53 @@ hr {
   margin-top: 1rem;
 }
 
-.price-card span + span {
-  margin-top: 0.5rem;
+.payment-info {
+  display: flex;
+  align-items: center;
+}
+
+.payment-info input {
+  margin-right: 0.75rem;
 }
 
 .old-price {
-  font-size: 14px;
-  font-weight: lighter;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 0.25rem;
+
   text-decoration: line-through;
 }
 
 .price {
-  font-size: 30px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .discount-percentage {
+  background: #feeded;
+  height: 24px;
+  border-radius: 12px;
+  color: #fa977a;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-card:hover div .discount-percentage,
+.payment-selected div .discount-percentage {
   background: var(--yellow-logo);
-  padding: 0.5rem;
-  border-radius: 10px;
-  font-weight: bold;
-  color: var(--white);
-  font-size: 20px;
+  color: #fff;
 }
 
 .discount-price {
-  font-size: 14px;
-}
-
-.payment-info {
-  margin-top: 0.5rem;
-  grid-row-gap: 0.25rem;
+  font-size: 12px;
 }
 
 .payment {
   font-size: 12px;
-  margin: 0 !important;
-  font-weight: 300;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 .loader-light .loader {
@@ -974,6 +1027,10 @@ hr {
   padding: 1.5rem;
 }
 
+.cursos .curso {
+  max-width: none;
+}
+
 /* MODAL */
 .modal-container {
   position: fixed;
@@ -994,7 +1051,7 @@ hr {
 .modal {
   background-color: #fff;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   border-radius: 8px;
   width: 100%;
   position: relative;
@@ -1255,8 +1312,7 @@ h1 + .actions-buttons {
   }
 
   /* SHOW CURSO */
-  .course-price-boxes,
-  .card-curso {
+  .course-price-boxes {
     margin: 0 auto;
     max-width: 1060px;
   }
@@ -1267,8 +1323,15 @@ h1 + .actions-buttons {
     justify-content: space-between;
   }
 
+  .course-container {
+    padding: 3rem 2rem;
+  }
+
   .course-container .course-title {
-    font-size: 42px;
+    font-size: 34px;
+    max-width: 960px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
   }
 
   .course-grid-title {
@@ -1276,27 +1339,8 @@ h1 + .actions-buttons {
   }
 
   .curso {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .curso .course-info,
-  .curso .course-info ul {
-    margin-bottom: 0;
-  }
-
-  .curso .price-card {
-    margin-left: 1rem;
-  }
-
-  .curso .course-title {
-    text-align: left;
-    font-size: 32px;
-  }
-
-  .curso ul li {
-    text-align: left;
+    max-width: 360px;
+    width: 360px;
   }
 
   .course-box {
@@ -1306,15 +1350,14 @@ h1 + .actions-buttons {
     margin-right: 1.5rem;
   }
 
-  .course-info ul {
+  .curso-info ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
 
-  .course-info ul li + li {
-    margin-top: 0;
-    margin-left: 0.5rem;
+  .curso-info ul li + li {
+    margin-left: 1.5rem;
   }
 
   .course-description p {
@@ -1361,6 +1404,13 @@ h1 + .actions-buttons {
 
   .cursos {
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .cursos .curso + .curso {
+    margin-top: 0;
   }
 
   .modal {
@@ -1421,11 +1471,17 @@ h1 + .actions-buttons {
 }
 
 @media (min-width: 1024px) {
-  .curso {
-    padding: 2rem;
+  .cursos {
+    grid-template-columns: 1fr 1fr 1fr;
   }
+}
 
+@media (min-width: 1200px) {
   .cursos {
     max-width: 80%;
+  }
+
+  .cursos .curso {
+    width: 340px;
   }
 }
