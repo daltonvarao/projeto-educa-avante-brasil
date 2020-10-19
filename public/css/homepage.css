@@ -76,6 +76,12 @@
 }
 
 @media (min-width: 768px) {
+  .homepage-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
   .homepage-container section.homepage-content {
     height: 100vh;
     display: flex;
@@ -84,39 +90,30 @@
   }
 
   .homepage-container section.homepage-content .homepage-title {
-    font-size: 50px;
-    max-width: 860px;
-    margin: 0 auto;
+    font-size: 48px;
+    max-width: 46%;
   }
 
   .homepage-container section.homepage-content .homepage-subtitle {
     font-size: 28px;
+    font-weight: 200;
   }
 
   .homepage-container section.homepage-content .homepage-inputs {
     display: flex;
-    flex-direction: row;
+
     margin: auto auto;
     max-width: 1060px;
   }
 
   .homepage-container section.homepage-content .homepage-inputs select {
-    width: 100%;
-    padding: 2rem;
+    max-width: 360px;
+    padding: 1.5rem 3rem;
 
     font-size: 20px;
   }
 
   .homepage-container section.homepage-content .homepage-inputs select option {
     font-size: 16px;
-  }
-
-  .homepage-container
-    section.homepage-content
-    .homepage-inputs
-    select
-    + select {
-    margin-top: 0;
-    margin-left: 1rem;
   }
 }

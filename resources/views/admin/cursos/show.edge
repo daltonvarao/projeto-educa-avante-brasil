@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="course-container">
       <h1 class="course-title text-white">{{ curso.nome }}</h1>
-      <div class="course-info">
+      <div class="curso-info">
         <ul>
           <li class="text-white">
             <i class="mdi mdi-office-building-outline"></i>
@@ -18,12 +18,7 @@
             <i class="mdi mdi-calendar"></i>
             Duração: {{ curso.duracao}}
           </li>
-          @if(curso.ch_total)
-            <li class="text-white">
-              <i class="mdi mdi-clock-outline"></i>
-              CH: {{curso.ch_total }}h
-            </li>
-          @endif
+
         </ul>
       </div>
     </div>
@@ -66,6 +61,5 @@
         id="price-box">
       </div>
     </div>
-
   </div>
 @endsection

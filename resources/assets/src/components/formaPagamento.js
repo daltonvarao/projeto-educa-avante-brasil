@@ -187,47 +187,44 @@ export function FormaPagamentoBox({ selected, setSelected, pg, pos }) {
       onClick={() => setSelected(pg.id)}
       htmlFor={`payment${pg.id}`}
     >
-      <input
-        type="radio"
-        name="payment-method"
-        id={`payment${pg.id}`}
-        className="align-self-start"
-        defaultChecked={pg.id === selected || pos === 0}
-      />
       <IntlProvider locale="pt-br" defaultLocale="pt-br">
-        <span className="old-price">
-          {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}
-          <FormattedNumber
-            value={pg?.valor_parcela}
-            style="currency"
-            currency="BRL"
-          />
-        </span>
-        <span className="price">
-          {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}
-          <FormattedNumber
-            value={pg?.valor_parcela * (1 - pg?.desconto / 100)}
-            style="currency"
-            currency="BRL"
-          />
-        </span>
-        <span className="discount-percentage">
-          desconto de{" "}
-          <FormattedNumber value={pg?.desconto / 100} style="percent" />
-        </span>
-        <span className="discount-price">
-          Economize{" "}
-          <FormattedNumber
-            value={pg?.valor_total - pg?.valor_liquido}
-            style="currency"
-            currency="BRL"
-          />
-        </span>
-
         <div className="payment-info">
-          <span className="payment">
-            {pg?.tipo == "cartao" ? "Cartão" : "Boleto"} em {pg?.conclusao}
-          </span>
+          <input
+            type="radio"
+            name="payment-method"
+            id={`payment${pg.id}`}
+            defaultChecked={pg.id === selected || pos === 0}
+          />
+
+          <div>
+            <div className="payment">
+              {pg?.tipo == "cartao" ? "Cartão" : "Boleto"} - {pg?.conclusao}
+            </div>
+
+            <div className="discount-percentage">
+              Economize{" "}
+              <FormattedNumber value={pg?.desconto / 100} style="percent" />
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <div className="old-price">
+            {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}
+            <FormattedNumber
+              value={pg?.valor_parcela}
+              style="currency"
+              currency="BRL"
+            />
+          </div>
+          <div className="price">
+            {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}
+            <FormattedNumber
+              value={pg?.valor_parcela * (1 - pg?.desconto / 100)}
+              style="currency"
+              currency="BRL"
+            />
+          </div>
         </div>
       </IntlProvider>
     </label>
