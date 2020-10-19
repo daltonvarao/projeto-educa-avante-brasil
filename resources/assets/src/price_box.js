@@ -36,7 +36,7 @@ function SubscriptionModal({
   valorMatricula,
 }) {
   const initialState = {
-    step: PAYMENT,
+    step: CONTACT,
     nome: "",
     email: "",
     telefone: "",
