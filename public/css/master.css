@@ -1376,6 +1376,7 @@ h1 + .actions-buttons {
 
   .curso-info ul li + li {
     margin-left: 1.5rem;
+    margin-top: 0;
   }
 
   .course-description p {
