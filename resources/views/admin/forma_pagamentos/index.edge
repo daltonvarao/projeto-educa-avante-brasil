@@ -1,0 +1,45 @@
+@layout('layouts.admin')
+
+@section('content')
+  <div class="container">
+    <div class="container-header">
+      <h2 class="header-title">Formas de Pagamento</h2>
+      <div class="header-actions">
+        <a class="btn btn-primary" href="{{ route('admin.forma_pagamentos.create') }}">Adicionar</a>
+      </div>
+    </div>
+
+    <div class="table shadow">
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Ação</th>
+        </thead>
+        <tbody>
+          @each(forma_pagamento in forma_pagamentos.data)
+            <tr>
+              <td class="table-title">{{ forma_pagamento.nome }}</td>
+              <td>
+                <div class="table-links">
+                  <a class="link edit" href="{{ route('admin.forma_pagamentos.edit', id=forma_pagamento.id) }}">
+                    <i data-feather="edit"></i>
+                  </a>
+                  <form class="link delete" method="post" action="{{ route('admin.forma_pagamentos.destroy', id=forma_pagamento.id) }}?_method=DELETE">
+                    {{ csrfField() }}
+                    <button class="delete-button" type="button">
+                      <i class="danger-text" data-feather="trash-2"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          @else
+            @!component('components.empty_message', custom_link=route('admin.forma_pagamentos.create'))
+          @endeach
+        </tbody>
+      </table>
+    </div>
+
+    @!component('components.paginate', collection=forma_pagamentos)
+
+@endsection
