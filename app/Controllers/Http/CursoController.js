@@ -69,6 +69,8 @@ class CursoController {
     const cargaHorariaData = request.input("cargas_horarias");
     const formaPagamentoData = request.input("formas_pagamentos");
 
+    console.log(formaPagamentoData);
+
     try {
       const curso = await Curso.create(cursoData);
 
@@ -80,23 +82,21 @@ class CursoController {
             .map(({ id, ...rest }) => rest)
         );
 
-      await curso
-        .forma_pagamentos()
-        .createMany(
-          formaPagamentoData
-            .filter(
-              (item) =>
-                item.parcelas &&
-                item.valor_parcela &&
-                item.desconto &&
-                item.conclusao &&
-                item.tipo
-            )
-            .map(({ id, ...rest }) => rest)
-        );
+      await curso.forma_pagamentos().createMany(
+        formaPagamentoData
+          .filter(
+            (item) =>
+              item.parcelas && item.valor_parcela && item.conclusao && item.tipo
+          )
+          .map(({ id, desconto, ...rest }) => ({
+            ...rest,
+            desconto: desconto ? desconto : 0,
+          }))
+      );
 
       return { success: "Curso cadastrado." };
     } catch (error) {
+      console.log(error);
       return { error: error.message };
     }
   }
@@ -191,21 +191,21 @@ class CursoController {
             .map(({ id, ...rest }) => rest)
         );
 
-      await curso
-        .forma_pagamentos()
-        .createMany(
-          formaPagamentoData
-            .filter(
-              (item) =>
-                !item.id &&
-                item.parcelas &&
-                item.valor_parcela &&
-                item.desconto &&
-                item.conclusao &&
-                item.tipo
-            )
-            .map(({ id, ...rest }) => rest)
-        );
+      await curso.forma_pagamentos().createMany(
+        formaPagamentoData
+          .filter(
+            (item) =>
+              !item.id &&
+              item.parcelas &&
+              item.valor_parcela &&
+              item.conclusao &&
+              item.tipo
+          )
+          .map(({ id, desconto, ...rest }) => ({
+            ...rest,
+            desconto: desconto ? desconto : 0,
+          }))
+      );
 
       return { success: "Curso atualizado." };
     } catch (error) {

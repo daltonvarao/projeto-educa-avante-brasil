@@ -9,7 +9,7 @@ class FormaPagamento extends Model {
 
     this.addHook("beforeSave", async (pg) => {
       pg.valor_total = pg.parcelas * pg.valor_parcela;
-      pg.valor_liquido = pg.valor_total * (1 - pg.desconto / 100);
+      pg.valor_liquido = pg.valor_total * (1 - (pg.desconto || 100 / 100));
     });
   }
 
