@@ -72,6 +72,16 @@ function Form({ edit, curso }) {
   }, [curso, edit]);
 
   const handleSubmitForm = async () => {
+    if (cargasHorarias[0].disciplina === "") {
+      swal("Erro!", "Adicione ao menos uma carga horária", "error");
+      return;
+    }
+
+    if (formasPagamentos[0].parcelas === "") {
+      swal("Erro!", "Adicione ao menos uma forma de pagamento", "error");
+      return;
+    }
+
     const data = {
       nome,
       instituicao,
@@ -173,7 +183,7 @@ function Form({ edit, curso }) {
 
           <Editor
             initialValue={sobre}
-            apiKey="hl4vrjm5712bj2ow0vck1jw1tih2dubftxpqorpc4x6wymnj"
+            apiKey="31uk3qj19pqqyyzpv4qrzeqfaccb50bmoxad1rcrpwwzwd5l"
             init={{
               height: 500,
               menubar: true,

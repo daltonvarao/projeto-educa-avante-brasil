@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-
-import { Select2 } from "./inputs";
-
 import { IntlProvider, FormattedNumber } from "react-intl";
+import { Select2 } from "./inputs";
 
 export const FormasPagamentos = ({ formasPagamentos, setFormasPagamentos }) => {
   function handleClick() {
@@ -36,7 +34,6 @@ export const FormasPagamentos = ({ formasPagamentos, setFormasPagamentos }) => {
           setFormasPagamentos={setFormasPagamentos}
         />
       ))}
-
       <button
         onClick={handleClick}
         className="btn text-primary mb-1 float-right outline-none"
@@ -63,21 +60,16 @@ const FormaPagamento = ({
   ) {
     let value = ev.target.value;
     let newState = [...formasPagamentos];
-
     newState[position][fieldName] = value;
-
     setFormasPagamentos(newState);
   }
 
   function handleRemoveClick(position) {
     const newState = [...formasPagamentos];
-
     if (newState[position].valor_parcela) {
       if (!window.confirm("Deseja remover este item?")) return;
     }
-
     newState.splice(position, 1);
-
     setFormasPagamentos(newState);
   }
 
@@ -86,19 +78,15 @@ const FormaPagamento = ({
       <h5 className="form-subtitle text-primary">
         Forma de Pagamento {position + 1}
       </h5>
-
-      <input type="hidden" value={data.id} />
-
+      <input type="hidden" defaultValue={data.id} />
       <div className="form-group-inline">
         <Select2
           name="Parcelas"
           options={[1, 2, 3, 6, 9, 12, 15, 18].map((item) => [item, item])}
-          defaultValue={data.parcelas}
+          value={data.parcelas}
           setSelected={(value) => {
             let newState = [...formasPagamentos];
-
             newState[position]["parcelas"] = value;
-
             setFormasPagamentos(newState);
           }}
         />
@@ -117,7 +105,6 @@ const FormaPagamento = ({
             )
           }
         />
-
         <input
           className="form-input"
           type="number"
@@ -141,16 +128,13 @@ const FormaPagamento = ({
             ["cartao", "Cartão"],
             ["boleto", "Boleto"],
           ]}
-          defaultValue={data.tipo}
+          value={data.tipo}
           setSelected={(value) => {
             let newState = [...formasPagamentos];
-
             newState[position]["tipo"] = value;
-
             setFormasPagamentos(newState);
           }}
         />
-
         <input
           className="form-input"
           type="text"
@@ -166,7 +150,6 @@ const FormaPagamento = ({
             )
           }
         />
-
         <button
           className="btn mdi-2x danger-text mdi mdi-trash-can-outline"
           type="button"
@@ -195,19 +178,16 @@ export function FormaPagamentoBox({ selected, setSelected, pg, pos }) {
             id={`payment${pg.id}`}
             defaultChecked={pg.id === selected || pos === 0}
           />
-
           <div>
             <div className="payment">
               {pg?.tipo == "cartao" ? "Cartão" : "Boleto"} - {pg?.conclusao}
             </div>
-
             <div className="discount-percentage">
               Economize{" "}
               <FormattedNumber value={pg?.desconto / 100} style="percent" />
             </div>
           </div>
         </div>
-
         <div className="text-center">
           <div className="old-price">
             {pg?.parcelas > 1 ? `${pg?.parcelas}x ` : ""}
