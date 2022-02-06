@@ -24,7 +24,7 @@ function Form({ edit, curso }) {
 
   const [formasPagamentos, setFormasPagamentos] = useState([
     {
-      parcelas: "",
+      parcelas: "1",
       conclusao: "",
       tipo: "",
       desconto: "",
@@ -77,7 +77,7 @@ function Form({ edit, curso }) {
       return;
     }
 
-    if (formasPagamentos[0].parcelas === "") {
+    if (formasPagamentos[0].valor_parcela === "") {
       swal("Erro!", "Adicione ao menos uma forma de pagamento", "error");
       return;
     }

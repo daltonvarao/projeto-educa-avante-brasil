@@ -65,11 +65,8 @@ class CursoController {
    */
   async store({ request }) {
     const cursoData = request.only(this.cursoData());
-
     const cargaHorariaData = request.input("cargas_horarias");
     const formaPagamentoData = request.input("formas_pagamentos");
-
-    console.log(formaPagamentoData);
 
     try {
       const curso = await Curso.create(cursoData);
