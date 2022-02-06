@@ -36,4 +36,4 @@ class CursoFormaPagamentoSchema extends Schema {
   }
 }
 
-module.exports = FormaPagamentosSchema;
+module.exports = CursoFormaPagamentoSchema;
