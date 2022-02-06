@@ -17,4 +17,4 @@ database/*.sqlite
 .idea
 
 .vscode/
-react_bundle.js
+**/react_bundle.js
