@@ -63,7 +63,7 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request }) {
+  async store({ request, response }) {
     const cursoData = request.only(this.cursoData());
     const cargaHorariaData = request.input("cargas_horarias");
     const formaPagamentoData = request.input("formas_pagamentos");
@@ -94,7 +94,7 @@ class CursoController {
       return { success: "Curso cadastrado." };
     } catch (error) {
       console.log(error);
-      return { error: error.message };
+      return response.status(400).json({ error: error.message });
     }
   }
 
@@ -136,7 +136,7 @@ class CursoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request }) {
+  async update({ params, request, response }) {
     const cursoData = request.only(this.cursoData());
 
     const cargaHorariaData = request.input("cargas_horarias");
@@ -206,7 +206,7 @@ class CursoController {
 
       return { success: "Curso atualizado." };
     } catch (error) {
-      return { error: error.message };
+      return response.status(400).json({ error: error.message });
     }
   }
   /**
